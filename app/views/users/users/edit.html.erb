@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="row">
+    <h2>登録情報編集</h2>
+
+    <%= form_with model: @user, url: user_path(@user), local: true do |f| %>
+      <%= render "users/users/error_messages", resource: @user %>
+
+  　　<div class="user-input">
+  　　    <div class="user-input-form">
+          <!--プレビュー機能の実装検討-->
+          <%# if @user.profile_image.present? %>
+            <%#= attachment_image_tag @user, :profile_image, format: "jpeg", size: "250x200", id: "img-edit" %>
+          <%# end %>
+          <%= f.label :profile_image, "プロフィール画像" %>
+          <%= f.attachment_field :profile_image, type: 'file', id: "img-file" %>
+        </div>
+
+        <div class="user-input-form">
+          <label>名前</label>
+          <%= f.label :last_name, "（姓）" %>
+          <%= f.text_field :last_name, autofocus: true %>
+          <%= f.label :first_name, "（名）" %>
+          <%= f.text_field :first_name %>
+        </div>
+
+        <div class="user-input-form">
+          <label>フリガナ</label>
+          <%= f.label :last_name_kana, "（セイ）" %>
+          <%= f.text_field :last_name_kana %>
+          <%= f.label :first_name_kana, "（メイ）" %>
+          <%= f.text_field :first_name_kana %>
+        </div>
+
+        <div class="user-input-form">
+          <%= f.label :email, "メールアドレス" %>
+         <%= f.email_field :email, type: "email", autocomplete: "email" %>
+        </div>
+
+        <div class="user-input-form">
+          <%= f.label :postal_code, "郵便番号（ハイフンなし）" %>
+          <%= f.text_field :postal_code %>
+        </div>
+
+        <div class="user-input-form">
+          <%= f.label :address, "住所" %>
+          <%= f.text_field :address %>
+        </div>
+
+        <div class="user-input-form">
+          <%= f.label :telphone_number, "電話番号（ハイフンなし）" %>
+          <%= f.text_field :telphone_number, type: "tel" %>
+        </div>
+      </div>
+
+      <div class="user-input-button">
+        <p><%= f.submit "編集する", class: "btn btn-primary" %></p>
+      </div>
+    <% end %>
+  </div>
+</div>
