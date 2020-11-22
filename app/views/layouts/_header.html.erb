@@ -1,0 +1,31 @@
+<header class="navbar navbar-dark bg-success">
+  <div class="container">
+    <nav class='nav navbar-nav navbar-left'>
+      <li><h3><%= link_to "Joy Health!", root_path %></h3></li>
+    </nav>
+    
+    <nav>
+      <ul class="nav navbar-nav navbar-right">
+        <% if user_signed_in? %>
+          <li><b>こんにちは！<%= current_user.last_name %>さん！</b></li>
+          <li>
+            <%= link_to user_path(current_user) do %>
+              マイページ
+            <% end %>
+          </li>
+          <li>
+            <%= link_to destroy_user_session_path, method: :delete do %>
+              ログアウト
+            <% end %>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to root_path do %>
+              トップ
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
+</header>
