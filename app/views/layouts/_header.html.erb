@@ -3,11 +3,11 @@
     <nav class='nav navbar-nav navbar-left'>
       <li><h3><%= link_to "Joy Health!", root_path %></h3></li>
     </nav>
-    
+
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
-          <li><b>こんにちは！<%= current_user.last_name %>さん！</b></li>
+          <li><b>ようこそ！<%= current_user.last_name %>さん！</b></li>
           <li>
             <%= link_to user_path(current_user) do %>
               マイページ
