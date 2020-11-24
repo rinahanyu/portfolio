@@ -1,48 +1,37 @@
 <div class="container">
   <div class="row">
-    <h2>新規登録（個人利用者さま）</h2>
+    <h2>新規登録（医療関係者さま）</h2>
 
-    <%= form_with model: @user, url: user_registration_path, local: true do |f| %>
-      <%= render "users/shared/error_messages", resource: @user %>
+    <%= form_with model: @hospital, url: hospital_registration_path, local: true do |f| %>
+      <%= render "hospitals/shared/error_messages", resource: @hospital %>
 
-  　　<div class="user-input">
-        <div class="user-input-form">
-          <label>名前</label>
-          <%= f.label :last_name, "（姓）" %>
-          <%= f.text_field :last_name, autofocus: true %>
-          <%= f.label :first_name, "（名）" %>
-          <%= f.text_field :first_name %>
+  　　<div class="hospital-input">
+        <div class="hospital-input-form">
+          <%= f.label :name, "医療機関名" %>
+         <%= f.text_field :name %>
         </div>
 
-        <div class="user-input-form">
-          <label>フリガナ</label>
-          <%= f.label :last_name_kana, "（セイ）" %>
-          <%= f.text_field :last_name_kana %>
-          <%= f.label :first_name_kana, "（メイ）" %>
-          <%= f.text_field :first_name_kana %>
-        </div>
-
-        <div class="user-input-form">
+        <div class="hospital-input-form">
           <%= f.label :email, "メールアドレス" %>
          <%= f.email_field :email, type: "email", autocomplete: "email" %>
         </div>
 
-        <div class="user-input-form">
+        <div class="hospital-input-form">
           <%= f.label :postal_code, "郵便番号（ハイフンなし）" %>
           <%= f.text_field :postal_code %>
         </div>
 
-        <div class="user-input-form">
+        <div class="hospital-input-form">
           <%= f.label :address, "住所" %>
           <%= f.text_field :address %>
         </div>
 
-        <div class="user-input-form">
+        <div class="hospital-input-form">
           <%= f.label :telphone_number, "電話番号（ハイフンなし）" %>
           <%= f.text_field :telphone_number, type: "tel" %>
         </div>
 
-        <div class="user-input-form">
+        <div class="hospital-input-form">
           <%= f.label :password, "パスワード（６文字以上）" %>
           <% if @minimum_password_length %>
             <em>(<%= @minimum_password_length %> characters minimum)</em>
@@ -50,20 +39,20 @@
           <%= f.password_field :password, autocomplete: "new-password" %>
         </div>
 
-        <div class="user-input-form">
+        <div class="hospital-input-form">
           <%= f.label :password_confirmation, "パスワード（確認用）" %>
           <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
         </div>
       </div>
 
-      <div class="user-input-button">
+      <div class="hospital-input-button">
         <p><%= f.submit "新規登録", class: "btn btn-primary" %></p>
       </div>
     <% end %>
 
     <div>
       <h2>既に登録済みの方</h2>
-      <p><%= link_to "こちら", new_user_session_path %>　からログインしてください。</p>
+      <p><%= link_to "こちら", new_hospital_session_path %>　からログインしてください。</p>
     </div>
   </div>
 </div>
