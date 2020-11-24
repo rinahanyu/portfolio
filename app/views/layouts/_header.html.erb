@@ -18,10 +18,42 @@
               ログアウト
             <% end %>
           </li>
+        <% elsif hospital_signed_in? %>
+          <li><b>ようこそ！<%= current_hospital.name %>さん！</b></li>
+          <li>
+            <%= link_to hospital_path(current_hospital) do %>
+              マイページ
+            <% end %>
+          </li>
+          <li>
+            <%= link_to destroy_hospital_session_path, method: :delete do %>
+              ログアウト
+            <% end %>
+          </li>
         <% else %>
           <li>
             <%= link_to root_path do %>
               トップ
+            <% end %>
+          </li>
+          <li>
+            <%= link_to new_user_session_path do %>
+              ログイン（個人）
+            <% end %>
+          </li>
+          <li>
+            <%= link_to new_hospital_session_path do %>
+              ログイン（医療関係者）
+            <% end %>
+          </li>
+          <li>
+            <%= link_to about_user_path do %>
+              はじめまして（個人）
+            <% end %>
+          </li>
+          <li>
+            <%= link_to about_hospital_path do %>
+              はじめまして（医療関係者）
             <% end %>
           </li>
         <% end %>

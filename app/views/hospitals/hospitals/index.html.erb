@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+    <h2>医療機関一覧</h2>
+      <div class="hospital-search"></div>
+      <!--医療機関名での検索の実装-->
+      <div class="hospital-index">
+        <table>
+          <thead>
+            <tr>
+              <th class="col-xs-4">医療機関名</th>
+              <th class="col-xs-3">郵便番号</th>
+              <th class="col-xs-5">住所</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @hospitals.each do |hospital| %>
+              <tr>
+                <td class="col-xs-4">
+                  <%= link_to hospital_path(hospital) do %>
+                    <%= hospital.name %>
+                  <% end %>
+                </td>
+                <td class="col-xs-3"><%= hospital.telphone_number %></td>
+                <td class="col-xs-5"><%= hospital.address %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+  </div>
+</div>
