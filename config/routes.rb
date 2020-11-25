@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'home#top'
+  root "home#top"
   get "about_user", :to => "home#about_user"
   get "about_hospital", :to => "home#about_hospital"
 
@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     get "sign_in", :to => "users/sessions#new"
     get "sign_out", :to => "users/sessions#destroy"
     resources :users, only: [:show, :edit, :update]
+    resources :daily_records
   end
 
   scope module: :hospitals do

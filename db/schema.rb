@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_24_014911) do
+ActiveRecord::Schema.define(version: 2020_11_25_024211) do
+
+  create_table "daily_records", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "theme", null: false
+    t.text "introduction", null: false
+    t.string "daily_image_id"
+    t.integer "genre", limit: 1, default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "hospitals", force: :cascade do |t|
     t.string "email", default: "", null: false
