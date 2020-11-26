@@ -1,0 +1,25 @@
+<div class="form-group">
+  <%= f.label :body_weight, "体重" %></br>
+  <%= f.text_field :body_weight %>Kg
+</div>
+
+<div class="form-group">
+  <%= f.label :max_blood_pressure, "最高血圧" %></br>
+  <%= f.text_field :max_blood_pressure %>mmHg
+</div>
+
+<div class="form-group">
+  <%= f.label :min_blood_pressure, "最低血圧" %></br>
+  <%= f.text_field :min_blood_pressure %>mmHg
+</div>
+
+<div class="form-group">
+  <%= f.label :blood_sugar, "血糖値" %></br>
+  <%= f.text_field :blood_sugar %>mg/dL
+</div>
+
+<% if local_assigns[:edit_flag].present? %>
+  <p class="text-right"><%= f.submit "変更を保存", class: "btn btn-primary" %></p>
+<% else %>
+  <p class="text-right"><%= f.submit "新規登録", class: "btn btn-primary" %></p>
+<% end %>

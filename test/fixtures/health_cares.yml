@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  body_weight: 1
+  blood_pressure: 1
+  blood_sugar: 1
+
+two:
+  user_id: 1
+  body_weight: 1
+  blood_pressure: 1
+  blood_sugar: 1

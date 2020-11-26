@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     get "sign_out", :to => "users/sessions#destroy"
     resources :users, only: [:show, :edit, :update] do
       resources :medical_histories, except: [:show]
+      resources :health_cares, except: [:show]
     end
     resources :daily_records
   end

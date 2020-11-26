@@ -1,0 +1,10 @@
+<% if health_care.errors.any? %>
+  <div class="alert alert-danger">
+      The form contains <%= pluralize(health_care.errors.count, "error") %>.
+      <ul>
+      <% health_care.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

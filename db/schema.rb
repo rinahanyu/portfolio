@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_26_002838) do
+ActiveRecord::Schema.define(version: 2020_11_26_085033) do
 
   create_table "daily_records", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -20,6 +20,17 @@ ActiveRecord::Schema.define(version: 2020_11_26_002838) do
     t.integer "genre", limit: 1, default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "health_cares", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "body_weight"
+    t.integer "max_blood_pressure"
+    t.integer "blood_sugar"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.date "date", null: false
+    t.integer "min_blood_pressure"
   end
 
   create_table "hospitals", force: :cascade do |t|
