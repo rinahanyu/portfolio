@@ -1,0 +1,10 @@
+<% if daily_record.errors.any? %>
+  <div class="alert alert-danger">
+      The form contains <%= pluralize(daily_record.errors.count, "error") %>.
+      <ul>
+      <% daily_record.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

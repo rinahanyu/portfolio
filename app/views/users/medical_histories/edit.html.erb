@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-9">
+      <h2 class="history-header"><b>病歴の編集</b></h2>
+      <%= render "error", medical_history: @medical_history %>
+
+        <div class="row">
+          <%= form_with model: @medical_history, url: user_medical_history_path(@medical_history), local: true do |f| %>
+            <%= render "form", f: f, medical_history: @medical_history, edit_flag: true  %>
+          <% end %>
+        </div>
+    </div>
+  </div>
+</div>

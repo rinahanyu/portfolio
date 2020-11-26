@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+    <h2>みんなの投稿一覧</h2>
+    <div class="col-xs-4">
+      <p>ジャンルで検索する？</p>
+    </div>
+    <div class="col-xs-8">
+      <% @daily_records.each do |daily_record| %>
+        <p><%= daily_record.created_at.to_s(:datetime_jp) %></p>
+        <p><%= attachment_image_tag daily_record, :daily_image, format: "jpeg", fallback: "no_image.jpg", size: "250x200" %></p>
+        <p><%= link_to daily_record_path(daily_record) do %>
+          <%= daily_record.theme %>
+        <% end %>
+        ＜<%= daily_record.genre %>＞</p>
+        <p><%= link_to user_path(daily_record.user) do %>
+          <%= daily_record.user.last_name %>
+        <% end %></p>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-9">
+      <h2 class="daily-header"><b>新規登録</b></h2>
+      <%= render "error", daily_record: @daily_record %>
+
+        <div class="row">
+          <%= form_with model: @daily_record, url: daily_records_path, local: true do |f| %>
+            <%= render "form", f: f, daily_record: @daily_record %>
+          <% end %>
+        </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+    <h2><%= @daily_record.user.last_name %>さんの投稿</h2>
+    <div class="col-xs-6 col-xs-offset-3">
+      <div class="row">
+        <h3><%= @daily_record.theme %></h3>
+        <div class="col-xs-6">
+          <p><%= attachment_image_tag @daily_record, :daily_image, format: "jpeg", fallback: "no_image.jpg", size: "250x200" %></p>
+
+          <% if @daily_record.user == current_user %>
+            <%= link_to "編集する", edit_daily_record_path(@daily_record), class: "btn btn-primary" %>
+            <%= link_to "削除する", daily_record_path(@daily_record), method: :delete, class: "btn btn-danger", data: {confirm: "本当に削除しますか？"} %>
+          <% end %>
+        </div>
+        <div class="col-xs-6">
+          <p>＜ジャンル＞<%= @daily_record.genre %></p>
+          <p><%= @daily_record.introduction %></p>
+          <p><%= @daily_record.created_at.to_s(:datetime_jp) %></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

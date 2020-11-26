@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-9">
+      <h2 class="hea-header"><b>数値の新規登録</b></h2>
+      <%= render "error", health_care: @health_care %>
+
+        <div class="row">
+          <%= form_with model: @health_care , url: user_health_cares_path(current_user), local: true do |f| %>
+            <div class="col-xs-6 col-xs-offset-3">
+              <!--新規登録の場合み、今日の日付をデフォルト入力するため、日付カラムはrenderの外とする-->
+              <div class="form-group">
+                <%= f.label :date, "日付" %></br>
+                <%= raw sprintf(
+                  f.date_select(
+                    :date,
+                    include_blank: true,
+                    use_month_numbers: true,
+                    selected: Date.today,
+                    start_year: Time.now.year,
+                    end_year: 2020,
+                    date_separator: "%s"),
+                    "年", "月") +"日" %>
+              </div>
+              <%= render "form", f: f, health_care: @health_care  %>
+            </div>
+          <% end %>
+        </div>
+    </div>
+  </div>
+</div>

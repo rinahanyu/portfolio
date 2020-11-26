@@ -10,7 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_24_014911) do
+ActiveRecord::Schema.define(version: 2020_11_26_085033) do
+
+  create_table "daily_records", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "theme", null: false
+    t.text "introduction", null: false
+    t.string "daily_image_id"
+    t.integer "genre", limit: 1, default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "health_cares", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "body_weight"
+    t.integer "max_blood_pressure"
+    t.integer "blood_sugar"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.date "date", null: false
+    t.integer "min_blood_pressure"
+  end
 
   create_table "hospitals", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -26,6 +47,17 @@ ActiveRecord::Schema.define(version: 2020_11_24_014911) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_hospitals_on_email", unique: true
     t.index ["reset_password_token"], name: "index_hospitals_on_reset_password_token", unique: true
+  end
+
+  create_table "medical_histories", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "disease", null: false
+    t.date "started_on", null: false
+    t.date "finished_on"
+    t.text "treatment", null: false
+    t.string "hospital", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

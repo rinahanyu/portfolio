@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  disease: MyString
+  started_on: 2020-11-26
+  finished_on: 2020-11-26
+  treatment: MyText
+  hospital: MyString
+
+two:
+  user_id: 1
+  disease: MyString
+  started_on: 2020-11-26
+  finished_on: 2020-11-26
+  treatment: MyText
+  hospital: MyString
