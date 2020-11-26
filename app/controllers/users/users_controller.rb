@@ -2,7 +2,7 @@ class Users::UsersController < ApplicationController
   before_action :set_user
 
   def show
-    @daily_records = @user.daily_records
+    @daily_records = @user.daily_records.order(created_at: :desc)
   end
 
   def edit

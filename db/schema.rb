@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_25_024211) do
+ActiveRecord::Schema.define(version: 2020_11_26_002838) do
 
   create_table "daily_records", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -36,6 +36,17 @@ ActiveRecord::Schema.define(version: 2020_11_25_024211) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_hospitals_on_email", unique: true
     t.index ["reset_password_token"], name: "index_hospitals_on_reset_password_token", unique: true
+  end
+
+  create_table "medical_histories", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "disease", null: false
+    t.date "started_on", null: false
+    t.date "finished_on"
+    t.text "treatment", null: false
+    t.string "hospital", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

@@ -16,7 +16,7 @@ class Users::DailyRecordsController < ApplicationController
   end
 
   def index
-    @daily_records = DailyRecord.all
+    @daily_records = DailyRecord.all.order(created_at: :desc)
   end
 
   def show

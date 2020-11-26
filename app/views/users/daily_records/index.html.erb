@@ -5,38 +5,17 @@
       <p>ジャンルで検索する？</p>
     </div>
     <div class="col-xs-8">
-      <table>
-        <thead>
-          <tr>
-            <th>みんな</th>
-            <th></th>
-            <th>投稿日</th>
-            <th>題名</th>
-            <th>ジャンル</th>
-            <th>いいね</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @daily_records.each do |daily_record| %>
-            <tr>
-              <td><%= attachment_image_tag daily_record.user, :profile_image, format: "jpeg", fallback: "no_image.jpg", size: "90x60" %></td>
-              <td>
-                <%= link_to user_path(daily_record.user) do %>
-                  <%= daily_record.user.last_name %>
-                <% end %>
-              </td>
-              <td><%= daily_record.created_at.to_s(:datetime_jp) %></td>
-              <td>
-                <%= link_to daily_record_path(daily_record) do %>
-                  <%= daily_record.theme %>
-                <% end %>
-              </td>
-              <td><%= daily_record.genre %></td>
-              <td></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+      <% @daily_records.each do |daily_record| %>
+        <p><%= daily_record.created_at.to_s(:datetime_jp) %></p>
+        <p><%= attachment_image_tag daily_record, :daily_image, format: "jpeg", fallback: "no_image.jpg", size: "250x200" %></p>
+        <p><%= link_to daily_record_path(daily_record) do %>
+          <%= daily_record.theme %>
+        <% end %>
+        ＜<%= daily_record.genre %>＞</p>
+        <p><%= link_to user_path(daily_record.user) do %>
+          <%= daily_record.user.last_name %>
+        <% end %></p>
+      <% end %>
     </div>
   </div>
 </div>
