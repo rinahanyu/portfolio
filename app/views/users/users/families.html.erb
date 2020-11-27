@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row">
+    <h2>かかりつけ医一覧</h2>
+
+    <% if @hospitals.present? %>
+      <table>
+        <thead>
+          <tr>
+            <th>医療機関名</th>
+            <th>電話番号</th>
+            <th>郵便番号</th>
+            <th>住所</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @hospitals.each do |hospital| %>
+            <tr>
+              <td>
+                <%= link_to hospital_path(hospital) do %>
+                  <%= hospital.name %>
+                <% end %>
+              </td>
+              <td><%= hospital.telphone_number %></td>
+              <td><%= hospital.postal_code %></td>
+              <td><%= hospital.address %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <h5>まだ登録されていません</h5>
+    <% end %>
+    <%= link_to "医療機関一覧へ", hospitals_path, class: "btn btn-primary" %>
+  </div>
+</div>

@@ -1,12 +1,12 @@
 <header class="navbar navbar-dark bg-success">
   <div class="container">
-    <nav class='nav navbar-nav navbar-left'>
-      <li><h3><%= link_to "Joy Health!", root_path %></h3></li>
-    </nav>
-
-    <nav>
-      <ul class="nav navbar-nav navbar-right">
-        <% if user_signed_in? %>
+    <% if user_signed_in? %>
+      <nav class='nav navbar-nav navbar-left'>
+        <li><h3>Joy Health!</h3></li>
+        <li><h5>for 個人利用者</h5></li>
+      </nav>
+      <nav>
+        <ul class="nav navbar-nav navbar-right">
           <li><b>ようこそ！<%= current_user.last_name %>さん！</b></li>
           <li>
             <%= link_to user_path(current_user) do %>
@@ -23,7 +23,15 @@
               ログアウト
             <% end %>
           </li>
-        <% elsif hospital_signed_in? %>
+        </ul>
+      </nav>
+    <% elsif hospital_signed_in? %>
+      <nav class='nav navbar-nav navbar-left'>
+        <li><h3>Joy Health!</h3></li>
+        <li><h5>for 医療関係</h5></li>
+      </nav>
+      <nav>
+        <ul class="nav navbar-nav navbar-right">
           <li><b>ようこそ！<%= current_hospital.name %>さん！</b></li>
           <li>
             <%= link_to hospital_path(current_hospital) do %>
@@ -35,7 +43,14 @@
               ログアウト
             <% end %>
           </li>
-        <% else %>
+        </ul>
+      </nav>
+    <% else %>
+      <nav class='nav navbar-nav navbar-left'>
+        <li><h3><%= link_to "Joy Health!", root_path %></h3></li>
+      </nav>
+      <nav>
+        <ul class="nav navbar-nav navbar-right">
           <li>
             <%= link_to root_path do %>
               トップ
@@ -61,8 +76,8 @@
               はじめまして（医療関係者）
             <% end %>
           </li>
-        <% end %>
-      </ul>
-    </nav>
+        </ul>
+      </nav>
+    <% end %>
   </div>
 </header>

@@ -6,12 +6,11 @@
       <p><%= attachment_image_tag @user, :profile_image, format: "jpeg", fallback: "no_image.jpg", size: "250x200" %></p>
       <h4><b><%= @user.last_name %><%= @user.first_name %></b></h4>
 
-      <div>
-        <span>登録情報</span>
-        <%= link_to "編集する", edit_user_path(@user), class: "btn btn-primary" %>
-      </div>
-
       <% if @user == current_user %>
+        <div>
+          <span>基本情報</span>
+          <%= link_to "編集する", edit_user_path(@user), class: "btn btn-primary" %>
+        </div>
         <div>
           <span>わたしの病歴</span>
           <%= link_to "覗いてみる", user_medical_histories_path(@user), class: "btn btn-primary" %>
@@ -19,6 +18,10 @@
         <div>
           <span>わたしの数値</span>
           <%= link_to "覗いてみる", user_health_cares_path(@user), class: "btn btn-primary" %>
+        </div>
+        <div>
+          <span>かかりつけ医一覧</span>
+          <%= link_to "覗いてみる", families_user_path(@user.id), class: "btn btn-primary" %>
         </div>
       <% end %>
     </div>
