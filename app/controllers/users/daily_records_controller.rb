@@ -20,6 +20,8 @@ class Users::DailyRecordsController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
+    @daily_record = DailyRecord.find(params[:id])
   end
 
   def edit

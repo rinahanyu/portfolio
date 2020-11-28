@@ -18,7 +18,7 @@ class Users::MedicalRecordsController < ApplicationController
   end
 
   def index
-    @medical_records = current_hospital.medical_records.where(user_id: params[:user_id]).order(examined_on: :desc)
+    @medical_records = MedicalRecord.where(user_id: params[:user_id]).order(examined_on: :desc)
   end
 
   def show
@@ -46,7 +46,7 @@ class Users::MedicalRecordsController < ApplicationController
   end
 
   def set_user
-    @user = User.find_by(params[:user_id])
+    @user = User.find(params[:user_id])
   end
 
   def medical_record_params

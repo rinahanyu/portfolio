@@ -1,0 +1,8 @@
+<% daily_record.comments.each do |comment| %>
+  <li><%= comment.comment %></li>
+  <%= comment.user.last_name %>
+  <%= comment.created_at.strftime('%Y/%m/%d') %>
+  <% if comment.user == current_user %>
+    <%= link_to "削除", daily_record_comment_path(comment.daily_record, comment), method: :delete, remote: true, class: "btn btn-danger" %>
+  <% end %>
+<% end %>

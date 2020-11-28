@@ -6,6 +6,7 @@
         <table class="table">
           <thead>
             <tr>
+              <th>医療機関名</th>
               <th>診察日</th>
               <th>傷病名</th>
               <th>担当医師名</th>
@@ -15,6 +16,7 @@
           <tbody>
             <% @medical_records.each do |medical_record| %>
               <tr>
+                <td><%= medical_record.hospital.name %></td>
                 <td><%= medical_record.examined_on.strftime("%Y年%m月%d日") %></td>
                 <td><%= medical_record.disease %></td>
                 <td><%= medical_record.doctor %></td>
@@ -23,7 +25,6 @@
             <% end %>
           </tbody>
         </table>
-        <%= link_to "新規作成", new_user_medical_record_path(@user), class: "btn btn-primary" %>
       </div>
   </div>
 </div>
