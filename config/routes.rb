@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   root "home#top"
   get "about_user", :to => "home#about_user"
   get "about_hospital", :to => "home#about_hospital"
@@ -22,6 +21,7 @@ Rails.application.routes.draw do
       resources :medical_histories, except: [:show]
       resources :health_cares, except: [:show]
       get :families, on: :member
+      resources :medical_records
     end
     resources :daily_records
   end
@@ -30,9 +30,8 @@ Rails.application.routes.draw do
     get "sign_up", :to => "hospitals/registraions#new"
     get "sign_in", :to => "hospitals/sessions#new"
     get "sign_out", :to => "hospitals/sessions#destroy"
-    resources :hospitals, only: [:index, :show, :edit, :update] do
-      resource :medical_relationships, only: [:create, :destroy]
-    end
+    resources :hospitals, only: [:index, :show, :edit, :update]
+    resources :medical_relationships, only: [:create, :destroy]
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

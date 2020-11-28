@@ -1,34 +1,9 @@
 <div class="container">
   <div class="row">
-
     <% if current_hospital == @hospital %>
-      <h2>マイページ</h2>
-    <% else %>
-      <h4>＜医療機関詳細＞</h4>
+      <%= render "hospital", hospital: @hospital %>
+    <% else %>　<!--個人利用者の場合-->
+      <%= render "user", hospital: @hospital %>
     <% end %>
-
-    <div class="col-xs-4">
-      <h3><b><%= @hospital.name %></b></h3>
-      <p>電話番号：<%= @hospital.telphone_number %></p>
-      <p>郵便番号：<%= @hospital.postal_code %></p>
-      <p>住所：<%= @hospital.address %></p>
-
-      <% if current_hospital == @hospital %>
-        <div>
-          <span>登録情報</span>
-          <%= link_to "編集する", edit_hospital_path(@hospital), class: "btn btn-primary" %>
-        </div>
-      <% else %>
-        <div>
-          <span>かかりつけ医</span>
-          <% if current_user.families?(@hospital) %>
-            <%= link_to "登録を外す", hospital_medical_relationships_path(@hospital), method: :delete, class: "btn btn-primary" %>
-          <% else %>
-            <%= link_to "登録する", hospital_medical_relationships_path(@hospital), method: :post, class: "btn btn-primary" %>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
-    <div class="col-xs-8"></div>
   </div>
 </div>

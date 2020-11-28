@@ -1,10 +1,10 @@
 class Hospital < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  has_many :medical_relationships, dependent: :destroy
-
   has_many :medical_relationships
   has_many :patients, through: :medical_relationships, source: :user
+  has_many :medical_records, dependent: :destroy
+  # has_many :record_patients, through: :medical_records, source: :user
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable

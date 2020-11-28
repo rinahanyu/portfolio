@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-9">
+      <h2 class="medical-header"><b>診療記録の編集</b></h2>
+      <h4>＜患者名＞<%= @user.last_name %><%= @user.first_name %>さん</h4>
+      <%= render "error", medical_record: @medical_record %>
+
+        <div class="row">
+          <%= form_with model: @medical_record , url: user_medical_record_path(@user), local: true do |f| %>
+            <div class="col-xs-6 col-xs-offset-3">
+              <!--新規登録の場合み、今日の日付をデフォルト入力するため、日付カラムはrenderの外とする-->
+              <div class="form-group">
+                <%= f.label :examined_on, "診察日" %></br>
+                <%= raw sprintf(
+                  f.date_select(
+                    :examined_on,
+                    include_blank: true,
+                    use_month_numbers: true,
+                    start_year: Time.now.year,
+                    end_year: 2020,
+                    date_separator: "%s"),
+                    "年", "月") +"日" %>
+              </div>
+              <%= render "form", f: f, medical_record: @medical_record, edit_flag: true  %>
+            </div>
+          <% end %>
+        </div>
+    </div>
+  </div>
+</div>

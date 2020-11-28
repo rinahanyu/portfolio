@@ -1,0 +1,46 @@
+<h4>＜医療機関詳細＞</h4>
+
+ <div class="col-xs-4">
+  <table class="table">
+    <thead>
+      <tr>
+        <th><h3><b><%= hospital.name %></b></h3></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>電話番号</th>
+        <td><%= hospital.telphone_number %></td>
+      </tr>
+      <tr>
+        <th>郵便番号</th>
+        <td><%= hospital.postal_code %></td>
+      </tr>
+      <tr>
+        <th>住所</th>
+        <td><%= hospital.address %></td>
+      </tr>
+    </tbody>
+  </table>
+  <div>
+    <span>かかりつけ医</span>
+    <% if current_user.families?(hospital) %>
+      <%= form_with model: hospital, url: medical_relationship_path(user_id: current_user.id, hospital_id: hospital.id), method: :delete, local: true do |f| %>
+        <%= f.hidden_field :hospital_id, :value => hospital.id %>
+        <%= f.submit "登録を外す", class: "btn btn-primary" %>
+      <% end %>
+    <% else %>
+      <%= form_with model: hospital, url: medical_relationships_path, method: :post, local: true do |f| %>
+        <%= f.hidden_field :hospital_id, :value => hospital.id %>
+        <%= f.submit "登録する", class: "btn btn-primary" %>
+      <% end %>
+    <% end %>
+  </div>
+  <div>
+    <%= link_to "かかりつけ医一覧に戻る", families_user_path(current_user.id), class: "btn btn-success" %>
+  </div>
+</div>
+
+<div class="col-xs-8">
+</div>
