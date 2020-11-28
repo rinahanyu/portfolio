@@ -15,6 +15,10 @@ class Users::UsersController < ApplicationController
       render "edit"
     end
   end
+  
+  def families
+    @hospitals = @user.families
+  end
 
   private
   def set_user

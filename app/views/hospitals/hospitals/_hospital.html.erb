@@ -1,0 +1,56 @@
+<h2>マイページ</h2>
+
+<div class="col-xs-4">
+  <table class="table">
+    <thead>
+      <tr>
+        <th><h3><b><%= hospital.name %></b></h3></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>電話番号</th>
+        <td><%= hospital.telphone_number %></td>
+      </tr>
+      <tr>
+        <th>郵便番号</th>
+        <td><%= hospital.postal_code %></td>
+      </tr>
+      <tr>
+        <th>住所</th>
+        <td><%= hospital.address %></td>
+      </tr>
+      <tr>
+        <th>登録情報</th>
+        <td><%= link_to "編集する", edit_hospital_path(hospital), class: "btn btn-primary" %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="col-xs-8">
+  <h4><b>＜患者一覧＞</b></h4>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>患者名</th>
+        <th>電話番号</th>
+        <th>郵便番号</th>
+        <th>住所</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% hospital.patients.each do |patient| %>
+        <tr>
+          <td><%= link_to patient.last_name, user_path(patient) %></td>
+          <td><%= patient.telphone_number %></td>
+          <td><%= patient.postal_code %></td>
+          <td><%= patient.address %></td>
+          <th><%= link_to "診療記録一覧", user_medical_records_path(patient), class: "btn btn-success" %></th>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

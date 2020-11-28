@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_26_085033) do
+ActiveRecord::Schema.define(version: 2020_11_27_135757) do
 
   create_table "daily_records", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -56,6 +56,24 @@ ActiveRecord::Schema.define(version: 2020_11_26_085033) do
     t.date "finished_on"
     t.text "treatment", null: false
     t.string "hospital", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "medical_records", force: :cascade do |t|
+    t.integer "hospital_id", null: false
+    t.date "examined_on", null: false
+    t.string "doctor", null: false
+    t.string "disease", null: false
+    t.text "treatment", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+  end
+
+  create_table "medical_relationships", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "hospital_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
