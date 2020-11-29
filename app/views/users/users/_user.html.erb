@@ -39,7 +39,8 @@
         <th>投稿日</th>
         <th>題名</th>
         <th>ジャンル</th>
-        <th>いいね</th>
+        <th></th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -52,6 +53,10 @@
             <% end %>
           </td>
           <td><%= daily_record.genre %></td>
+          <td>
+            <span class="fa fa-heart" aria-hidden="true" style="color: red;"></span>
+            <%= daily_record.favorites.count %>
+          </td>
           <td>コメント<%= daily_record.comments.count %>件</td>
         </tr>
       <% end %>
