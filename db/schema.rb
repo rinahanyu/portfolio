@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_27_135757) do
+ActiveRecord::Schema.define(version: 2020_11_28_145420) do
+
+  create_table "comments", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "daily_record_id", null: false
+    t.text "comment", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "daily_records", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -18,6 +26,13 @@ ActiveRecord::Schema.define(version: 2020_11_27_135757) do
     t.text "introduction", null: false
     t.string "daily_image_id"
     t.integer "genre", limit: 1, default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "daily_record_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

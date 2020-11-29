@@ -4,24 +4,26 @@
       <div class="hospital-search"></div>
       <!--医療機関名での検索の実装-->
       <div class="hospital-index">
-        <table>
+        <table class="table">
           <thead>
             <tr>
-              <th class="col-xs-4">医療機関名</th>
-              <th class="col-xs-3">郵便番号</th>
-              <th class="col-xs-5">住所</th>
+              <th>医療機関名</th>
+              <th>電話番号</th>
+              <th>郵便番号</th>
+              <th>住所</th>
             </tr>
           </thead>
           <tbody>
             <% @hospitals.each do |hospital| %>
               <tr>
-                <td class="col-xs-4">
+                <td>
                   <%= link_to hospital_path(hospital) do %>
                     <%= hospital.name %>
                   <% end %>
                 </td>
-                <td class="col-xs-3"><%= hospital.telphone_number %></td>
-                <td class="col-xs-5"><%= hospital.address %></td>
+                <td><%= hospital.telphone_number %></td>
+                <td><%= hospital.postal_code %></td>
+                <td><%= hospital.address %></td>
               </tr>
             <% end %>
           </tbody>

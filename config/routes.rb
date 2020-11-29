@@ -23,7 +23,10 @@ Rails.application.routes.draw do
       get :families, on: :member
       resources :medical_records
     end
-    resources :daily_records
+    resources :daily_records do
+      resource :favorites, only: [:create, :destroy]
+      resources :comments, only: [:create, :destroy]
+    end
   end
 
   scope module: :hospitals do

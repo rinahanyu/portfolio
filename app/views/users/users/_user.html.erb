@@ -1,0 +1,69 @@
+<h2>マイページ</h2>
+
+<div class="col-xs-4">
+  <p><%= attachment_image_tag user, :profile_image, format: "jpeg", fallback: "no_image.jpg", size: "250x200" %></p>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th><h3><b><%= user.last_name %><%= user.first_name %></b></h3></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>基本情報</th>
+        <td> <%= link_to "編集する", edit_user_path(user), class: "btn btn-primary" %></td>
+      </tr>
+      <tr>
+        <th>わたしの病歴</th>
+        <td><%= link_to "覗いてみる", user_medical_histories_path(user), class: "btn btn-primary" %></td>
+      </tr>
+      <tr>
+        <th>わたしの数値</th>
+        <td><%= link_to "覗いてみる", user_health_cares_path(user), class: "btn btn-primary" %></td>
+      </tr>
+      <tr>
+        <th>かかりつけ医一覧</th>
+        <td> <%= link_to "覗いてみる", families_user_path(user.id), class: "btn btn-primary" %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="col-xs-8">
+  <h4>＜わたしの投稿一覧＞</h4>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>投稿日</th>
+        <th>題名</th>
+        <th>ジャンル</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% daily_records.each do |daily_record| %>
+        <tr>
+          <td><%= daily_record.created_at.to_s(:datetime_jp) %></td>
+          <td>
+            <%= link_to daily_record_path(daily_record) do %>
+              <%= daily_record.theme %>
+            <% end %>
+          </td>
+          <td><%= daily_record.genre %></td>
+          <td>
+            <span class="fa fa-heart" aria-hidden="true" style="color: red;"></span>
+            <%= daily_record.favorites.count %>
+          </td>
+          <td>コメント<%= daily_record.comments.count %>件</td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class="daily-records-link">
+    <%= link_to "新しき投稿する！", new_daily_record_path, class: "btn btn-success" %>
+  </div>
+</div>

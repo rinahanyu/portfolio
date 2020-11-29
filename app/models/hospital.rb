@@ -4,7 +4,6 @@ class Hospital < ApplicationRecord
   has_many :medical_relationships
   has_many :patients, through: :medical_relationships, source: :user
   has_many :medical_records, dependent: :destroy
-  # has_many :record_patients, through: :medical_records, source: :user
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable

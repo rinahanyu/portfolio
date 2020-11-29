@@ -3,7 +3,7 @@
     <h2>かかりつけ医一覧</h2>
 
     <% if @hospitals.present? %>
-      <table>
+      <table class="table">
         <thead>
           <tr>
             <th>医療機関名</th>
@@ -31,5 +31,6 @@
       <h5>まだ登録されていません</h5>
     <% end %>
     <%= link_to "医療機関一覧へ", hospitals_path, class: "btn btn-primary" %>
+    <%= link_to "診療記録一覧", user_medical_records_path(@user), class: "btn btn-success" %>
   </div>
 </div>
