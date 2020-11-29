@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     get "sign_up", :to => "users/registrations#new"
     get "sign_in", :to => "users/sessions#new"
     get "sign_out", :to => "users/sessions#destroy"
+    get "daily_records/search", :to => "daily_records#search"
     resources :users, only: [:show, :edit, :update] do
       resources :medical_histories, except: [:show]
       resources :health_cares, except: [:show]

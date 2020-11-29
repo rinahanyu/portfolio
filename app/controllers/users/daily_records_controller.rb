@@ -40,6 +40,10 @@ class Users::DailyRecordsController < ApplicationController
     redirect_to user_path(current_user)
   end
 
+  def search
+    @daily_records = DailyRecord.where(genre: params[:genre])
+  end
+
   private
   def set_daily_record
     @daily_record = DailyRecord.find(params[:id])

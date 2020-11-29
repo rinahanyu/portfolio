@@ -1,30 +1,19 @@
 <div class="container">
   <div class="row">
     <h2>みんなの投稿一覧</h2>
-    <div class="col-xs-4">
-      <p>ジャンルで検索する？</p>
+    <div class="genre-search col-xs-4">
+      <table class="table">
+        <thead><th>ジャンル検索</th></thead>
+        <tbody>
+          <tr><th><%= link_to "食事", daily_records_search_path(:genre => 0) %></th></tr>
+          <tr><th><%= link_to "運動", daily_records_search_path(:genre => 1) %></th></tr>
+          <tr><th><%= link_to "その他", daily_records_search_path(:genre => 2) %></th></tr>
+         </tbody>
+      </table>
     </div>
-    <div class="col-xs-8">
-      <% @daily_records.each do |daily_record| %>
-        <p><%= daily_record.created_at.to_s(:datetime_jp) %></p>
-        <p><%= attachment_image_tag daily_record, :daily_image, format: "jpeg", fallback: "no_image.jpg", size: "250x200" %></p>
-        <p>
-          <%= link_to daily_record_path(daily_record) do %>
-            <%= daily_record.theme %>
-          <% end %>
-          <span>＜<%= daily_record.genre %>＞</span>
-        </p>
-        <p>
-          <%= link_to user_path(daily_record.user) do %>
-            <%= daily_record.user.last_name %>
-          <% end %>
-          <span>コメント<%= daily_record.comments.count %>件</span>
-          <div>
-            <span class="fa fa-heart" aria-hidden="true" style="color: red;"></span>
-            <%= daily_record.favorites.count %>
-          </div>
-        </p>
-      <% end %>
+
+    <div class="all-index col-xs-8">
+      <%= render "index", daily_records: @daily_records %>
     </div>
   </div>
 </div>
