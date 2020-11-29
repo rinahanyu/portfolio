@@ -14,4 +14,8 @@ class Hospital < ApplicationRecord
   def patients?(user)
     self.medical_relationships.find_by(user_id: user.id).present?
   end
+
+  def self.search(content)
+    Hospital.where("name LIKE? OR telphone_number LIKE? OR postal_code LIKE? OR address LIKE?", "%#{content}%", "#{content}", "#{content}", "%#{content}%")
+  end
 end

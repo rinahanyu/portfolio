@@ -34,6 +34,7 @@ Rails.application.routes.draw do
     get "sign_up", :to => "hospitals/registraions#new"
     get "sign_in", :to => "hospitals/sessions#new"
     get "sign_out", :to => "hospitals/sessions#destroy"
+    get "hospitals/search", :to => "search#search"
     resources :hospitals, only: [:index, :show, :edit, :update]
     resources :medical_relationships, only: [:create, :destroy]
   end

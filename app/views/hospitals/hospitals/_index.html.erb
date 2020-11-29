@@ -1,0 +1,24 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>医療機関名</th>
+      <th>電話番号</th>
+      <th>郵便番号</th>
+      <th>住所</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% hospitals.each do |hospital| %>
+      <tr>
+        <td>
+          <%= link_to hospital_path(hospital) do %>
+            <%= hospital.name %>
+          <% end %>
+        </td>
+        <td><%= hospital.telphone_number %></td>
+        <td><%= hospital.postal_code %></td>
+        <td><%= hospital.address %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
