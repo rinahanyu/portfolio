@@ -2,6 +2,23 @@
   <div class="row">
     <h2>診療記録一覧</h2>
     <h4>＜患者名＞<%= @user.last_name %><%= @user.first_name %>さん</h4>
+
+    <% if current_hospital.present? %>
+      <%= link_to "新規作成", new_user_medical_record_path(@user), class: "btn btn-success" %>
+    <% end %>
+
+    <div class="calender">
+      <%= month_calendar events: @medical_records do |date, medical_records| %>
+        <%= date.day %>
+
+        <% medical_records.each do |medical_record| %>
+          <div>
+            <%= link_to medical_record.hospital.name, user_medical_record_path(user_id: @user.id, id: medical_record.id) %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+
       <div class="hospital-index">
         <table class="table">
           <thead>
@@ -17,7 +34,7 @@
             <% @medical_records.each do |medical_record| %>
               <tr>
                 <td><%= medical_record.hospital.name %></td>
-                <td><%= medical_record.examined_on.strftime("%Y年%m月%d日") %></td>
+                <td><%= medical_record.start_time.strftime("%Y年%m月%d日") %></td>
                 <td><%= medical_record.disease %></td>
                 <td><%= medical_record.doctor %></td>
                 <td><%= link_to "詳細", user_medical_record_path(user_id: @user.id, id: medical_record.id), class: "btn btn-primary" %></td>
