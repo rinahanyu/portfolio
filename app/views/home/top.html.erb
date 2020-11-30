@@ -4,12 +4,14 @@
     <div class="col-xs-6">
       <h4>個人の利用者さま</h4>
       <%= link_to "はじめましての方はこちら", about_user_path, class: "btn btn-primary" %>
-      <%= link_to "ログイン", new_user_session_path, class: "btn btn-success" %>
+      <%= link_to "ログイン", new_user_session_path, class: "btn btn-success" %></br>
+      <%= link_to 'ゲストログイン（閲覧用）', home_user_guest_sign_in_path, method: :post, class: "btn btn-warning" %>
     </div>
     <div class="col-xs-6">
       <h4>医療関係者さま</h4>
       <%= link_to "はじめましての方はこちら", about_hospital_path, class: "btn btn-primary" %>
-      <%= link_to "ログイン", new_hospital_session_path, class: "btn btn-success" %>
+      <%= link_to "ログイン", new_hospital_session_path, class: "btn btn-success" %></br>
+      <%= link_to 'ゲストログイン（閲覧用）', home_hospital_guest_sign_in_path, method: :post, class: "btn btn-warning" %>
     </div>
   </div>
 </div>

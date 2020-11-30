@@ -18,6 +18,13 @@ class Users::HealthCaresController < ApplicationController
   def index
     @user = User.find(params[:user_id])
     @health_cares = @user.health_cares.order(date: :desc)
+    respond_to do |format|
+      format.html do
+      end
+      format.csv do
+        send_data render_to_string, filename: "数値記録.csv", type: :csv
+      end
+    end
   end
 
   def edit
