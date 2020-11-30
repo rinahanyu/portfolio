@@ -2,8 +2,8 @@
   <div class="row">
     <% if @user == current_user %>
       <%= render "user", user: @user, daily_records: @daily_records %>
-    <% else %>　<!--医療関係者の場合-->
-      <%= render "hospital", user: @user, daily_records: @daily_records %>
+    <% elsif current_hospital.patients?(@user) %>　<!--医療関係者の場合-->
+      <%= render "hospital", user: @user, daily_records: @daily_records, isRoom: @isRoom, roomId: @roomId, room: @room %>
     <% end %>
   </div>
 </div>

@@ -23,6 +23,7 @@
       </tr>
     </tbody>
   </table>
+
   <div>
     <span>かかりつけ医</span>
     <% if current_user.families?(hospital) %>
@@ -37,6 +38,24 @@
       <% end %>
     <% end %>
   </div>
+
+  <% if current_user.families?(hospital) %>
+  <div>
+    <span>チャット</span>
+    <td>
+      <% if isRoom == true %>
+  			<p class="btn btn-default"><%= link_to "チャットへ", chat_path(roomId, hospital_id: hospital.id, user_id: current_user.id) %></p>
+  		<% else %>
+  			<%= form_with(model:room, url: rooms_path, local: true) do |f| %>
+					<%= f.hidden_field :hospital_id, value: hospital.id %>
+					<%= f.hidden_field :user_id, value: current_user.id %>
+  				<%= f.submit "チャットを始める", class: "btn btn-default" %>
+  			<% end %>
+  		<% end %>
+    </td>
+  </div>
+  <% end %>
+
   <div>
     <%= link_to "かかりつけ医一覧に戻る", families_user_path(current_user.id), class: "btn btn-success" %>
   </div>

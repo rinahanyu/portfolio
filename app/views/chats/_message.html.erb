@@ -1,0 +1,31 @@
+<tr>
+  <td><b>＜あなた＞</b></td>
+  <td><b>＜あいて＞</b></td>
+</tr>
+<% chats.each do |c| %>
+  <% if c.user == current_user %>
+    <tr>
+      <td width="500">
+        <%= c.message %></br>
+        <%= c.created_at.to_s(:datetime_jp) %>
+      </td>
+      <td class="col-xs-6"></td>
+    </tr>
+  <% elsif c.hospital == current_hospital %>
+    <tr>
+      <td width="500">
+        <%= c.message %></br>
+        <%= c.created_at.to_s(:datetime_jp) %>
+      </td>
+      <td class="col-xs-6"></td>
+    </tr>
+  <% else %>
+    <tr>
+      <td width="500"></td>
+      <td class="col-xs-6">
+        <%= c.message %></br>
+        <%= c.created_at.to_s(:datetime_jp) %>
+      </td>
+    </tr>
+  <% end %>
+<% end %>

@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   root "home#top"
   get "about_user", :to => "home#about_user"
   get "about_hospital", :to => "home#about_hospital"
+  resources :chats, only: [:create, :show], param: :room_id
+  resources :rooms, only: [:create]
 
   devise_for :users, controllers: {
     registrations: "users/registrations",

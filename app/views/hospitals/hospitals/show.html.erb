@@ -1,9 +1,9 @@
 <div class="container">
   <div class="row">
-    <% if current_hospital == @hospital %>
+    <% if current_user.present? %>　<!--個人利用者の場合-->
+      <%= render "user", hospital: @hospital, isRoom: @isRoom, roomId: @roomId, room: @room %>
+    <% else %> <!--医療関係者の場合-->
       <%= render "hospital", hospital: @hospital %>
-    <% else %>　<!--個人利用者の場合-->
-      <%= render "user", hospital: @hospital %>
     <% end %>
   </div>
 </div>

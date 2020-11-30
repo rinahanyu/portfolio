@@ -2,6 +2,21 @@ class Hospitals::HospitalsController < ApplicationController
   before_action :set_hospital, only: [:show, :edit, :update]
 
   def show
+    # 個人利用者がアクセスしている場合
+    if current_user.present?
+      @room1 = Room.where(user_id: current_user.id)
+      @room1.each do |r|
+        @hospital.rooms.each do |hr|
+          if r.id == hr.id
+            @isRoom = true
+            @roomId = r.id
+          end
+        end
+      end
+      unless @isRoom
+        @room = Room.new
+      end
+    end
   end
 
   def edit
