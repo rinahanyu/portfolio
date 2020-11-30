@@ -36,5 +36,6 @@
       <h5>特にありません</h5>
     <% end %>
     <%= link_to "新しい歴史をつくる", new_user_medical_history_path(current_user), class: "btn btn-success" %>
+    <%= link_to "CSV出力", user_medical_histories_path(format: :csv), class: "btn btn-primary" %>
   </div>
 </div>

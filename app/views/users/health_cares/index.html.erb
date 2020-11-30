@@ -54,6 +54,7 @@
         <h5>特にありません</h5>
       <% end %>
       <%= link_to "新しい数値を記録する", new_user_health_care_path(current_user), class: "btn btn-success" %>
+      <%= link_to "CSV出力", user_health_cares_path(format: :csv), class: "btn btn-primary" %>
     </div>
   </div>
 </div>
