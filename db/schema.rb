@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_28_145420) do
+ActiveRecord::Schema.define(version: 2020_11_29_092923) do
+
+  create_table "chats", force: :cascade do |t|
+    t.integer "room_id", null: false
+    t.integer "user_id"
+    t.integer "hospital_id"
+    t.text "message", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "comments", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -87,6 +96,13 @@ ActiveRecord::Schema.define(version: 2020_11_28_145420) do
   end
 
   create_table "medical_relationships", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "hospital_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "rooms", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "hospital_id", null: false
     t.datetime "created_at", null: false

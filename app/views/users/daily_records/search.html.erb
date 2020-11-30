@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row">
+    <h2>みんなの投稿一覧</h2>
+    <% if @daily_records.present? %>
+      <h4>ジャンル＜
+        <% @daily_records.first(1).each do |daily_record| %>
+          <%= daily_record.genre %>
+        <% end %>
+        ＞
+      </h4>
+      <div class="genre-search col-xs-4">
+      </div>
+
+      <div class="all-index col-xs-8">
+        <%= render "index", daily_records: @daily_records %>
+      </div>
+    <% else %>
+      <h3>投稿はありません</h3>
+      <h4>他のジャンルで検索してください</h4>
+    <% end %>
+  </div>
+</div>

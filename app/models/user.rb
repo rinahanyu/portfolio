@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_many :medical_records, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :rooms, dependent: :destroy
+  has_many :chats, dependent: :destroy
 
   has_many :medical_relationships
   has_many :families, through: :medical_relationships, source: :hospital

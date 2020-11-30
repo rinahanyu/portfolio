@@ -3,6 +3,21 @@ class Users::UsersController < ApplicationController
 
   def show
     @daily_records = @user.daily_records.order(created_at: :desc)
+    # 医療機関関係者がアクセスしている場合
+    if current_hospital.present?
+      @room1 = Room.where(hospital_id: current_hospital.id)
+      @room1.each do |r|
+        @user.rooms.each do |ur|
+          if r.id == ur.id
+            @isRoom = true
+            @roomId = r.id
+          end
+        end
+      end
+      unless @isRoom
+        @room = Room.new
+      end
+    end
   end
 
   def edit
@@ -15,7 +30,7 @@ class Users::UsersController < ApplicationController
       render "edit"
     end
   end
-  
+
   def families
     @hospitals = @user.families
   end

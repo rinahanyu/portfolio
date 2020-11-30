@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   root "home#top"
   get "about_user", :to => "home#about_user"
   get "about_hospital", :to => "home#about_hospital"
+  resources :chats, only: [:create, :show], param: :room_id
+  resources :rooms, only: [:create]
 
   devise_for :users, controllers: {
     registrations: "users/registrations",
@@ -17,6 +19,7 @@ Rails.application.routes.draw do
     get "sign_up", :to => "users/registrations#new"
     get "sign_in", :to => "users/sessions#new"
     get "sign_out", :to => "users/sessions#destroy"
+    get "daily_records/search", :to => "daily_records#search"
     resources :users, only: [:show, :edit, :update] do
       resources :medical_histories, except: [:show]
       resources :health_cares, except: [:show]
@@ -33,6 +36,7 @@ Rails.application.routes.draw do
     get "sign_up", :to => "hospitals/registraions#new"
     get "sign_in", :to => "hospitals/sessions#new"
     get "sign_out", :to => "hospitals/sessions#destroy"
+    get "hospitals/search", :to => "search#search"
     resources :hospitals, only: [:index, :show, :edit, :update]
     resources :medical_relationships, only: [:create, :destroy]
   end
