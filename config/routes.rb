@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   root "home#top"
+  post "/home/user_guest_sign_in", :to => "home#new_user_guest"
+  post "/home/hospital_guest_sign_in", :to => "home#new_hospital_guest"
   get "about_user", :to => "home#about_user"
   get "about_hospital", :to => "home#about_hospital"
   resources :chats, only: [:create, :show], param: :room_id
