@@ -19,6 +19,11 @@
             <% end %>
           </li>
           <li>
+            <%= link_to user_medical_records_path(current_user) do %>
+              診療記録一覧
+            <% end %>
+          </li>
+          <li>
             <%= link_to destroy_user_session_path, method: :delete do %>
               ログアウト
             <% end %>

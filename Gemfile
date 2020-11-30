@@ -71,6 +71,8 @@ gem "pry-rails"
 gem 'kaminari','~> 1.2.1'
 gem "pry-nav"
 gem 'jquery-turbolinks'
+gem 'simple_calendar', '~> 2.0'
+gem 'rails-i18n', '~> 5.1'
 
 gem 'dotenv-rails'
 group :production do

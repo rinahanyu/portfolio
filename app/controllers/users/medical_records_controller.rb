@@ -18,7 +18,7 @@ class Users::MedicalRecordsController < ApplicationController
   end
 
   def index
-    @medical_records = MedicalRecord.where(user_id: params[:user_id]).order(examined_on: :desc)
+    @medical_records = MedicalRecord.where(user_id: params[:user_id]).order(start_time: :desc)
   end
 
   def show
@@ -50,6 +50,6 @@ class Users::MedicalRecordsController < ApplicationController
   end
 
   def medical_record_params
-    params.require(:medical_record).permit(:examined_on, :doctor, :disease, :treatment)
+    params.require(:medical_record).permit(:start_time, :doctor, :disease, :treatment)
   end
 end

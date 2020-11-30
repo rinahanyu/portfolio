@@ -10,17 +10,19 @@
             <div class="col-xs-6 col-xs-offset-3">
               <!--新規登録の場合み、今日の日付をデフォルト入力するため、日付カラムはrenderの外とする-->
               <div class="form-group">
-                <%= f.label :examined_on, "診察日" %></br>
+                <%= f.label :start_time, "診察日" %></br>
                 <%= raw sprintf(
-                  f.date_select(
-                    :examined_on,
+                  f.datetime_select(
+                    :start_time,
                     include_blank: true,
                     use_month_numbers: true,
+                    discard_hour: true,
+                    discard_minute: true,
                     selected: Date.today,
                     start_year: Time.now.year,
                     end_year: 2020,
                     date_separator: "%s"),
-                    "年", "月") +"日" %>
+                    "年", "月",) + "日" %>
               </div>
               <%= render "form", f: f, medical_record: @medical_record  %>
             </div>
