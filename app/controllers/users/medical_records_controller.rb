@@ -11,6 +11,7 @@ class Users::MedicalRecordsController < ApplicationController
     @medical_record.hospital_id = current_hospital.id
     @medical_record.user_id = params[:user_id]
     if @medical_record.save
+      NotificationMailer.medical_record_to_user(@user, @medical_record).deliver
       redirect_to user_medical_records_path(@user)
     else
       render "new"
