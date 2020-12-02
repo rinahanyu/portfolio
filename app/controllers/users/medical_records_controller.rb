@@ -13,6 +13,7 @@ class Users::MedicalRecordsController < ApplicationController
     if @medical_record.save
       NotificationMailer.medical_record_to_user(@user, @medical_record).deliver
       redirect_to user_medical_records_path(@user)
+      flash[:notice] = '投稿しました'
     else
       render "new"
     end
@@ -31,6 +32,7 @@ class Users::MedicalRecordsController < ApplicationController
   def update
     if @medical_record.update(medical_record_params)
       redirect_to user_medical_record_path(@user)
+      flash[:notice] = '更新しました'
     else
       render "edit"
     end
@@ -39,6 +41,7 @@ class Users::MedicalRecordsController < ApplicationController
   def destroy
     @medical_record.destroy
     redirect_to user_medical_records_path(@user)
+    flash[:alert] = '削除しました'
   end
 
   private

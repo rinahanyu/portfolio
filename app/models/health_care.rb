@@ -7,5 +7,7 @@ class HealthCare < ApplicationRecord
 # 体重・最高血圧・最低血圧・血糖値のいずれかが入力されているか
   def body_weight_or_max_blood_pressure_or_min_blood_pressure_or_blood_sugar
     body_weight.presence or max_blood_pressure.presence or min_blood_pressure.presence or blood_sugar.presence
+
+    # errors.add(:base, "体重・最高血圧・最低血圧・血糖値のいずれかを入力してください。")
   end
 end

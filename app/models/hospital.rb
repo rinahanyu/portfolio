@@ -9,7 +9,7 @@ class Hospital < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  validates :name, :postal_code, :address, :telphone_number, :email, presence: true
+  validates :name, :address, :email, presence: true
   validates :telphone_number, :postal_code, numericality: {only_integer: true}
 
   # かかりつけ医の登録をしている患者かどうか

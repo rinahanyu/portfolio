@@ -10,6 +10,7 @@ class Users::HealthCaresController < ApplicationController
     @health_care.user_id = current_user.id
     if @health_care.save
       redirect_to user_health_cares_path(current_user)
+      flash[:notice] = '投稿しました'
     else
       render "new"
     end
@@ -33,6 +34,7 @@ class Users::HealthCaresController < ApplicationController
   def update
     if @health_care.update(health_care_params)
       redirect_to user_health_cares_path(current_user)
+      flash[:notice] = '更新しました'
     else
       render "edit"
     end
@@ -41,6 +43,7 @@ class Users::HealthCaresController < ApplicationController
   def destroy
     @health_care.destroy
     redirect_to user_health_cares_path(current_user)
+    flash[:alert] = '削除しました'
   end
 
   private

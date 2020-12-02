@@ -14,8 +14,6 @@
         <%= f.label :password, "パスワード" %>
         <%= f.password_field :password, autocomplete: "new-password" %>
       </div>
-      <!--パスワード変更画面での日本語対応ができていないため、コメントアウト-->
-      <!--<div class="form-box"><%#= link_to "=> パスワードを忘れた方はこちら", new_user_password_path %></div>-->
 
       <div class="user-login-button"><%= f.submit "ログイン", class: "btn btn-primary" %></div>
     <% end %>
