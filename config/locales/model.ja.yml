@@ -57,6 +57,7 @@ ja:
           min_blood_pressure: 最低血圧
           blood_sugar: 血糖値
           date: 日付
+          body_weight_or_max_blood_pressure_or_min_blood_pressure_or_blood_sugar: ""
         favorite:
           id: ID
           user_id: 個人利用者ID
@@ -88,6 +89,12 @@ ja:
           user_id: 個人利用者ID
           hospital_id: 医療機関ID
           message: メッセージ
+    errors:
+      models:
+        health_care:
+          attributes:
+            body_weight_or_max_blood_pressure_or_min_blood_pressure_or_blood_sugar:
+              blank: 体重・最高血圧・最低血圧・血糖値のいずれかを入力してください。
   # 共通
   attributes:
     created_at: 作成日

@@ -75,6 +75,7 @@ gem "pry-nav"
 gem 'jquery-turbolinks'
 gem 'simple_calendar', '~> 2.0'
 gem 'rails-i18n', '~> 5.1'
+gem 'whenever', require: false
 
 gem 'dotenv-rails'
 group :production do
