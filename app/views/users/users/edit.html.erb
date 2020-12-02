@@ -7,11 +7,10 @@
 
   　　<div class="user-input">
   　　    <div class="user-input-form">
-          <!--プレビュー機能の実装検討-->
-          <%# if @user.profile_image.present? %>
-            <%#= attachment_image_tag @user, :profile_image, format: "jpeg", size: "250x200", id: "img-edit" %>
-          <%# end %>
-          <%= f.label :profile_image, "プロフィール画像" %>
+          <%= f.label :profile_image, "プロフィール画像" %></br>
+          <% if @user.profile_image.present? %>
+            <%= attachment_image_tag @user, :profile_image, format: "jpeg", size: "250x200", id: "img-edit" %>
+          <% end %>
           <%= f.attachment_field :profile_image, type: 'file', id: "img-file" %>
         </div>
 

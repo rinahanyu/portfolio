@@ -10,6 +10,7 @@ class Users::DailyRecordsController < ApplicationController
     @daily_record.user_id = current_user.id
     if @daily_record.save
       redirect_to user_path(current_user)
+      flash[:notice] = '投稿しました'
     else
       render "new"
     end
@@ -30,6 +31,7 @@ class Users::DailyRecordsController < ApplicationController
   def update
     if @daily_record.update(daily_record_params)
       redirect_to daily_record_path(@daily_record)
+      flash[:notice] = '更新しました'
     else
       render "edit"
     end
@@ -38,6 +40,7 @@ class Users::DailyRecordsController < ApplicationController
   def destroy
     @daily_record.destroy
     redirect_to user_path(current_user)
+    flash[:alert] = '削除しました'
   end
 
   def search

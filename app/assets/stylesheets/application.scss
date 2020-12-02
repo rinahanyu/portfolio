@@ -24,6 +24,7 @@
   box-sizing: border-box;
 }
 
+// カレンダー
 .simple-calendar {
  .day {}
  .wday-0 {
@@ -56,4 +57,26 @@
  .has-events {
    background: #FFF8DC;
  }
+}
+
+// エラーメッセージ
+.alert-danger {
+  list-style: none;
+}
+
+// フラッシュメッセージ
+.notifications {
+  color: white;
+  text-align: center;
+  margin-top: -20px;
+
+  .notice {
+    background-color: lightBlue;
+    padding: 0px;
+  }
+
+  .alert {
+    background-color: orange;
+    padding: 0px;
+  }
 }

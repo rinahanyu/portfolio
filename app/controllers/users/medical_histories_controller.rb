@@ -10,6 +10,7 @@ class  Users::MedicalHistoriesController < ApplicationController
     @medical_history.user_id = current_user.id
     if @medical_history.save
       redirect_to user_medical_histories_path(current_user)
+      flash[:notice] = '投稿しました'
     else
       render "new"
     end
@@ -33,6 +34,7 @@ class  Users::MedicalHistoriesController < ApplicationController
   def update
     if @medical_history.update(medical_history_params)
       redirect_to user_medical_histories_path(current_user)
+      flash[:notice] = '更新しました'
     else
       render "edit"
     end
@@ -41,6 +43,7 @@ class  Users::MedicalHistoriesController < ApplicationController
   def destroy
     @medical_history.destroy
     redirect_to user_medical_histories_path(current_user)
+    flash[:alert] = '削除しました'
   end
 
   private

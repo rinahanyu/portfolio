@@ -25,6 +25,7 @@ class Hospitals::HospitalsController < ApplicationController
   def update
     if @hospital.update(hospital_params)
       redirect_to hospital_path(@hospital)
+      flash[:notice] = '更新しました'
     else
       render "edit"
     end
