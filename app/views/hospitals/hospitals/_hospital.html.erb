@@ -25,10 +25,12 @@
         <th>住所</th>
         <td><%= hospital.address %></td>
       </tr>
-      <tr>
-        <th>登録情報</th>
-        <td><%= link_to "編集する", edit_hospital_path(hospital), class: "btn btn-primary" %></td>
-      </tr>
+      <% if current_hospital.id == hospital.id %>
+        <tr>
+          <th>登録情報</th>
+          <td><%= link_to "編集する", edit_hospital_path(hospital), class: "btn btn-primary" %></td>
+        </tr>
+      <% end %>
     </tbody>
   </table>
 </div>

@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <% if @user == current_user %>
+    <% if current_user.present? %>
       <%= render "user", user: @user, daily_records: @daily_records %>
     <% elsif current_hospital.patients?(@user) %>　<!--医療関係者でかかりつけ医登録場合-->
       <%= render "hospital", user: @user, daily_records: @daily_records, isRoom: @isRoom, roomId: @roomId, room: @room %>
