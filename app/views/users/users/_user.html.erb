@@ -1,4 +1,8 @@
-<h2>マイページ</h2>
+<% if user == current_user %>
+  <h2>マイページ</h2>
+<% else %>
+  <h2><%= user.last_name %>さんのマイページ</h2>
+<% end %>
 
 <div class="col-xs-4">
   <p><%= attachment_image_tag user, :profile_image, format: "jpeg", fallback: "no_image.jpg", size: "250x200" %></p>
@@ -10,29 +14,35 @@
         <th></th>
       </tr>
     </thead>
-    <tbody>
-      <tr>
-        <th>基本情報</th>
-        <td> <%= link_to "編集する", edit_user_path(user), class: "btn btn-primary" %></td>
-      </tr>
-      <tr>
-        <th>わたしの病歴</th>
-        <td><%= link_to "覗いてみる", user_medical_histories_path(user), class: "btn btn-primary" %></td>
-      </tr>
-      <tr>
-        <th>わたしの数値</th>
-        <td><%= link_to "覗いてみる", user_health_cares_path(user), class: "btn btn-primary" %></td>
-      </tr>
-      <tr>
-        <th>かかりつけ医一覧</th>
-        <td> <%= link_to "覗いてみる", families_user_path(user.id), class: "btn btn-primary" %></td>
-      </tr>
-    </tbody>
+    <% if user == current_user %>
+      <tbody>
+        <tr>
+          <th>基本情報</th>
+          <td> <%= link_to "編集する", edit_user_path(user), class: "btn btn-primary" %></td>
+        </tr>
+        <tr>
+          <th>わたしの病歴</th>
+          <td><%= link_to "覗いてみる", user_medical_histories_path(user), class: "btn btn-primary" %></td>
+        </tr>
+        <tr>
+          <th>わたしの数値</th>
+          <td><%= link_to "覗いてみる", user_health_cares_path(user), class: "btn btn-primary" %></td>
+        </tr>
+        <tr>
+          <th>かかりつけ医一覧</th>
+          <td> <%= link_to "覗いてみる", families_user_path(user.id), class: "btn btn-primary" %></td>
+        </tr>
+      </tbody>
+    <% end %>
   </table>
 </div>
 
 <div class="col-xs-8">
-  <h4>＜わたしの投稿一覧＞</h4>
+  <% if user == current_user %>
+    <h4>＜わたしの投稿一覧＞</h4>
+  <% else %>
+    <h4>＜<%= user.last_name %>さんの投稿一覧＞</h4>
+  <% end %>
   <table class="table">
     <thead>
       <tr>
@@ -63,7 +73,9 @@
     </tbody>
   </table>
 
-  <div class="daily-records-link">
-    <%= link_to "新しき投稿する！", new_daily_record_path, class: "btn btn-success" %>
-  </div>
+  <% if user == current_user %>
+    <div class="daily-records-link">
+      <%= link_to "新しき投稿する！", new_daily_record_path, class: "btn btn-success" %>
+    </div>
+  <% end %>
 </div>

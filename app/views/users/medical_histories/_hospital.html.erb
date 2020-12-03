@@ -1,0 +1,36 @@
+<h4><%= user.last_name %><%= user.first_name %>さんの病歴</h4>
+  <% if medical_histories.present? %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>傷病名</th>
+          <th>開始日</th>
+          <th>終了日</th>
+          <th>内容</th>
+          <th>医療機関</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% medical_histories.each do |medical_history| %>
+          <tr>
+            <td><%= medical_history.disease %></td>
+            <td><%= medical_history.started_on.strftime("%Y年%m月%d日") %></td>
+            <% if medical_history.finished_on.present? %>
+              <td><%= medical_history.finished_on.strftime("%Y年%m月%d日") %></td>
+            <% else %>
+              <td>-</td>
+            <% end %>
+            <td><%= medical_history.treatment %></td>
+            <td><%= medical_history.hospital %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <h5>特にありません</h5>
+  <% end %>
+
+  <%= link_to "CSV出力", user_medical_histories_path(format: :csv), class: "btn btn-primary" %>
+  <%= link_to "患者マイページへ戻る", user_path(user), class: "btn btn-primary" %>
