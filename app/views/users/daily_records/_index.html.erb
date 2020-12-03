@@ -1,6 +1,6 @@
 <% daily_records.each do |daily_record| %>
   <p><%= daily_record.created_at.to_s(:datetime_jp) %></p>
-  <p><%= attachment_image_tag daily_record, :daily_image, format: "jpeg", fallback: "no_image.jpg", size: "250x200" %></p>
+  <p><%= attachment_image_tag daily_record, :daily_image, format: "jpeg", size: "250x200" %></p>
   <p>
     <%= link_to daily_record_path(daily_record) do %>
       <%= daily_record.theme %>
