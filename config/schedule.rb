@@ -18,8 +18,8 @@ set :environment, :development
 #   rake "some:great:rake:task"
 # end
 #
-# 日本時間の午前8:00に毎日メール送信
-every 1.days, at: '11:00 pm' do
+# 毎日メール送信
+every 1.days do
   runner "HelloMailer.hello_to_user.deliver"
 end
 

@@ -1,4 +1,6 @@
 class Users::FavoritesController < ApplicationController
+  before_action :authenticate_user!
+
   def create
     @daily_record = DailyRecord.find(params[:daily_record_id])
     @favorite = current_user.favorites.new(daily_record_id: @daily_record.id)

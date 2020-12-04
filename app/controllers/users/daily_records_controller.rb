@@ -1,4 +1,6 @@
 class Users::DailyRecordsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :correct_daily_record_user, only: [:edit]
   before_action :set_daily_record, only: [:show, :edit, :update, :destroy]
 
   def new
