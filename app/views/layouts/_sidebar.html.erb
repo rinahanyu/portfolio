@@ -1,0 +1,83 @@
+<% if user_signed_in? %>
+  <div class="sidebar-content">
+    <h3 class="logo">Joy Health!</h3>
+    <h5 class="login-user">for 個人利用者さま</h5>
+    <nav class="sidebar-nav">
+      <ul>
+          <li class="welcome-user"><b>ようこそ！</br><%= current_user.last_name %>さん！</b></li>
+          <li>
+            <%= link_to user_path(current_user), class: "sidebar-item" do %>
+              マイページ
+            <% end %>
+          </li>
+          <li>
+            <%= link_to daily_records_path, class: "sidebar-item" do %>
+              みんなの投稿一覧
+            <% end %>
+          </li>
+          <li>
+            <%= link_to user_medical_records_path(current_user), class: "sidebar-item" do %>
+              診療記録一覧
+            <% end %>
+          </li>
+          <li>
+            <%= link_to destroy_user_session_path, method: :delete, class: "sidebar-item" do %>
+              ログアウト
+            <% end %>
+          </li>
+      </ul>
+    </nav>
+  </div>
+<% elsif hospital_signed_in? %>
+  <div class="sidebar-content" id="sidebar-medical">
+    <h3 class="logo">Joy Health!</h3>
+    <h5 class="login-user">for 医療関係者さま</h5>
+    <nav class="sidebar-nav">
+      <ul>
+          <li class="welcome-user"><b>ようこそ！</br><%= current_hospital.name %>さん！</b></li>
+          <li>
+            <%= link_to hospital_path(current_hospital), class: "sidebar-item" do %>
+              マイページ
+            <% end %>
+          </li>
+          <li>
+            <%= link_to destroy_hospital_session_path, method: :delete, class: "sidebar-item" do %>
+              ログアウト
+            <% end %>
+          </li>
+      </ul>
+    </nav>
+  </div>
+<% else %>
+  <div class="sidebar-content">
+    <nav class="sidebar-nav">
+      <ul>
+        <li>
+          <%= link_to root_path, class: "sidebar-item" do %>
+            <span>トップ</span>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to new_user_session_path, class: "sidebar-item" do %>
+            <span>ログイン</span></br>for 個人利用者
+          <% end %>
+        </li>
+        <li>
+          <%= link_to about_user_path, class: "sidebar-item" do %>
+            <span>はじめまして</span></br>for 個人利用者
+          <% end %>
+        </li>
+        <li>
+          <%= link_to new_hospital_session_path, class: "sidebar-item" do %>
+            <span>ログイン</span></br>for 医療関係者
+          <% end %>
+        </li>
+        <li>
+          <%= link_to about_hospital_path, class: "sidebar-item" do %>
+            <span>はじめまして</span></br>for 医療関係者
+          <% end %>
+        </li>
+      </ul>
+    </nav>
+  </div>
+<% end %>
