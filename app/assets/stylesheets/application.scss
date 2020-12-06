@@ -234,3 +234,18 @@ header {
   text-decoration: none;
   font-weight: bold;
 }
+
+@media screen and (max-width:768px) {
+  .main {
+    display: block;
+  }
+
+  .sidebar {
+    display: block;
+  }
+
+  .header {
+    background-color: #D2B48C;
+    height: 100px;
+  }
+}
