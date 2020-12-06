@@ -1,48 +1,87 @@
-<header class="navbar">
-  <div class="header-container">
-    <nav class='nav navbar-nav navbar-left' >
-      <h2>Joy Health!</h2>
-    </nav>
-    <nav>
-      <div class="nav navbar-nav navbar-right">
-        <div id="sp-menu">
-          <h2>MENU</h2>
-          <ul>
-            <% if user_signed_in? %>
-              <li><%= link_to "マイページ", user_path(current_user), class: "sidebar-item" %></li>
-              <li><%= link_to "みんなの投稿一覧", daily_records_path, class: "sidebar-item" %></li>
-              <li><%= link_to "診療記録一覧", user_medical_records_path(current_user), class: "sidebar-item" %></li>
-              <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "sidebar-item" %></li>
-            <% elsif hospital_signed_in? %>
-              <li><%= link_to "マイページ", hospital_path(current_hospital), class: "sidebar-item" %></li>
-              <li><%= link_to "ログアウト", destroy_hospital_session_path, method: :delete, class: "sidebar-item" %></li>
-            <% else %>
-              <li><%= link_to "トップ", root_path, class: "sidebar-item" %></li>
-              <li><%= link_to "ログイン for 個人利用者", new_user_session_path, class: "sidebar-item" %></li>
-              <li><%= link_to "はじめまして for 個人利用者", about_user_path, class: "sidebar-item" %></li>
-              <li><%= link_to "ログイン for 医療関係者", new_hospital_session_path, class: "sidebar-item" %></li>
-              <li><%= link_to "はじめまして for 医療関係者", about_hospital_path, class: "sidebar-item" %></li>
-            <% end %>
-          </ul>
-        </div>
-
-        <div id="hm-icon">
-          <a class="menu-trigger" href="#">
-            <span></span>
-            <span></span>
-            <span></span>
-          </a>
-        </div>
-
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-      </div>
-    </nav>
+<nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand">Joy Health!</a>
+  <div id="sp-menu">
+    <h2>MENU</h2>
+    <ul>
+      <% if user_signed_in? %>
+        <li><%= link_to "マイページ", user_path(current_user), class: "sidebar-item" %></li>
+        <li><%= link_to "みんなの投稿一覧", daily_records_path, class: "sidebar-item" %></li>
+        <li><%= link_to "診療記録一覧", user_medical_records_path(current_user), class: "sidebar-item" %></li>
+        <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "sidebar-item" %></li>
+      <% elsif hospital_signed_in? %>
+        <li><%= link_to "マイページ", hospital_path(current_hospital), class: "sidebar-item" %></li>
+        <li><%= link_to "ログアウト", destroy_hospital_session_path, method: :delete, class: "sidebar-item" %></li>
+      <% else %>
+        <li><%= link_to "トップ", root_path, class: "sidebar-item" %></li>
+        <li><%= link_to "ログイン for 個人利用者", new_user_session_path, class: "sidebar-item" %></li>
+        <li><%= link_to "はじめまして for 個人利用者", about_user_path, class: "sidebar-item" %></li>
+        <li><%= link_to "ログイン for 医療関係者", new_hospital_session_path, class: "sidebar-item" %></li>
+        <li><%= link_to "はじめまして for 医療関係者", about_hospital_path, class: "sidebar-item" %></li>
+      <% end %>
+    </ul>
   </div>
-</header>
+
+  <div id="hm-icon">
+    <a class="menu-trigger" href="#">
+      <span></span>
+      <span></span>
+      <span></span>
+    </a>
+  </div>
+
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+</nav>
+
+<!--<header class="navbar">-->
+<!--  <div class="header-container">-->
+<!--    <nav class='nav navbar-nav navbar-left' >-->
+<!--      <h2>Joy Health!</h2>-->
+<!--    </nav>-->
+<!--    <nav class="nav navbar-nav navbar-right">-->
+<!--      <div id="sp-menu">-->
+<!--        <h2>MENU</h2>-->
+<!--        <ul>-->
+<!--          <%# if user_signed_in? %>-->
+<!--            <li><%#= link_to "マイページ", user_path(current_user), class: "sidebar-item" %></li>-->
+<!--            <li><%#= link_to "みんなの投稿一覧", daily_records_path, class: "sidebar-item" %></li>-->
+<!--            <li><%#= link_to "診療記録一覧", user_medical_records_path(current_user), class: "sidebar-item" %></li>-->
+<!--            <li><%#= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "sidebar-item" %></li>-->
+<!--          <%# elsif hospital_signed_in? %>-->
+<!--            <li><%#= link_to "マイページ", hospital_path(current_hospital), class: "sidebar-item" %></li>-->
+<!--            <li><%#= link_to "ログアウト", destroy_hospital_session_path, method: :delete, class: "sidebar-item" %></li>-->
+<!--          <%# else %>-->
+<!--            <li><%#= link_to "トップ", root_path, class: "sidebar-item" %></li>-->
+<!--            <li><%#= link_to "ログイン for 個人利用者", new_user_session_path, class: "sidebar-item" %></li>-->
+<!--            <li><%#= link_to "はじめまして for 個人利用者", about_user_path, class: "sidebar-item" %></li>-->
+<!--            <li><%#= link_to "ログイン for 医療関係者", new_hospital_session_path, class: "sidebar-item" %></li>-->
+<!--            <li><%#= link_to "はじめまして for 医療関係者", about_hospital_path, class: "sidebar-item" %></li>-->
+<!--          <%# end %>-->
+<!--        </ul>-->
+<!--      </div>-->
+
+<!--      <div id="hm-icon">-->
+<!--        <a class="menu-trigger" href="#">-->
+<!--          <span></span>-->
+<!--          <span></span>-->
+<!--          <span></span>-->
+<!--        </a>-->
+<!--      </div>-->
+
+<!--      <div class="box"></div>-->
+<!--      <div class="box"></div>-->
+<!--      <div class="box"></div>-->
+<!--      <div class="box"></div>-->
+<!--      <div class="box"></div>-->
+<!--      <div class="box"></div>-->
+<!--      <div class="box"></div>-->
+<!--      <div class="box"></div>-->
+<!--    </nav>-->
+<!--  </div>-->
+<!--</header>-->
