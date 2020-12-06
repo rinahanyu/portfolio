@@ -1,4 +1,6 @@
 class Hospitals::MedicalRelationshipsController < ApplicationController
+  before_action :authenticate_user!
+
   def create
     family = current_user.medical_relationships.build(hospital_id: params[:hospital][:hospital_id])
     family.save

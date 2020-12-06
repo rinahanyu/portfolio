@@ -1,4 +1,6 @@
 class Users::CommentsController < ApplicationController
+  before_action :authenticate_user!
+
   def create
     @daily_record = DailyRecord.find(params[:daily_record_id])
     comment = current_user.comments.new(comment_params)

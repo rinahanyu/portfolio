@@ -4,18 +4,29 @@
     <title>Joy Health!</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <script src="https://kit.fontawesome.com/f71a604c74.js" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500&display=swap" rel="stylesheet">
   </head>
 
   <body>
-    <%= render "layouts/header" %>
-    <div class="notifications">
-      <% flash.each do |key, value| %>
-        <%= content_tag(:div, value, class: key) %>
-      <% end %>
+    <div class="main">
+      <div class="sidebar col-md-3 col-sm-3 hidden-xs">
+        <%= render "layouts/sidebar" %>
+      </div>
+      <div class="header visible-xs">
+        <%= render "layouts/header" %>
+      </div>
+      <div class="content col-md-9 col-sm-9 col-xs-12">
+        <div class="notifications">
+          <% flash.each do |key, value| %>
+            <%= content_tag(:div, value, class: key) %>
+          <% end %>
+        </div>
+        <%= yield %>
+      </div>
     </div>
-    <%= yield %>
   </body>
 </html>

@@ -1,3 +1,52 @@
 // Place all the styles related to the Home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// .top-container {
+//   margin-top: 100px 30px 0px 30px;
+// }
+
+// トップページ
+.top-logo {
+  font-size: 45px;
+  margin-top: 80px;
+}
+
+.top-logo, .top-text {
+  text-align: center;
+}
+
+.user-top, .hospital-top {
+  background-color: #DCDCDC;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 50px 10px 10px 10px;
+  h4 {
+    text-align: center;
+    font-size: 20px;
+  }
+}
+
+
+// アバウトページ
+.about-container {
+  h1, h2 {
+    margin-bottom: 30px;
+    margin-left: 20px;
+  }
+}
+
+.about-icon {
+  background-color: #DCDCDC;
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 15px;
+  text-align: center;
+  i {
+    font-size: 50px;
+  }
+}
+
+.about-new-btn {
+  margin-top: 30px;
+}

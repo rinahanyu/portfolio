@@ -1,4 +1,7 @@
 class Users::MedicalRecordsController < ApplicationController
+  before_action :authenticate_hospital!, except: [:index, :show]
+  before_action :correct_relationship_id, only: [:index, :show]
+  before_action :family_hospital_id, only: [:new, :edit]
   before_action :set_medical_record, only: [:show, :edit, :update, :destroy]
   before_action :set_user
 

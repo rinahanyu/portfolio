@@ -1,4 +1,7 @@
 class Hospitals::HospitalsController < ApplicationController
+  before_action :authenticate_hospital!, except: [:show]
+  before_action :all_signed_in, only: [:show]
+  before_action :correct_hospital, only: [:edit]
   before_action :set_hospital, only: [:show, :edit, :update]
 
   def show

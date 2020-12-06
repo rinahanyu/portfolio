@@ -1,30 +1,30 @@
 <h2><%= user.last_name %><%= user.first_name %>さんのマイページ</h2>
-<div class="col-xs-4">
-  <p><%= attachment_image_tag user, :profile_image, format: "jpeg", fallback: "no_image.jpg", size: "250x200" %></p>
-  <table class="table">
+<div class="col-md-4 col-md-offset-4 col-xs-12">
+  <p class="col text-center"><%= attachment_image_tag user, :profile_image, format: "jpeg", fallback: "no_image.jpg", size: "200x200", class: "user-img" %></p>
+  <table class="table col text-center">
     <tbody>
       <tr>
         <th>病歴</th>
-        <td><%= link_to "覗いてみる", user_medical_histories_path(user), class: "btn btn-primary" %></td>
+        <td><%= link_to "覗いてみる", user_medical_histories_path(user), class: "btn btn-success" %></td>
       </tr>
       <tr>
         <th>数値</th>
-        <td><%= link_to "覗いてみる", user_health_cares_path(user), class: "btn btn-primary" %></td>
+        <td><%= link_to "覗いてみる", user_health_cares_path(user), class: "btn btn-success" %></td>
       </tr>
       <tr>
         <th>かかりつけ医一覧</th>
-        <td> <%= link_to "覗いてみる", families_user_path(user.id), class: "btn btn-primary" %></td>
+        <td> <%= link_to "覗いてみる", families_user_path(user.id), class: "btn btn-success" %></td>
       </tr>
       <tr>
         <th>チャット</th>
         <td>
           <% if isRoom == true %>
-      			<p class="btn btn-default"><%= link_to "つづき", chat_path(roomId, hospital_id: current_hospital.id, user_id: user.id) %></p>
+      			<p><%= link_to "つづき", chat_path(roomId, hospital_id: current_hospital.id, user_id: user.id), class: "btn btn-success" %></p>
       		<% else %>
       			<%= form_with(model:room, url: rooms_path, local: true) do |f| %>
       				<%= f.hidden_field :hospital_id, value: current_hospital.id %>
       				<%= f.hidden_field :user_id, value: user.id %>
-      				<%= f.submit "はじめる", class: "btn btn-default" %>
+      				<%= f.submit "はじめる", class: "btn btn-success" %>
       			<% end %>
         	<% end %>
         </td>
@@ -33,28 +33,26 @@
   </table>
 </div>
 
-<div class="col-xs-8">
+<div class="col-md-6 col-md-offset-3 col-xs-12">
   <h4>＜日常投稿一覧＞</h4>
   <table class="table">
     <thead>
       <tr>
-        <th>投稿日</th>
-        <th>題名</th>
-        <th>ジャンル</th>
-        <th>いいね</th>
+        <th class="text-center">投稿日</th>
+        <th class="text-center">題名</th>
+        <th class="text-center">ジャンル</th>
       </tr>
     </thead>
     <tbody>
       <% daily_records.each do |daily_record| %>
         <tr>
-          <td><%= daily_record.created_at.to_s(:datetime_jp) %></td>
-          <td>
+          <td class="text-center"><%= daily_record.created_at.to_s(:datetime_jp) %></td>
+          <td class="text-center">
             <%= link_to daily_record_path(daily_record) do %>
               <%= daily_record.theme %>
             <% end %>
           </td>
-          <td><%= daily_record.genre %></td>
-          <td>コメント<%= daily_record.comments.count %>件</td>
+          <td class="text-center"><%= daily_record.genre %></td>
         </tr>
       <% end %>
     </tbody>

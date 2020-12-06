@@ -1,27 +1,23 @@
-<div class="container">
+<div class="session-container">
   <div class="row">
-    <h2>ログイン（個人利用者さま）</h2>
+    <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
+      <h2 class="col text-center">ログイン</br>（個人利用者さま）</h2>
 
-    <%= form_with model: @user, url: user_session_path, local: true do |f| %>
-      <%= flash[:alert]%>
+      <%= form_with model: @user, url: user_session_path, local: true do |f| %>
+        <%= flash[:alert]%>
 
-      <div class="user-login-input">
-        <%= f.label :email, "メールアドレス" %>
-        <%= f.email_field :email, autofocus: true %>
-      </div>
+        <div class="user-login-input">
+          <%= f.label :email, "メールアドレス" %><br>
+          <%= f.email_field :email, autofocus: true, class: "form-control" %></br>
+        </div>
 
-      <div class="user-login-input">
-        <%= f.label :password, "パスワード" %>
-        <%= f.password_field :password, autocomplete: "new-password" %>
-      </div>
+        <div class="user-login-input">
+          <%= f.label :password, "パスワード" %><br>
+          <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %></br>
+        </div>
 
-      <div class="user-login-button"><%= f.submit "ログイン", class: "btn btn-primary" %></div>
-    <% end %>
-
-  <div class="not-registration">
-    <div>
-      <h4>登録がお済みでない方</h4>
-      <p><%= link_to "こちら", new_user_registration_path %> から新規登録を行ってください。</p>
+        <div class="user-login-button col text-center"><%= f.submit "ログイン", class: "btn btn-primary" %></div>
+      <% end %>
     </div>
   </div>
 </div>

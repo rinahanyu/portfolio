@@ -1,58 +1,52 @@
-<div class="container">
+<div class="registration-container">
   <div class="row">
-    <h2>新規登録（医療関係者さま）</h2>
+    <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
+      <h2 class="col text-center">新規登録</br>（医療関係者さま）</h2>
 
-    <%= form_with model: @hospital, url: hospital_registration_path, local: true do |f| %>
-      <%= render "hospitals/shared/error_messages", resource: @hospital %>
+      <%= form_with model: @hospital, url: hospital_registration_path, local: true do |f| %>
+        <%= render "hospitals/shared/error_messages", resource: @hospital %>
 
-  　　<div class="hospital-input">
-        <div class="hospital-input-form">
-          <%= f.label :name, "医療機関名" %></br>
-         <%= f.text_field :name %>
+    　　<div class="hospital-input">
+          <div class="hospital-input-form">
+            <%= f.label :name, "医療機関名" %></br>
+            <%= f.text_field :name, autofocus: true, class: "form-control" %></br>
+          </div>
+
+          <div class="hospital-input-form">
+            <%= f.label :email, "メールアドレス" %></br>
+           <%= f.email_field :email, type: "email", autocomplete: "email", class: "form-control" %></br>
+          </div>
+
+          <div class="hospital-input-form">
+            <%= f.label :postal_code, "郵便番号（ハイフンなし）" %></br>
+            <%= f.text_field :postal_code, id: "hospital-postcode", class: "form-control" %></br>
+          </div>
+
+          <div class="hospital-input-form">
+            <%= f.label :address, "住所" %></br>
+            <%= f.text_field :address, id: "hospital-address", class: "form-control" %></br>
+          </div>
+
+          <div class="hospital-input-form">
+            <%= f.label :telphone_number, "電話番号（ハイフンなし）" %></br>
+            <%= f.text_field :telphone_number, type: "tel", class: "form-control" %></br>
+          </div>
+
+          <div class="hospital-input-form">
+            <%= f.label :password, "パスワード（６文字以上）" %></br>
+            <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %></br>
+          </div>
+
+          <div class="hospital-input-form">
+            <%= f.label :password_confirmation, "パスワード（確認用）" %></br>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %></br>
+          </div>
         </div>
 
-        <div class="hospital-input-form">
-          <%= f.label :email, "メールアドレス" %></br>
-         <%= f.email_field :email, type: "email", autocomplete: "email" %>
+        <div class="hospital-input-button col text-center">
+          <p><%= f.submit "新規登録", class: "btn btn-primary" %></p>
         </div>
-
-        <div class="hospital-input-form">
-          <%= f.label :postal_code, "郵便番号（ハイフンなし）" %></br>
-          <%= f.text_field :postal_code, id: "hospital-postcode" %>
-        </div>
-
-        <div class="hospital-input-form">
-          <%= f.label :address, "住所" %></br>
-          <%= f.text_field :address, id: "hospital-address" %>
-        </div>
-
-        <div class="hospital-input-form">
-          <%= f.label :telphone_number, "電話番号（ハイフンなし）" %></br>
-          <%= f.text_field :telphone_number, type: "tel" %>
-        </div>
-
-        <div class="hospital-input-form">
-          <%= f.label :password, "パスワード（６文字以上）" %>
-          <% if @minimum_password_length %>
-            <em>(<%= @minimum_password_length %> characters minimum)</em></br>
-          <% end %>
-          <%= f.password_field :password, autocomplete: "new-password" %>
-        </div>
-
-        <div class="hospital-input-form">
-          <%= f.label :password_confirmation, "パスワード（確認用）" %></br>
-          <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-        </div>
-      </div>
-
-      <div class="hospital-input-button">
-        <p><%= f.submit "新規登録", class: "btn btn-primary" %></p>
-      </div>
-    <% end %>
-
-    <div>
-      <h2>既に登録済みの方</h2>
-      <p><%= link_to "こちら", new_hospital_session_path %>　からログインしてください。</p>
+      <% end %>
     </div>
   </div>
 </div>

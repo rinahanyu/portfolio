@@ -1,19 +1,29 @@
-<div class="container">
-  <div class="row">
-    <h3>健康と医療の両方を簡単に管理できるサイトです！</h3>
-    <div class="col-xs-6">
-      <h4>個人の利用者さま</h4>
-      <%= link_to "はじめましての方はこちら", about_user_path, class: "btn btn-primary" %>
-      <%= link_to "ログイン", new_user_session_path, class: "btn btn-success" %></br>
-      <%= link_to 'ゲストログイン（閲覧用）', home_user_guest_sign_in_path, method: :post, class: "btn btn-warning" %>
+<div class="top-container">
+  <h1 class="top-logo"><b>Joy Health!</b></h1>
+  <h3 class="top-text">健康と医療の両方を簡単に管理できるサイトです！</h3>
+    <div class="row">
+      <div class="col-sm-12 col-md-6">
+        <div class="user-top">
+          <h4><b>個人の利用者さま</b></h4>
+          <div class="col text-center">
+            <%= link_to "はじめまして", about_user_path, class: "btn btn-primary" %>
+            <%= link_to "ログイン", new_user_session_path, class: "btn btn-success" %>
+            <%= link_to 'ゲストログイン（閲覧用）', home_user_guest_sign_in_path, method: :post, class: "btn btn-warning" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-12 col-md-6">
+        <div class="hospital-top">
+          <h4><b>医療関係者さま</b></h4>
+          <div class="col text-center">
+            <%= link_to "はじめまして", about_hospital_path, class: "btn btn-primary" %>
+            <%= link_to "ログイン", new_hospital_session_path, class: "btn btn-success" %>
+            <%= link_to 'ゲストログイン（閲覧用）', home_hospital_guest_sign_in_path, method: :post, class: "btn btn-warning" %>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="col-xs-6">
-      <h4>医療関係者さま</h4>
-      <%= link_to "はじめましての方はこちら", about_hospital_path, class: "btn btn-primary" %>
-      <%= link_to "ログイン", new_hospital_session_path, class: "btn btn-success" %></br>
-      <%= link_to 'ゲストログイン（閲覧用）', home_hospital_guest_sign_in_path, method: :post, class: "btn btn-warning" %>
-    </div>
-  </div>
 </div>
 
 

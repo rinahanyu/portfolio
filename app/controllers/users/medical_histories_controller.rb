@@ -1,4 +1,7 @@
 class  Users::MedicalHistoriesController < ApplicationController
+  before_action :authenticate_user!, except: [:index]
+  before_action :correct_relationship_id, only: [:index]
+  before_action :correct_user_id, only: [:new, :edit]
   before_action :set_medical_history, only: [:edit, :update, :destroy]
 
   def new
