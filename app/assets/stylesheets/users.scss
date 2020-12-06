@@ -2,3 +2,42 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+// マイページ
+.user-show-container {
+  font-size: 18px;
+  h2 {
+      text-align: center;
+      margin-bottom: 25px;
+  }
+}
+
+.user-img {
+  border-radius: 50%;
+}
+
+// 編集ページ
+.user-edit-container {
+  font-size: 18px;
+}
+
+// かかりつけ医一覧ページ
+.families-container {
+  font-size: 18px;
+  h2 {
+    margin: 40px 0 25px 0;
+  }
+}
+
+@media screen and (max-width:767px) {
+  .user-show-container {
+    font-size: 15px;
+  }
+  .user-edit-container {
+    font-size: 15px;
+  }
+  .families-container {
+    font-size: 15px;
+  }
+}
+
+

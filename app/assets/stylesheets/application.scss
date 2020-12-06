@@ -60,7 +60,7 @@
 }
 
 // エラーメッセージ
-.alert-danger {
+.alert-danger li {
   list-style: none;
 }
 
@@ -159,9 +159,25 @@ body > .main, .sidebar, .sidebar-content {
 }
 
 // ヘッダー
-header {
+.header-nav {
   background-color: #D2B48C;
   height: 100px;
+}
+
+#header-medical {
+  background-color: #4682B4;
+}
+
+.navbar-brand {
+  font-size: 30px;
+  color: black;
+  margin-top: 15px;
+}
+
+.nav-user {
+  color: black;
+  margin-top: 50px;
+  margin-left: 50px;
 }
 
 // ハンバーガー
@@ -235,7 +251,8 @@ header {
   font-weight: bold;
 }
 
-@media screen and (max-width:768px) {
+// レスポンシブ対応
+@media screen and (max-width:767px) {
   .main {
     display: block;
   }
