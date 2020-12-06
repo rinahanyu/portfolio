@@ -1,3 +1,22 @@
 // Place all the styles related to the MedicalHistories controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// 一覧ページ
+.history-index-container, .history-new-container, .history-edit-container {
+  font-size: 18px;
+  margin: 15px;
+  h2 {
+      text-align: center;
+      margin-bottom: 25px;
+  }
+}
+
+// 新規登録ページ
+
+
+@media screen and (max-width:1199px) {
+  .history-index-container, .history-new-container, .history-edit-container {
+    font-size: 15px;
+  }
+}

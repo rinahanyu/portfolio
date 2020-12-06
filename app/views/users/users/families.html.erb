@@ -1,6 +1,6 @@
 <div class="families-container">
   <div class="row">
-    <div class="col-md-8 col-md-offset-2 col-xs-12">
+    <div class="col-md-10 col-md-offset-1 col-xs-12">
       <h2>かかりつけ医一覧</h2>
 
       <% if @hospitals.present? %>
@@ -16,14 +16,14 @@
           <tbody>
             <% @hospitals.each do |hospital| %>
               <tr>
-                <td class="text-center col-xs-3">
+                <td class="text-center">
                   <%= link_to hospital_path(hospital) do %>
                     <%= hospital.name %>
                   <% end %>
                 </td>
-                <td class="text-center col-xs-2"><%= hospital.telphone_number %></td>
-                <td class="text-center col-xs-2"><%= hospital.postal_code %></td>
-                <td class="text-center col-xs-5"><%= hospital.address %></td>
+                <td class="text-center"><%= hospital.telphone_number %></td>
+                <td class="text-center"><%= hospital.postal_code %></td>
+                <td class="text-center"><%= hospital.address %></td>
               </tr>
             <% end %>
           </tbody>
@@ -32,7 +32,7 @@
         <h5>まだ登録されていません</h5>
       <% end %>
       <div class="hospital-link text-right">
-        <%= link_to "医療機関一覧へ", hospitals_path, class: "btn btn-success" %>
+        <%= link_to "医療機関一覧へ", hospitals_path, class: "btn btn-success btn-lg" %>
       </div>
     </div>
   </div>

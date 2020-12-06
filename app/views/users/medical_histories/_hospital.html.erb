@@ -1,36 +1,37 @@
-<h4><%= user.last_name %><%= user.first_name %>さんの病歴</h4>
-  <% if medical_histories.present? %>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>傷病名</th>
-          <th>開始日</th>
-          <th>終了日</th>
-          <th>内容</th>
-          <th>医療機関</th>
-          <th></th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% medical_histories.each do |medical_history| %>
+<h2><%= user.last_name %><%= user.first_name %>さんの病歴</h2>
+  <div class="col-md-12">
+    <% if medical_histories.present? %>
+      <table style="table-layout:fixed;width:100%;" class="table">
+        <thead>
           <tr>
-            <td><%= medical_history.disease %></td>
-            <td><%= medical_history.started_on.strftime("%Y年%m月%d日") %></td>
-            <% if medical_history.finished_on.present? %>
-              <td><%= medical_history.finished_on.strftime("%Y年%m月%d日") %></td>
-            <% else %>
-              <td>-</td>
-            <% end %>
-            <td><%= medical_history.treatment %></td>
-            <td><%= medical_history.hospital %></td>
+            <th class="text-center col-md-2">傷病名</th>
+            <th class="text-center col-md-2">治療期間</th>
+            <th class="text-center col-md-4">内容</th>
+            <th class="text-center col-md-2">医療機関</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
-  <% else %>
-    <h5>特にありません</h5>
-  <% end %>
+        </thead>
+        <tbody>
+          <% medical_histories.each do |medical_history| %>
+            <tr>
+              <td class="text-center col-md-2"><%= medical_history.disease %></td>
+              <td class="text-center col-md-2"><%= medical_history.started_on.strftime("%Y年%m月%d日") %></br>
+              <% if medical_history.finished_on.present? %>
+                〜<%= medical_history.finished_on.strftime("%Y年%m月%d日") %></td>
+              <% else %>
+                〜現在</td>
+              <% end %>
+              <td style="word-wrap:break-word;" class="text-center col-md-6"><%= medical_history.treatment %></td>
+              <td class="text-center col-md-2"><%= medical_history.hospital %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <h5>特にありません</h5>
+    <% end %>
 
-  <%= link_to "CSV出力", user_medical_histories_path(format: :csv), class: "btn btn-primary" %>
-  <%= link_to "患者マイページへ戻る", user_path(user), class: "btn btn-primary" %>
+    <div class="hospital-medical-history-link text-right">
+      <%= link_to "CSV出力", user_medical_histories_path(format: :csv), class: "btn btn-success btn-lg" %>
+      <%= link_to "患者マイページへ戻る", user_path(user), class: "btn btn-warning btn-lg" %>
+    </div>
+  </div>

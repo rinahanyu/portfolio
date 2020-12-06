@@ -1,9 +1,8 @@
 <% if medical_history.errors.any? %>
   <div class="alert alert-danger">
-      The form contains <%= pluralize(medical_history.errors.count, "error") %>.
-      <ul>
+    <ul>
       <% medical_history.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
+        <li><%= message %></li>
       <% end %>
     </ul>
   </div>

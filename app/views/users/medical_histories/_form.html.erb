@@ -1,48 +1,46 @@
-<div class="col-xs-6 col-xs-offset-3">
-  <div class="form-group">
-    <%= f.label :disease, "傷病名" %></br>
-    <%= f.text_field :disease %>
-  </div>
-  
-  <div class="form-group">
-    <%= f.label :started_on, "治療開始日" %></br>
-    <%= raw sprintf(
-      f.date_select(
-        :started_on,
-        include_blank: true,
-        use_month_numbers: true,
-        start_year:Time.now.year,
-        end_year:1950,
-        date_separator: "%s"),
-        "年", "月") +"日" %>
-  </div>
-  
-  <div class="form-group">
-    <%= f.label :finished_on, "治療終了日" %></br>
-    <%= raw sprintf(
-      f.date_select(
-        :finished_on,
-        include_blank: true,
-        use_month_numbers: true,
-        start_year:Time.now.year,
-        end_year:1950,
-        date_separator: "%s"),
-        "年", "月") +"日" %>
-  </div>
-  
-  <div class="form-group">
-    <%= f.label :treatment, "治療内容" %></br>
-    <%= f.text_area :treatment, rows: 5 %>
-  </div>
-  
-  <div class="form-group">
-    <%= f.label :hospital, "治療先" %></br>
-    <%= f.text_field :hospital %>
-  </div>
-  
-  <% if local_assigns[:edit_flag].present? %>
-    <p class="text-right"><%= f.submit "変更を保存", class: "btn btn-primary" %></p>
-  <% else %>
-    <p class="text-right"><%= f.submit "新規登録", class: "btn btn-primary" %></p>
-  <% end %>
+<div class="form-group">
+  <%= f.label :disease, "傷病名" %></br>
+  <%= f.text_field :disease, autofocus: true, class: "form-control" %>
 </div>
+
+<div class="form-group">
+  <%= f.label :started_on, "治療開始日" %></br>
+  <%= raw sprintf(
+    f.date_select(
+      :started_on,
+      include_blank: true,
+      use_month_numbers: true,
+      start_year:Time.now.year,
+      end_year:1950,
+      date_separator: "%s"),
+      "年", "月") +"日" %></br>
+</div>
+
+<div class="form-group">
+  <%= f.label :finished_on, "治療終了日" %></br>
+  <%= raw sprintf(
+    f.date_select(
+      :finished_on,
+      include_blank: true,
+      use_month_numbers: true,
+      start_year:Time.now.year,
+      end_year:1950,
+      date_separator: "%s"),
+      "年", "月") +"日" %></br>
+</div>
+
+<div class="form-group">
+  <%= f.label :treatment, "治療内容" %></br>
+  <%= f.text_area :treatment, rows: 5, class: "form-control" %></br>
+</div>
+
+<div class="form-group">
+  <%= f.label :hospital, "治療先" %></br>
+  <%= f.text_field :hospital, class: "form-control" %></br>
+</div>
+
+<% if local_assigns[:edit_flag].present? %>
+  <p class="col text-center"><%= f.submit "変更を保存", class: "btn btn-warning" %></p>
+<% else %>
+  <p class="col text-center"><%= f.submit "新規登録", class: "btn btn-primary" %></p>
+<% end %>
