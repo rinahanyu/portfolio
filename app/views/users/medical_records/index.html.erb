@@ -1,13 +1,18 @@
-<div class="container">
+<div class="medical-records-index-container">
   <div class="row">
-    <h2>診療記録一覧</h2>
-    <h4>＜患者名＞<%= @user.last_name %><%= @user.first_name %>さん</h4>
+    <h2>診療記録</h2>
+    <h3>＜患者名＞<%= @user.last_name %><%= @user.first_name %>さん</h3>
 
     <% if current_hospital.present? %>
-      <%= link_to "新規作成", new_user_medical_record_path(@user), class: "btn btn-success" %>
+      <div class="col text-center">
+        <%= link_to "新規作成はこちらから！", new_user_medical_record_path(@user), class: "btn btn-primary btn-lg" %>
+      </div>
     <% end %>
 
     <div class="calender">
+      <div class="search-title">
+        <h4><b>カレンダーから探す</b></h4>
+      </div>
       <%= month_calendar events: @medical_records do |date, medical_records| %>
         <%= date.day %>
 
@@ -19,25 +24,28 @@
       <% end %>
     </div>
 
-      <div class="hospital-index">
+      <div class="search-title">
+        <h4><b>一覧から探す</b></h4>
+      </div>
+      <div class="hospital-index col-md-10 col-md-offset-1 col-sm-12">
         <table class="table">
           <thead>
             <tr>
-              <th>医療機関名</th>
-              <th>診察日</th>
-              <th>傷病名</th>
-              <th>担当医師名</th>
+              <th class="text-center">医療機関名</th>
+              <th class="text-center">診察日</th>
+              <th class="text-center">傷病名</th>
+              <th class="text-center">担当医師名</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
             <% @medical_records.each do |medical_record| %>
               <tr>
-                <td><%= medical_record.hospital.name %></td>
-                <td><%= medical_record.start_time.strftime("%Y年%m月%d日") %></td>
-                <td><%= medical_record.disease %></td>
-                <td><%= medical_record.doctor %></td>
-                <td><%= link_to "詳細", user_medical_record_path(user_id: @user.id, id: medical_record.id), class: "btn btn-primary" %></td>
+                <td class="text-center"><%= medical_record.hospital.name %></td>
+                <td class="text-center"><%= medical_record.start_time.strftime("%Y年%m月%d日") %></td>
+                <td class="text-center"><%= medical_record.disease %></td>
+                <td class="text-center"><%= medical_record.doctor %></td>
+                <td class="text-center"><%= link_to "詳細", user_medical_record_path(user_id: @user.id, id: medical_record.id), class: "btn btn-success" %></td>
               </tr>
             <% end %>
           </tbody>

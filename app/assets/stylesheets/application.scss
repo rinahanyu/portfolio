@@ -26,34 +26,24 @@
 
 // カレンダー
 .simple-calendar {
- .day {}
  .wday-0 {
     color: red;
  }
- .wday-1 {}
- .wday-2 {}
- .wday-3 {}
- .wday-4 {}
- .wday-5 {
- }
+
  .wday-6 {
     color: blue;
  }
- .today {}
- .past {}
- .future {}
- .start-date {}
- .prev-month {}
- .next-month {}
- .current-month {}
+
  .calendar-head {
    background-color: #F0E68C;
    text-align: center;
  }
+
  .calendar-title {
    font-size: 20px;
    font-weight: bold;
  }
+
  .has-events {
    background: #FFF8DC;
  }
@@ -229,7 +219,7 @@ body > .main, .sidebar, .sidebar-content {
   background-color: #fff;
 }
 
-// リンク先
+// ヘッダーリンク先
 #sp-menu {
   position: fixed;
   top: 0;
@@ -251,7 +241,18 @@ body > .main, .sidebar, .sidebar-content {
   font-weight: bold;
 }
 
-// レスポンシブ対応
+// サインアップ ・サインイン
+.session-container, .registration-container {
+  font-size: 18px;
+}
+
+@media screen and (max-width:768px) {
+  .session-container, .registration-container {
+    font-size: 15px;
+  }
+}
+
+// トップページレスポンシブ対応
 @media screen and (max-width:767px) {
   .main {
     display: block;
