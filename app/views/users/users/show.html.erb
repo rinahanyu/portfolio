@@ -4,6 +4,8 @@
       <%= render "user", user: @user, daily_records: @daily_records %>
     <% elsif current_hospital.patients?(@user) %>　<!--医療関係者でかかりつけ医登録場合-->
       <%= render "hospital", user: @user, daily_records: @daily_records, isRoom: @isRoom, roomId: @roomId, room: @room %>
+    <% else %>
+      <h2><%= @user.last_name %><%= @user.first_name %>さんは</br>かかりつけ医の登録がされていません</h2>
     <% end %>
   </div>
 </div>

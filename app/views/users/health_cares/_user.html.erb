@@ -1,57 +1,60 @@
-<div class="col-xs-8 col-xs-offset-2">
-  <h4>わたしの数値</h4>
-  <% if health_cares.present? %>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>日付</th>
-          <th>体重</th>
-          <th>最高血圧</th>
-          <th>最低血圧</th>
-          <th>血糖値</th>
-          <th></th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% health_cares.each do |health_care| %>
+<h2>わたしの健康管理</h2>
+  <div class="col-md-10 col-md-offset-1 col-sm-12">
+    <% if health_cares.present? %>
+      <table class="table">
+        <thead>
           <tr>
-            <td><%= health_care.date.strftime("%Y年%m月%d日") %></td>
-
-            <% if health_care.body_weight.present? %>
-              <td><%= health_care.body_weight %></td>
-            <% else %>
-              <td>-</td>
-            <% end %>
-
-            <% if health_care.max_blood_pressure.present? %>
-              <td><%= health_care.max_blood_pressure %></td>
-            <% else %>
-              <td>-</td>
-            <% end %>
-
-            <% if health_care.min_blood_pressure.present? %>
-              <td><%= health_care.min_blood_pressure %></td>
-            <% else %>
-              <td>-</td>
-            <% end %>
-
-            <% if health_care.blood_sugar.present? %>
-              <td><%= health_care.blood_sugar %></td>
-            <% else %>
-              <td>-</td>
-            <% end %>
-
-            <td><%= link_to "編集", edit_user_health_care_path(user_id: health_care.user_id, id: health_care.id), class: "btn btn-primary" %></td>
-            <td><%= link_to "削除", user_health_care_path(user_id: health_care.user_id, id: health_care.id),
-                method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn btn-danger" %></td>
+            <th class="col text-center" style="vertical-align : middle;text-align:center;" >日付</th>
+            <th class="col text-center" style="vertical-align : middle;text-align:center;">体重</th>
+            <th colspan="2" class="col text-center">血圧</br>（最高・最低）</th>
+            <th class="col text-center" style="vertical-align : middle;text-align:center;">血糖値</th>
+            <th></th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
-  <% else %>
-    <h5>特にありません</h5>
-  <% end %>
-  <%= link_to "新しい数値を記録する", new_user_health_care_path(current_user), class: "btn btn-success" %>
-  <%= link_to "CSV出力", user_health_cares_path(format: :csv), class: "btn btn-primary" %>
-</div>
+        </thead>
+        <tbody>
+          <% health_cares.each do |health_care| %>
+            <tr>
+              <td class="col text-center"><%= health_care.date.strftime("%Y年%m月%d日") %></td>
+
+              <% if health_care.body_weight.present? %>
+                <td class="col text-center"><%= health_care.body_weight %></td>
+              <% else %>
+                <td class="col text-center">-</td>
+              <% end %>
+
+              <% if health_care.max_blood_pressure.present? %>
+                <td class="col text-center"><%= health_care.max_blood_pressure %></td>
+              <% else %>
+                <td class="col text-center">-</td>
+              <% end %>
+
+              <% if health_care.min_blood_pressure.present? %>
+                <td class="col text-center"><%= health_care.min_blood_pressure %></td>
+              <% else %>
+                <td class="col text-center">-</td>
+              <% end %>
+
+              <% if health_care.blood_sugar.present? %>
+                <td class="col text-center"><%= health_care.blood_sugar %></td>
+              <% else %>
+                <td class="col text-center">-</td>
+              <% end %>
+
+              <td class="col text-center">
+                <%= link_to "編集", edit_user_health_care_path(user_id: health_care.user_id, id: health_care.id), class: "btn btn-warning" %>
+                <%= link_to "削除", user_health_care_path(user_id: health_care.user_id, id: health_care.id),
+                method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn btn-danger" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <h5>特にありません</h5>
+    <% end %>
+
+    <div class="new-health_care-link text-right">
+      <%= link_to "新しい数値を記録する", new_user_health_care_path(current_user), class: "btn btn-primary btn-lg" %>
+      <%= link_to "CSV出力", user_health_cares_path(format: :csv), class: "btn btn-success btn-lg" %>
+    </div>
+  </div>

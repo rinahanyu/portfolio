@@ -11,27 +11,27 @@
     <table class="table col text-center">
       <tbody>
         <tr>
-          <th>基本情報</th>
-          <td> <%= link_to "編集する", edit_user_path(user), class: "btn btn-primary" %></td>
+          <th class="col text-center">基本情報</th>
+          <td class="col text-center"> <%= link_to "編集する", edit_user_path(user), class: "btn btn-primary" %></td>
         </tr>
         <tr>
-          <th>わたしの病歴</th>
-          <td><%= link_to "覗いてみる", user_medical_histories_path(user), class: "btn btn-primary" %></td>
+          <th class="col text-center">わたしの病歴</th>
+          <td class="col text-center"><%= link_to "覗いてみる", user_medical_histories_path(user), class: "btn btn-primary" %></td>
         </tr>
         <tr>
-          <th>わたしの数値</th>
-          <td><%= link_to "覗いてみる", user_health_cares_path(user), class: "btn btn-primary" %></td>
+          <th class="col text-center">わたしの健康管理</th>
+          <td class="col text-center"><%= link_to "覗いてみる", user_health_cares_path(user), class: "btn btn-primary" %></td>
         </tr>
         <tr>
-          <th>かかりつけ医一覧</th>
-          <td> <%= link_to "覗いてみる", families_user_path(user.id), class: "btn btn-primary" %></td>
+          <th class="col text-center">かかりつけ医一覧</th>
+          <td class="col text-center"><%= link_to "覗いてみる", families_user_path(user.id), class: "btn btn-primary" %></td>
         </tr>
       </tbody>
     </table>
   <% end %>
 </div>
 
-<div class="col-md-6 col-md-offset-3 col-xs-12">
+<div class="col-md-10 col-md-offset-1 col-sm-12">
   <% if user == current_user %>
     <h4>＜わたしの投稿一覧＞</h4>
   <% else %>
@@ -68,7 +68,7 @@
   </table>
 
   <% if user == current_user %>
-    <div class="daily-records-link text-right">
+    <div class="new-daily-records-link text-right">
       <%= link_to "新しき投稿する！", new_daily_record_path, class: "btn btn-success" %>
     </div>
   <% end %>

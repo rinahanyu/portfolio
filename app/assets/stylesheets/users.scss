@@ -28,14 +28,8 @@
   }
 }
 
-@media screen and (max-width:767px) {
-  .user-show-container {
-    font-size: 15px;
-  }
-  .user-edit-container {
-    font-size: 15px;
-  }
-  .families-container {
+@media screen and (max-width:768px) {
+  .user-show-container, .user-edit-container, .families-container {
     font-size: 15px;
   }
 }

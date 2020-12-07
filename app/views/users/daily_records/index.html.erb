@@ -1,18 +1,18 @@
-<div class="container">
+<div class="daily-record-index-container">
   <div class="row">
     <h2>みんなの投稿一覧</h2>
-    <div class="genre-search col-xs-4">
-      <table class="table">
-        <thead><th>ジャンル検索</th></thead>
+    <div class="genre-search col-sm-4 col-xs-12">
+      <table class="table table-bordered col-sm-6">
+        <thead><th class="text-center">ジャンル検索</th></thead>
         <tbody>
-          <tr><th><%= link_to "食事", daily_records_search_path(:genre => 0) %></th></tr>
-          <tr><th><%= link_to "運動", daily_records_search_path(:genre => 1) %></th></tr>
-          <tr><th><%= link_to "その他", daily_records_search_path(:genre => 2) %></th></tr>
+          <tr><th class="text-center"><%= link_to "＜食事＞", daily_records_search_path(:genre => 0), class: "genre-item" %></th></tr>
+          <tr><th class="text-center"><%= link_to "＜運動＞", daily_records_search_path(:genre => 1), class: "genre-item" %></th></tr>
+          <tr><th class="text-center"><%= link_to "＜その他＞", daily_records_search_path(:genre => 2), class: "genre-item" %></th></tr>
          </tbody>
       </table>
     </div>
 
-    <div class="all-index col-xs-8">
+    <div class="all-index col-sm-8 col-xs-12">
       <%= render "index", daily_records: @daily_records %>
     </div>
   </div>

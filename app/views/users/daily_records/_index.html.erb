@@ -1,20 +1,28 @@
 <% daily_records.each do |daily_record| %>
-  <p><%= daily_record.created_at.to_s(:datetime_jp) %></p>
-  <p><%= attachment_image_tag daily_record, :daily_image, format: "jpeg", size: "250x200" %></p>
-  <p>
-    <%= link_to daily_record_path(daily_record) do %>
-      <%= daily_record.theme %>
-    <% end %>
-    <span>＜<%= daily_record.genre %>＞</span>
-  </p>
-  <p>
-    <%= link_to user_path(daily_record.user) do %>
-      <%= daily_record.user.last_name %>
-    <% end %>
-    <span>コメント<%= daily_record.comments.count %>件</span>
-    <div>
-      <span class="fa fa-heart" aria-hidden="true" style="color: red;"></span>
-      <%= daily_record.favorites.count %>
+  <div class="daily-record-content">
+    <div class="daily-record-index-img">
+      <%= attachment_image_tag daily_record, :daily_image, format: "jpeg", size: "250x200" %>
     </div>
-  </p>
+
+    <div class="daily-record-index-main">
+      <div><%= daily_record.created_at.to_s(:datetime_jp) %></div>
+      <div>＜<%= daily_record.genre %>＞</div>
+      <div>
+        <%= link_to daily_record_path(daily_record), class: "theme-item" do %>
+          <%= daily_record.theme %>
+        <% end %>
+        <span>
+           by
+          <%= link_to user_path(daily_record.user), class: "user-name-item" do %>
+            <%= daily_record.user.last_name %>
+          <% end %>
+        </span>
+      </div>
+      <div>コメント<%= daily_record.comments.count %>件</div>
+      <div>
+        <div class="fa fa-heart" aria-hidden="true" style="color: red;"></div>
+        <%= daily_record.favorites.count %>
+      </div>
+    </div>
+  </div>
 <% end %>
