@@ -1,12 +1,16 @@
-<div class="container">
+<div class="hospital-search-container">
   <div class="row">
-    <h2>医療機関一覧</h2>
-    <h4>"<%= @content %>"の検索結果</h4>
+    <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+      <h2>医療機関一覧</h2>
+      <h3>"<%= @content %>"の検索結果</h3>
 
-      <div class="hospital-index">
-        <%= render "hospitals/hospitals/index", hospitals: @hospitals %>
-      </div>
+        <div class="hospital-index">
+          <%= render "hospitals/hospitals/index", hospitals: @hospitals %>
+        </div>
 
-      <%= link_to "医療機関一覧へ", hospitals_path, class: "btn btn-primary" %>
+        <div class="col text-right">
+          <%= link_to "医療機関一覧へ", hospitals_path, class: "btn btn-primary" %>
+        </div>
+    </div>
   </div>
 </div>

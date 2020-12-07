@@ -1,3 +1,23 @@
 // Place all the styles related to the search controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.hospital-search-container {
+  font-size: 18px;
+  h2 {
+      text-align: center;
+      margin-bottom: 50px;
+  }
+  h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    background-color: #DCDCDC;
+    border-radius: 10px;
+  }
+}
+
+@media screen and (max-width:768px) {
+  .hospital-search-container {
+    font-size: 15px;
+  }
+}
