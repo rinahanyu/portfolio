@@ -11,20 +11,20 @@
     <table class="table col text-center">
       <tbody>
         <tr>
-          <th>基本情報</th>
-          <td> <%= link_to "編集する", edit_user_path(user), class: "btn btn-primary" %></td>
+          <th class="col text-center">基本情報</th>
+          <td class="col text-center"> <%= link_to "編集する", edit_user_path(user), class: "btn btn-primary" %></td>
         </tr>
         <tr>
-          <th>わたしの病歴</th>
-          <td><%= link_to "覗いてみる", user_medical_histories_path(user), class: "btn btn-primary" %></td>
+          <th class="col text-center">わたしの病歴</th>
+          <td class="col text-center"><%= link_to "覗いてみる", user_medical_histories_path(user), class: "btn btn-primary" %></td>
         </tr>
         <tr>
-          <th>わたしの数値</th>
-          <td><%= link_to "覗いてみる", user_health_cares_path(user), class: "btn btn-primary" %></td>
+          <th class="col text-center">わたしの健康管理</th>
+          <td class="col text-center"><%= link_to "覗いてみる", user_health_cares_path(user), class: "btn btn-primary" %></td>
         </tr>
         <tr>
-          <th>かかりつけ医一覧</th>
-          <td> <%= link_to "覗いてみる", families_user_path(user.id), class: "btn btn-primary" %></td>
+          <th class="col text-center">かかりつけ医一覧</th>
+          <td class="col text-center"><%= link_to "覗いてみる", families_user_path(user.id), class: "btn btn-primary" %></td>
         </tr>
       </tbody>
     </table>

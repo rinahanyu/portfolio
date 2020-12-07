@@ -1,31 +1,24 @@
 <h2>わたしの病歴</h2>
-  <div class="col-md-12">
+  <div class="col-md-10 col-md-offset-1 col-sm-12">
     <% if medical_histories.present? %>
       <table style="table-layout:fixed;width:100%;" class="table">
-        <thead>
-          <tr>
-            <th class="text-center col-md-2">傷病名</th>
-            <th class="text-center col-md-2">治療期間</th>
-            <th class="text-center col-md-4">内容</th>
-            <th class="text-center col-md-2">医療機関</th>
-            <th class="text-center col-md-2"></th>
-          </tr>
-        </thead>
         <tbody>
           <% medical_histories.each do |medical_history| %>
             <tr>
-              <td class="text-center col-md-2"><%= medical_history.disease %></td>
-              <td class="text-center col-md-2"><%= medical_history.started_on.strftime("%Y年%m月%d日") %></br>
+              <td rowspan="2" class="text-center align-center" style="vertical-align : middle;text-align:center;"><%= medical_history.disease %></td>
+              <td class="text-center"><%= medical_history.started_on.strftime("%Y年%m月%d日") %></br>
               <% if medical_history.finished_on.present? %>
                 〜<%= medical_history.finished_on.strftime("%Y年%m月%d日") %></td>
               <% else %>
                 〜現在</td>
               <% end %>
-              <td style="word-wrap:break-word;" class="text-center col-md-4"><%= medical_history.treatment %></td>
-              <td class="text-center col-md-2"><%= medical_history.hospital %></td>
-              <td class="text-center col-md-2"><%= link_to "編集", edit_user_medical_history_path(user_id: medical_history.user_id, id: medical_history.id), class: "btn btn-warning" %>
+              <td class="text-center"><%= medical_history.hospital %></td>
+              <td class="text-center"><%= link_to "編集", edit_user_medical_history_path(user_id: medical_history.user_id, id: medical_history.id), class: "btn btn-warning" %>
               <%= link_to "削除", user_medical_history_path(user_id: medical_history.user_id, id: medical_history.id),
                   method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn btn-danger" %></td>
+            </tr>
+            <tr>
+              <td colspan="3" style="word-wrap:break-word;" class="text-left">治療内容：<%= medical_history.treatment %></td>
             </tr>
           <% end %>
         </tbody>

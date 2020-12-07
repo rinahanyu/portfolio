@@ -1,25 +1,28 @@
 <div class="form-group">
   <%= f.label :body_weight, "体重" %></br>
-  <%= f.text_field :body_weight %>Kg
+  <%= f.text_field :body_weight, class: "form-control" %><div class="col text-right">Kg</div>
 </div>
 
 <div class="form-group">
   <%= f.label :max_blood_pressure, "最高血圧" %></br>
-  <%= f.text_field :max_blood_pressure %>mmHg
+  <%= f.text_field :max_blood_pressure, class: "form-control" %>
+  <div class="col text-right">mmHg</div>
 </div>
 
 <div class="form-group">
   <%= f.label :min_blood_pressure, "最低血圧" %></br>
-  <%= f.text_field :min_blood_pressure %>mmHg
+  <%= f.text_field :min_blood_pressure, class: "form-control" %>
+  <div class="col text-right">mmHg</div>
 </div>
 
 <div class="form-group">
   <%= f.label :blood_sugar, "血糖値" %></br>
-  <%= f.text_field :blood_sugar %>mg/dL
+  <%= f.text_field :blood_sugar, class: "form-control" %>
+  <div class="col text-right">mg/dL</div>
 </div>
 
 <% if local_assigns[:edit_flag].present? %>
-  <p class="text-right"><%= f.submit "変更を保存", class: "btn btn-primary" %></p>
+  <p class="text-center"><%= f.submit "変更を保存", class: "btn btn-warning" %></p>
 <% else %>
-  <p class="text-right"><%= f.submit "新規登録", class: "btn btn-primary" %></p>
+  <p class="text-center"><%= f.submit "新規登録", class: "btn btn-primary" %></p>
 <% end %>

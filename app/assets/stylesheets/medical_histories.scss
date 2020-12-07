@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-// 一覧ページ
+// 一覧・新規登録・編集ページ
 .history-index-container, .history-new-container, .history-edit-container {
   font-size: 18px;
   margin: 15px;
@@ -11,9 +11,6 @@
       margin-bottom: 25px;
   }
 }
-
-// 新規登録ページ
-
 
 @media screen and (max-width:1199px) {
   .history-index-container, .history-new-container, .history-edit-container {
