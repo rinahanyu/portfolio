@@ -1,5 +1,6 @@
 class Users::DailyRecordsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:show]
+  before_action :all_signed_in, only: [:show]
   before_action :correct_daily_record_user, only: [:edit]
   before_action :set_daily_record, only: [:show, :edit, :update, :destroy]
 

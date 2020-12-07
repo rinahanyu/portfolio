@@ -1,6 +1,6 @@
 class Users::UsersController < ApplicationController
   before_action :authenticate_user!, except: [:show, :families]
-  before_action :correct_relationship, only: [:show, :families]
+  before_action :correct_relationship, only: [:families]
   before_action :correct_user, only: [:edit]
   before_action :set_user
 
