@@ -29,8 +29,14 @@
 }
 
 @media screen and (max-width:768px) {
-  .user-show-container, .user-edit-container, .families-container {
+  .user-edit-container, .families-container {
     font-size: 15px;
+  }
+  .user-show-container {
+    font-size: 15px;
+    .daily-table {
+      font-size: 10px;
+    }
   }
 }
 

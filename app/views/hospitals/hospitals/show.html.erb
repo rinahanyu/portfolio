@@ -1,4 +1,4 @@
-<div class="container">
+<div class="hospital-show-container">
   <div class="row">
     <% if current_user.present? %>　<!--個人利用者の場合-->
       <%= render "user", hospital: @hospital, isRoom: @isRoom, roomId: @roomId, room: @room %>

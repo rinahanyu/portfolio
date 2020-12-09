@@ -1,20 +1,20 @@
 <div class="form-group">
   <%= f.label :doctor, "医師名" %></br>
-  <%= f.text_field :doctor %>
+  <%= f.text_field :doctor, class: "form-control" %></br>
 </div>
 
 <div class="form-group">
   <%= f.label :disease, "傷病名" %></br>
-  <%= f.text_field :disease %>
+  <%= f.text_field :disease, class: "form-control" %></br>
 </div>
 
 <div class="form-group">
   <%= f.label :treatment, "診察内容" %></br>
-  <%= f.text_area :treatment %>
+  <%= f.text_area :treatment, rows: 5, class: "form-control" %></br>
 </div>
 
 <% if local_assigns[:edit_flag].present? %>
-  <p class="text-right"><%= f.submit "変更を保存", class: "btn btn-primary" %></p>
+  <p class="col text-center"><%= f.submit "変更を保存", class: "btn btn-warning" %></p>
 <% else %>
-  <p class="text-right"><%= f.submit "新規登録", class: "btn btn-primary" %></p>
+  <p class="col text-center"><%= f.submit "新規登録", class: "btn btn-primary" %></p>
 <% end %>

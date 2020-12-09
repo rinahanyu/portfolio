@@ -23,7 +23,7 @@ class Users::MedicalRecordsController < ApplicationController
   end
 
   def index
-    @medical_records = MedicalRecord.where(user_id: params[:user_id]).order(start_time: :desc)
+    @medical_records = MedicalRecord.where(user_id: params[:user_id]).order(start_time: :desc).page(params[:page]).per(5)
   end
 
   def show

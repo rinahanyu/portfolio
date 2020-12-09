@@ -1,23 +1,23 @@
 <table class="table">
   <thead>
     <tr>
-      <th>医療機関名</th>
-      <th>電話番号</th>
-      <th>郵便番号</th>
-      <th>住所</th>
+      <th class="col text-center col-xs-3">医療機関名</th>
+      <th class="col text-center col-xs-2">電話番号</th>
+      <th class="col text-center col-xs-2">郵便番号</th>
+      <th class="col text-center col-xs-5">住所</th>
     </tr>
   </thead>
   <tbody>
     <% hospitals.each do |hospital| %>
-      <tr>
+      <tr class="col text-center">
         <td>
           <%= link_to hospital_path(hospital) do %>
             <%= hospital.name %>
           <% end %>
         </td>
-        <td><%= hospital.telphone_number %></td>
-        <td><%= hospital.postal_code %></td>
-        <td><%= hospital.address %></td>
+        <td class="col text-center"><%= hospital.telphone_number %></td>
+        <td class="col text-center"><%= hospital.postal_code %></td>
+        <td class="col text-center"><%= hospital.address %></td>
       </tr>
     <% end %>
   </tbody>

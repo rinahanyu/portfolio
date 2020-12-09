@@ -1,3 +1,34 @@
 // Place all the styles related to the MedicalRecords controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+// 共通
+.medical-records-index-container, .medical-records-new-container,
+.medical-records-show-container, .medical-records-edit-container {
+  font-size: 18px;
+  margin: 15px;
+  h2, h3 {
+      text-align: center;
+  }
+  h3 {
+    margin-bottom: 45px;
+  }
+}
+
+@media screen and (max-width:1199px) {
+  .medical-records-index-container, .medical-records-new-container,
+  .medical-records-show-container, .medical-records-edit-container {
+    font-size: 15px;
+  }
+}
+
+// 一覧
+.search-title {
+  background-color: #FFE4E1;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 30px;
+  margin-top: 40px;
+}
+

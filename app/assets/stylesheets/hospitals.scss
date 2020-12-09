@@ -1,3 +1,50 @@
 // Place all the styles related to the hospitals controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// 共通
+.hospital-show-container, .hospital-edit-container, .hospital-index-container {
+  font-size: 18px;
+  h2 {
+      text-align: center;
+      margin-bottom: 50px;
+  }
+}
+
+@media screen and (max-width:768px) {
+  .hospital-show-container, .hospital-edit-container, .hospital-index-container {
+    font-size: 15px;
+  }
+}
+
+// 一覧画面
+.hospital-search {
+  margin-bottom: 30px;
+  background-color: #DCDCDC;
+  border-radius: 10px;
+  padding: 20px;
+  width: 330px;
+  float: right;
+}
+
+.hospital-menu {
+  background-color: #DCDCDC;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 15px;
+  h3 {
+    font-size: 30px;
+  }
+}
+
+@media screen and (max-width:768px) {
+  .hospital-search {
+    font-size: 15px;
+    width: 300px;
+  }
+  .hospital-menu {
+  h3 {
+    font-size: 25px;
+  }
+}
+}

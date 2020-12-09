@@ -5,7 +5,7 @@ class Users::UsersController < ApplicationController
   before_action :set_user
 
   def show
-    @daily_records = @user.daily_records.order(created_at: :desc)
+    @daily_records = @user.daily_records.order(created_at: :desc).page(params[:page]).per(5)
     # 医療機関関係者がアクセスしている場合
     if current_hospital.present?
       @room1 = Room.where(hospital_id: current_hospital.id)

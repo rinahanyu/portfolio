@@ -1,10 +1,10 @@
 <% if user_signed_in? %>
-  <nav class="navbar header-nav">
+  <nav class="navbar header-nav navbar-fixed-top">
     <div><span class="navbar-brand">Joy Health!</span></br>
       <div class="nav-user">for 個人利用者さま</div>
     </div>
     <div id="sp-menu">
-      <h2>MENU</h2>
+      <h4>ようこそ！</br><%= current_user.last_name %>さん！</h4>
       <ul>
         <li><%= link_to "マイページ", user_path(current_user), class: "sidebar-item" %></li>
         <li><%= link_to "みんなの投稿一覧", daily_records_path, class: "sidebar-item" %></li>
@@ -30,12 +30,12 @@
   </nav>
 
 <% elsif hospital_signed_in? %>
-  <nav class="navbar header-nav" id="header-medical">
+  <nav class="navbar header-nav navbar-fixed-top" id="header-medical">
     <div><span class="navbar-brand">Joy Health!</span></br>
       <div class="nav-user">for 医療関係者さま</div>
     </div>
     <div id="sp-menu">
-      <h2>MENU</h2>
+      <h4>ようこそ！</br><%= current_hospital.name %>さん！</h4>
       <ul>
         <li><%= link_to "マイページ", hospital_path(current_hospital), class: "sidebar-item" %></li>
         <li><%= link_to "ログアウト", destroy_hospital_session_path, method: :delete, class: "sidebar-item" %></li>
@@ -62,7 +62,6 @@
   <nav class="navbar header-nav">
     <div><span class="navbar-brand">Joy Health!</span></br></div>
     <div id="sp-menu">
-      <h2>MENU</h2>
       <ul>
         <li><%= link_to "トップ", root_path, class: "sidebar-item" %></li>
         <li><%= link_to "ログイン for 個人利用者", new_user_session_path, class: "sidebar-item" %></li>
