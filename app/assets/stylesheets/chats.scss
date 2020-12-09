@@ -1,3 +1,32 @@
 // Place all the styles related to the chats controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.chat-container {
+  font-size: 18px;
+  margin: 15px;
+  h2 {
+      text-align: center;
+      margin-bottom: 40px;
+  }
+}
+
+.my-chat {
+  background-color: #EEE8AA;
+  border-radius: 20px;
+  border: 5px solid white;
+  padding: 5px;
+}
+
+.other-chat {
+  background-color: #DCDCDC;
+  border-radius: 20px;
+  border: 5px solid white;
+  padding: 5px;
+}
+
+@media screen and (max-width:1199px) {
+  .chat-container {
+    font-size: 15px;
+  }
+}

@@ -5,8 +5,7 @@
     <% elsif current_hospital.patients?(@user) %>　<!--医療関係者でかかりつけ医登録場合-->
       <%= render "hospital", user: @user, health_cares: @health_cares %>
     <% end %>
-
-
-
   </div>
 </div>
+
+<%= paginate @health_cares %>

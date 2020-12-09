@@ -37,6 +37,7 @@
 <% if current_hospital.id == hospital.id %>
   <div class="col-md-10 col-md-offset-1 col-sm-12">
     <h4><b>＜患者一覧＞</b></h4>
+    <% if hospital.patients.present? %>
     <table class="table">
       <thead>
         <tr>
@@ -50,14 +51,20 @@
       <tbody>
         <% hospital.patients.each do |patient| %>
           <tr>
-            <td class="col text-center"><%= link_to patient.last_name, user_path(patient) %></td>
+            <td class="col text-center"><%= patient.last_name %></td>
             <td class="col text-center"><%= patient.telphone_number %></td>
             <td class="col text-center"><%= patient.postal_code %></td>
             <td class="col text-center"><%= patient.address %></td>
-            <th class="col text-center"><%= link_to "診療記録", user_medical_records_path(patient), class: "btn btn-success" %></th>
+            <th class="col text-center">
+              <%= link_to "患者ページ", user_path(patient), class: "btn btn-warning" %>
+              <%= link_to "診療記録", user_medical_records_path(patient), class: "btn btn-success" %>
+            </th>
           </tr>
         <% end %>
       </tbody>
     </table>
+    <% else %>
+      <h4 class="col text-center">患者はいません</h4>
+    <% end %>
   </div>
 <% end %>

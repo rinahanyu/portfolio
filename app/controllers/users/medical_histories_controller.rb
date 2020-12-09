@@ -21,7 +21,7 @@ class  Users::MedicalHistoriesController < ApplicationController
 
   def index
     @user = User.find(params[:user_id])
-    @medical_histories = @user.medical_histories.order(started_on: :desc)
+    @medical_histories = @user.medical_histories.order(started_on: :desc).page(params[:page]).per(5)
     respond_to do |format|
       format.html do
       end

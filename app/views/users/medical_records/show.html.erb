@@ -26,7 +26,7 @@
 
       <div class="col text-center">
         <% if @medical_record.hospital == current_hospital %>
-          <%= link_to "編集", edit_user_medical_record_path(@user, @medical_record), class: "btn btn-primary" %>
+          <%= link_to "編集", edit_user_medical_record_path(@user, @medical_record), class: "btn btn-warning" %>
           <%= link_to "削除", user_medical_record_path(@user, @medical_record), method: :delete, class: "btn btn-danger", data: {confirm: "本当に削除しますか？"} %>
         <% end %>
         <%= link_to "一覧へ戻る", user_medical_records_path(@user), class: "btn btn-success" %>

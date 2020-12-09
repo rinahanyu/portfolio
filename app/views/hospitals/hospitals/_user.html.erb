@@ -48,13 +48,13 @@
         <td>
           <% if isRoom == true %>
       			<div>
-      			  <%= link_to "チャットへ", chat_path(roomId, hospital_id: hospital.id, user_id: current_user.id), class: "btn btn-warning" %>
+      			  <%= link_to "つづきへ", chat_path(roomId, hospital_id: hospital.id, user_id: current_user.id), class: "btn btn-warning" %>
       			</div>
       		<% else %>
       			<%= form_with(model:room, url: rooms_path, local: true) do |f| %>
     					<%= f.hidden_field :hospital_id, value: hospital.id %>
     					<%= f.hidden_field :user_id, value: current_user.id %>
-      				<%= f.submit "チャットを始める", class: "btn btn-primary" %>
+      				<%= f.submit "はじめる", class: "btn btn-primary" %>
       			<% end %>
       		<% end %>
         </td>

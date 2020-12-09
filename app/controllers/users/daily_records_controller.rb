@@ -20,7 +20,7 @@ class Users::DailyRecordsController < ApplicationController
   end
 
   def index
-    @daily_records = DailyRecord.all.order(created_at: :desc)
+    @daily_records = DailyRecord.all.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def show

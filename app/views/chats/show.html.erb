@@ -1,35 +1,45 @@
-<div class="container">
+<div class="chat-container">
   <div class="row">
     <div class="chats">
-      <h2>チャット</h2>
-      <h4>医療機関：<%= @hospital.name %></h4>
-      <h4>患者名：<%= @user.last_name %><%= @user.first_name %>さん</h4>
+      <% if current_user.present? %>
+        <h2><%= @hospital.name %>とのチャット</h2>
+      <% elsif current_hospital.present? %>
+        <h2><%= @user.last_name %><%= @user.first_name %>さんとのチャット</h2>
+      <% end %>
 
-      <div class="chat">
-        <% if @chats.present? %>
-          <table id="js-table-message" class="table-no-border">
-            <%= render 'chats/message', chats: @chats %>
-          </table>
+      <div class="col-md-10 col-md-offset-1 col-sm-12">
+        <div class="chat">
+          <% if @chats.present? %>
+            <table id="js-table-message" class="table-no-border">
+              <%= render 'chats/message', chats: @chats %>
+            </table>
+          <% end %>
+        </div>
+
+        <% if current_user.present? %>　<!--個人利用者の場合-->
+          <div class="post">
+            <%= form_with(model: @chat, remote: true) do |f| %>
+              <%= f.text_field :message, id: "message" %>
+              <%= f.hidden_field :room_id, value: @room.id %>
+              <%= f.hidden_field :user_id, value: current_user.id %>
+              <%= f.button :type => "submit", class: "btn btn-warning" do %>
+                <i class="far fa-paper-plane"></i>
+              <% end %>
+            <% end %>
+          </div>
+        <% elsif current_hospital.present? %>　<!--医療関係者の場合-->
+          <div class="post">
+            <%= form_with(model: @chat, remote: true) do |f| %>
+              <%= f.text_field :message, id: "message" %>
+              <%= f.hidden_field :room_id, value: @room.id %>
+              <%= f.hidden_field :hospital_id, value: current_hospital.id %>
+              <%= f.button :type => "submit", class: "btn btn-warning" do %>
+                <i class="far fa-paper-plane"></i>
+              <% end %>
+            <% end %>
+          </div>
         <% end %>
       </div>
-
-      <% if current_user.present? %>　<!--個人利用者の場合-->
-        <div class="post">
-          <%= form_with(model: @chat, remote: true) do |f| %>
-            <%= f.text_field :message, id: "message" %>
-            <%= f.hidden_field :room_id, value: @room.id %>
-            <%= f.hidden_field :user_id, value: current_user.id %>
-          <% end %>
-        </div>
-      <% elsif current_hospital.present? %>　<!--医療関係者の場合-->
-        <div class="post">
-          <%= form_with(model: @chat, remote: true) do |f| %>
-            <%= f.text_field :message, id: "message" %>
-            <%= f.hidden_field :room_id, value: @room.id %>
-            <%= f.hidden_field :hospital_id, value: current_hospital.id %>
-          <% end %>
-        </div>
-      <% end %>
     </div>
   </div>
 </div>
