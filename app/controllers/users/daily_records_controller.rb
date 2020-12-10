@@ -25,7 +25,6 @@ class Users::DailyRecordsController < ApplicationController
 
   def show
     @comment = Comment.new
-    @daily_record = DailyRecord.find(params[:id])
   end
 
   def edit
@@ -51,6 +50,7 @@ class Users::DailyRecordsController < ApplicationController
   end
 
   private
+
   def set_daily_record
     @daily_record = DailyRecord.find(params[:id])
   end

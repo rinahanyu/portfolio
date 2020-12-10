@@ -45,9 +45,11 @@ class Hospitals::RegistrationsController < Devise::RegistrationsController
   # end
 
   protected
+
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(:sign_up, keys: [
-      :name, :postal_code, :address, :telphone_number])
+      :name, :postal_code, :address, :telphone_number,
+    ])
   end
 
   # protected

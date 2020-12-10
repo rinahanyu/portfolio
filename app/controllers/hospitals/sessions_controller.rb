@@ -2,7 +2,7 @@
 
 class Hospitals::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
-  
+
   def after_sign_in_path_for(resource)
     hospital_path(current_hospital)
   end

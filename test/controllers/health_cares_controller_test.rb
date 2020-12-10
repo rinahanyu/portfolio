@@ -15,5 +15,4 @@ class HealthCaresControllerTest < ActionDispatch::IntegrationTest
     get health_cares_edit_url
     assert_response :success
   end
-
 end

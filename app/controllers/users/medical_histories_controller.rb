@@ -1,4 +1,4 @@
-class  Users::MedicalHistoriesController < ApplicationController
+class Users::MedicalHistoriesController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   before_action :correct_relationship_id, only: [:index]
   before_action :correct_user_id, only: [:new, :edit]
@@ -50,11 +50,13 @@ class  Users::MedicalHistoriesController < ApplicationController
   end
 
   private
+
   def set_medical_history
     @medical_history = MedicalHistory.find(params[:id])
   end
 
   def medical_history_params
-    params.require(:medical_history).permit(:disease, :started_on, :finished_on, :treatment, :hospital)
+    params.require(:medical_history).permit(
+      :disease, :started_on, :finished_on, :treatment, :hospital)
   end
 end

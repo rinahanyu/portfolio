@@ -20,5 +20,4 @@ class MedicalRecordsControllerTest < ActionDispatch::IntegrationTest
     get medical_records_edit_url
     assert_response :success
   end
-
 end

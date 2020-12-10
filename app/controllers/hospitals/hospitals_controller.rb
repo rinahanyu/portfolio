@@ -39,6 +39,7 @@ class Hospitals::HospitalsController < ApplicationController
   end
 
   private
+
   def set_hospital
     @hospital = Hospital.find(params[:id])
   end

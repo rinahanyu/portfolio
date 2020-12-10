@@ -9,7 +9,7 @@ class DailyRecord < ApplicationRecord
   enum genre: {
     食事: 0,
     運動: 1,
-    その他: 2
+    その他: 2,
   }
 
   def favorited_by?(user)

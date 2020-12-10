@@ -20,49 +20,43 @@
         <th class="col text-center">住所</th>
         <td class="col text-center"><%= hospital.address %></td>
       </tr>
+      <tr>
+        <th class="col text-center">かかりつけ医</th>
+        <td class="col text-center">
+          <% if current_user.families?(hospital) %>
+            <%= form_with model: hospital, url: medical_relationship_path(user_id: current_user.id, hospital_id: hospital.id), method: :delete, local: true do |f| %>
+              <%= f.hidden_field :hospital_id, :value => hospital.id %>
+              <%= f.submit "登録を外す", class: "btn btn-danger" %>
+            <% end %>
+          <% else %>
+            <%= form_with model: hospital, url: medical_relationships_path, method: :post, local: true do |f| %>
+              <%= f.hidden_field :hospital_id, :value => hospital.id %>
+              <%= f.submit "登録する", class: "btn btn-primary" %>
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
+      <% if current_user.families?(hospital) %>
+        <tr>
+          <th class="col text-center">チャット</th>
+          <td class="col text-center">
+            <% if isRoom == true %>
+        			<%= link_to "つづきへ", chat_path(roomId, hospital_id: hospital.id, user_id: current_user.id), class: "btn btn-warning" %>
+        		<% else %>
+        			<%= form_with(model:room, url: rooms_path, local: true) do |f| %>
+      					<%= f.hidden_field :hospital_id, value: hospital.id %>
+      					<%= f.hidden_field :user_id, value: current_user.id %>
+        				<%= f.submit "はじめる", class: "btn btn-primary" %>
+        			<% end %>
+        		<% end %>
+          </td>
+        </tr>
+      <% end %>
     </tbody>
   </table>
-</div>
-
-<div class="col-md-4 col-md-offset-4 col-xs-6 col-xs-offset-3">
-  <div class="hospital-menu col text-center">
-    <h3><b>MENU</b></h3>
-    <div>
-      <div><b>・かかりつけ医</b></div>
-      <% if current_user.families?(hospital) %>
-        <%= form_with model: hospital, url: medical_relationship_path(user_id: current_user.id, hospital_id: hospital.id), method: :delete, local: true do |f| %>
-          <%= f.hidden_field :hospital_id, :value => hospital.id %>
-          <%= f.submit "登録を外す", class: "btn btn-danger" %>
-        <% end %>
-      <% else %>
-        <%= form_with model: hospital, url: medical_relationships_path, method: :post, local: true do |f| %>
-          <%= f.hidden_field :hospital_id, :value => hospital.id %>
-          <%= f.submit "登録する", class: "btn btn-primary" %>
-        <% end %>
-      <% end %>
-    </div>
-
-    <% if current_user.families?(hospital) %>
-      <div>
-        <div><b>・チャット</b></div>
-        <td>
-          <% if isRoom == true %>
-      			<div>
-      			  <%= link_to "つづきへ", chat_path(roomId, hospital_id: hospital.id, user_id: current_user.id), class: "btn btn-warning" %>
-      			</div>
-      		<% else %>
-      			<%= form_with(model:room, url: rooms_path, local: true) do |f| %>
-    					<%= f.hidden_field :hospital_id, value: hospital.id %>
-    					<%= f.hidden_field :user_id, value: current_user.id %>
-      				<%= f.submit "はじめる", class: "btn btn-primary" %>
-      			<% end %>
-      		<% end %>
-        </td>
-      </div>
-    <% end %>
-  </div>
 
   <div class="col text-right">
     <%= link_to "かかりつけ医一覧に戻る", families_user_path(current_user.id), class: "btn btn-success" %>
   </div>
 </div>
+

@@ -50,6 +50,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'letter_opener'
   gem 'letter_opener_web'
+  gem 'rubocop-airbnb'
 end
 
 group :test do
@@ -58,6 +59,8 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -70,7 +73,7 @@ gem "refile-mini_magick"
 gem "bootstrap-sass", '~> 3.3.6'
 gem 'jquery-rails'
 gem "pry-rails"
-gem 'kaminari','~> 1.2.1'
+gem 'kaminari', '~> 1.2.1'
 gem "pry-nav"
 gem 'jquery-turbolinks'
 gem 'simple_calendar', '~> 2.0'

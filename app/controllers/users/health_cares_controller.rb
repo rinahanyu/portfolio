@@ -50,11 +50,13 @@ class Users::HealthCaresController < ApplicationController
   end
 
   private
+
   def set_health_care
     @health_care = HealthCare.find(params[:id])
   end
 
   def health_care_params
-    params.require(:health_care).permit(:body_weight, :max_blood_pressure, :min_blood_pressure, :blood_sugar, :date)
+    params.require(:health_care).permit(
+      :body_weight, :max_blood_pressure, :min_blood_pressure, :blood_sugar, :date)
   end
 end

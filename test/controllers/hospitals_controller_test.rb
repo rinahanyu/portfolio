@@ -15,5 +15,4 @@ class HospitalsControllerTest < ActionDispatch::IntegrationTest
     get hospitals_index_url
     assert_response :success
   end
-
 end
