@@ -10,10 +10,12 @@ RSpec.describe DailyRecord, type: :model do
       @daily_record.genre = 0
       @daily_record.save
     end
+
     it "全て入力してあるので保存される" do
       expect(@daily_record).to be_valid
     end
   end
+
   context "データが正しく保存されない" do
     before do
       @daily_record = DailyRecord.new
@@ -21,6 +23,7 @@ RSpec.describe DailyRecord, type: :model do
       @daily_record.genre = 0
       @daily_record.save
     end
+
     it "theme, introductionが入力されていないので保存されない" do
       expect(@daily_record).to be_invalid
       expect(@daily_record.errors[:theme]).to include("を入力してください")

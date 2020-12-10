@@ -9,12 +9,12 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: {
     registrations: "users/registrations",
-    sessions: "users/sessions"
+    sessions: "users/sessions",
   }
 
   devise_for :hospitals, controllers: {
     registrations: "hospitals/registrations",
-    sessions: "hospitals/sessions"
+    sessions: "hospitals/sessions",
   }
 
   scope module: :users do

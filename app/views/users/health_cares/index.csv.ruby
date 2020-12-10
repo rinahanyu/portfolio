@@ -9,7 +9,7 @@ CSV.generate do |csv|
       health_care.body_weight,
       health_care.max_blood_pressure,
       health_care.min_blood_pressure,
-      health_care.blood_sugar
+      health_care.blood_sugar,
     ]
     csv << column_values
   end

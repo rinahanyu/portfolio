@@ -50,6 +50,7 @@ class Users::DailyRecordsController < ApplicationController
   end
 
   private
+
   def set_daily_record
     @daily_record = DailyRecord.find(params[:id])
   end

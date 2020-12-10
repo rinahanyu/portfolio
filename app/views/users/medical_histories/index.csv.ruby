@@ -9,7 +9,7 @@ CSV.generate do |csv|
       medical_history.finished_on,
       medical_history.disease,
       medical_history.treatment,
-      medical_history.hospital
+      medical_history.hospital,
     ]
     csv << column_values
   end

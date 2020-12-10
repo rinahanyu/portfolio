@@ -20,5 +20,4 @@ class DailyRecordsControllerTest < ActionDispatch::IntegrationTest
     get daily_records_edit_url
     assert_response :success
   end
-
 end

@@ -15,5 +15,4 @@ class MedicalHistoriesControllerTest < ActionDispatch::IntegrationTest
     get medical_histories_edit_url
     assert_response :success
   end
-
 end

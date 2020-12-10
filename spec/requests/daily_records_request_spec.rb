@@ -6,6 +6,7 @@ RSpec.describe "DailyRecords", type: :request do
       before do
         get new_daily_record_path
       end
+
       it 'リクエストは200 OKとなること' do
         expect(response.status).to eq 200
       end
@@ -21,6 +22,7 @@ RSpec.describe "DailyRecords", type: :request do
       before do
         get daily_records_path
       end
+
       it 'リクエストは200 OKとなること' do
         expect(response.status).to eq 200
       end
@@ -37,6 +39,7 @@ RSpec.describe "DailyRecords", type: :request do
         @daily_record = FactoryBot.create(:daily_record)
         get edit_daily_record_path(id: @daily_record.id)
       end
+
       it 'リクエストは200 OKとなること' do
         expect(response.status).to eq 200
       end

@@ -12,7 +12,7 @@ class HomeController < ApplicationController
       postal_code: "0000000",
       address: "広島県",
       telphone_number: "00000000000"
-      ) do |user|
+    ) do |user|
       user.password = SecureRandom.urlsafe_base64
     end
     sign_in user
@@ -26,7 +26,7 @@ class HomeController < ApplicationController
       postal_code: "0000000",
       address: "広島県",
       telphone_number: "00000000000"
-      ) do |hospital|
+    ) do |hospital|
       hospital.password = SecureRandom.urlsafe_base64
     end
     sign_in hospital

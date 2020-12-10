@@ -10,5 +10,4 @@ class MedicalRelationshipsControllerTest < ActionDispatch::IntegrationTest
     get medical_relationships_destroy_url
     assert_response :success
   end
-
 end
