@@ -9,11 +9,9 @@
 
       <div class="col-md-10 col-md-offset-1 col-sm-12">
         <div class="chat">
-          <% if @chats.present? %>
-            <table id="js-table-message" class="table-no-border">
-              <%= render 'chats/message', chats: @chats %>
-            </table>
-          <% end %>
+          <table id="js-table-message" class="table-no-border">
+            <%= render 'chats/message', chats: @chats %>
+          </table>
         </div>
 
         <% if current_user.present? %>　<!--個人利用者の場合-->
@@ -27,6 +25,9 @@
               <% end %>
             <% end %>
           </div>
+          <div>
+            <%= link_to "医療機関詳細へ戻る", hospital_path(@hospital), class: "btn btn-success" %>
+          </div>
         <% elsif current_hospital.present? %>　<!--医療関係者の場合-->
           <div class="post">
             <%= form_with(model: @chat, remote: true) do |f| %>
@@ -38,8 +39,12 @@
               <% end %>
             <% end %>
           </div>
+          <div>
+            <%= link_to "患者マイページへ戻る", user_path(@user), class: "btn btn-success" %>
+          </div>
         <% end %>
       </div>
     </div>
   </div>
 </div>
+

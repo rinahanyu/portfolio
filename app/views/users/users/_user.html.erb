@@ -16,15 +16,15 @@
         </tr>
         <tr>
           <th class="col text-center">わたしの病歴</th>
-          <td class="col text-center"><%= link_to "覗いてみる", user_medical_histories_path(user), class: "btn btn-primary" %></td>
+          <td class="col text-center"><%= link_to "一覧へ", user_medical_histories_path(user), class: "btn btn-primary" %></td>
         </tr>
         <tr>
           <th class="col text-center">わたしの健康管理</th>
-          <td class="col text-center"><%= link_to "覗いてみる", user_health_cares_path(user), class: "btn btn-primary" %></td>
+          <td class="col text-center"><%= link_to "一覧へ", user_health_cares_path(user), class: "btn btn-primary" %></td>
         </tr>
         <tr>
-          <th class="col text-center">かかりつけ医一覧</th>
-          <td class="col text-center"><%= link_to "覗いてみる", families_user_path(user.id), class: "btn btn-primary" %></td>
+          <th class="col text-center">かかりつけ医</th>
+          <td class="col text-center"><%= link_to "一覧へ", families_user_path(user.id), class: "btn btn-primary" %></td>
         </tr>
       </tbody>
     </table>
@@ -37,35 +37,39 @@
   <% else %>
     <h4>＜<%= user.last_name %>さんの投稿一覧＞</h4>
   <% end %>
-  <table class="table daily-table">
-    <thead>
-      <tr>
-        <th class="text-center">投稿日</th>
-        <th class="text-center">題名</th>
-        <th class="text-center">ジャンル</th>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% daily_records.each do |daily_record| %>
+  <% if daily_records.present? %>
+    <table class="table daily-table">
+      <thead>
         <tr>
-          <td class="text-center"><%= daily_record.created_at.to_s(:datetime_jp) %></td>
-          <td class="text-center">
-            <%= link_to daily_record_path(daily_record) do %>
-              <%= daily_record.theme %>
-            <% end %>
-          </td>
-          <td class="text-center"><%= daily_record.genre %></td>
-          <td class="text-center">
-            <span class="fa fa-heart" aria-hidden="true" style="color: red;"></span>
-            <%= daily_record.favorites.count %>
-          </td>
-          <td class="text-center">コメント<%= daily_record.comments.count %>件</td>
+          <th class="text-center">投稿日</th>
+          <th class="text-center">題名</th>
+          <th class="text-center">ジャンル</th>
+          <th></th>
+          <th></th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% daily_records.each do |daily_record| %>
+          <tr>
+            <td class="text-center"><%= daily_record.created_at.to_s(:datetime_jp) %></td>
+            <td class="text-center">
+              <%= link_to daily_record_path(daily_record) do %>
+                <%= daily_record.theme %>
+              <% end %>
+            </td>
+            <td class="text-center"><%= daily_record.genre %></td>
+            <td class="text-center">
+              <span class="fa fa-heart" aria-hidden="true" style="color: red;"></span>
+              <%= daily_record.favorites.count %>
+            </td>
+            <td class="text-center">コメント<%= daily_record.comments.count %>件</td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <h4>投稿はありません</h4>
+  <% end %>
 
   <% if user == current_user %>
     <div class="new-daily-records-link text-right">
