@@ -3,6 +3,7 @@ class Users::UsersController < ApplicationController
   before_action :correct_relationship, only: [:families]
   before_action :correct_user, only: [:edit]
   before_action :set_user
+  before_action :check_guest_user, only: [:update]
 
   def show
     @daily_records = @user.daily_records.order(created_at: :desc).page(params[:page]).per(5)
@@ -46,7 +47,13 @@ class Users::UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :email, 
+    params.require(:user).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :email,
     :postal_code, :address, :telphone_number, :profile_image)
+  end
+
+  def check_guest_user
+    if current_user.email == '3guest_user@example.com'
+      redirect_to user_path(current_user), alert: 'ゲストユーザーの情報は変更できません。'
+    end
   end
 end

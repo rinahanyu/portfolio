@@ -7,8 +7,8 @@
     </div>
 
     <div class="daily-record-show-main">
+      <div class="daily-record-theme"><b><%= daily_record.theme %></b></div>
       <div>＜ジャンル＞<%= daily_record.genre %></div>
-      <div><%= daily_record.theme %></div>
       <div><%= daily_record.introduction %></div>
       <div><%= daily_record.created_at.to_s(:datetime_jp) %></div>
     </div>

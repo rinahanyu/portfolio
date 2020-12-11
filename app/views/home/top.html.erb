@@ -1,6 +1,9 @@
 <div class="top-container">
   <h1 class="top-logo"><b>Joy Health!</b></h1>
   <h3 class="top-text">健康と医療の両方を簡単に管理できるサイトです！</h3>
+  <% if current_user.present? || current_hospital.present? %>
+    <h4 class="top-login-message">すでにログインしています</h4>
+  <% else %>
     <div class="row">
       <div class="col-sm-12 col-md-6">
         <div class="user-top">
@@ -24,6 +27,7 @@
         </div>
       </div>
     </div>
+  <% end %>
 </div>
 
 

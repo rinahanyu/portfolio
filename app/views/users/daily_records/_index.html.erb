@@ -20,8 +20,13 @@
       </div>
       <div>コメント<%= daily_record.comments.count %>件</div>
       <div>
-        <div class="fa fa-heart" aria-hidden="true" style="color: red;"></div>
-        <%= daily_record.favorites.count %>
+        <% if daily_record.favorited_by?(current_user) %>
+          <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" style="color: red;"></span>
+          <span class="favorite-count-yes"><%= daily_record.favorites.count %></span>
+        <% else %>
+          <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" style="color: black;"></span>
+          <span class="favorite-count-no"><%= daily_record.favorites.count %></span>
+        <% end %>
       </div>
     </div>
   </div>
