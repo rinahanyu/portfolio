@@ -3,6 +3,7 @@ class Hospitals::HospitalsController < ApplicationController
   before_action :all_signed_in, only: [:show, :index]
   before_action :correct_hospital, only: [:edit]
   before_action :set_hospital, only: [:show, :edit, :update]
+  before_action :check_guest_hospital, only: [:update]
 
   def show
     # 個人利用者がアクセスしている場合
@@ -46,5 +47,11 @@ class Hospitals::HospitalsController < ApplicationController
 
   def hospital_params
     params.require(:hospital).permit(:name, :email, :postal_code, :address, :telphone_number)
+  end
+
+  def check_guest_hospital
+    if current_hospital.email == 'guest_hospital@example.com'
+      redirect_to hospital_path(current_hospital), alert: 'ゲストユーザーの情報は変更できません。'
+    end
   end
 end

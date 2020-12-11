@@ -22,7 +22,9 @@ Rails.application.routes.draw do
     get "sign_in", :to => "users/sessions#new"
     get "sign_out", :to => "users/sessions#destroy"
     get "daily_records/search", :to => "daily_records#search"
-    resources :users, only: [:show, :edit, :update] do
+
+    resources :users, only: [:show, :edit, :update, :destroy] do
+      get "delete_confirm", :to => "users#delete_confirm"
       resources :medical_histories, except: [:show]
       resources :health_cares, except: [:show]
       get :families, on: :member
