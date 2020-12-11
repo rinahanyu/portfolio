@@ -4,10 +4,11 @@ class Users::UsersController < ApplicationController
   before_action :correct_user, only: [:edit]
   before_action :correct_user_id, only: [:delete_confirm]
   before_action :set_user, except: [:delete_confirm, :destroy]
-  before_action :check_guest_user, only: [:update]
+  before_action :check_guest_user, only: [:update, :destroy]
 
   def show
     @daily_records = @user.daily_records.order(created_at: :desc).page(params[:page]).per(5)
+    @guest_user = User.find_by(email: "guest_user_@example.com")
     # 医療機関関係者がアクセスしている場合
     if current_hospital.present?
       @room1 = Room.where(hospital_id: current_hospital.id)
@@ -64,8 +65,8 @@ class Users::UsersController < ApplicationController
   end
 
   def check_guest_user
-    if current_user.email == '3guest_user@example.com'
-      redirect_to user_path(current_user), alert: 'ゲストユーザーの情報は変更できません。'
+    if current_user.email == 'guest_user_@example.com'
+      redirect_to user_path(current_user), alert: 'ゲストユーザーの情報は変更・削除できません。'
     end
   end
 end

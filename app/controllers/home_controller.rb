@@ -8,11 +8,10 @@ class HomeController < ApplicationController
       first_name: "坊や",
       last_name_kana: "カープ",
       first_name_kana: "ボウヤ",
-      email: "3guest_user@example.com",
+      email: "guest_user_@example.com",
       postal_code: "0000000",
       address: "広島県",
-      telphone_number: "00000000000",
-      profile_image_id: "0441bc01a3dc7d7bd8552505bee8d12822549183bdea2a21c7140c8bad0e"
+      telphone_number: "00000000000"
     ) do |user|
       user.password = SecureRandom.urlsafe_base64
     end
