@@ -1,6 +1,11 @@
 <h2><%= user.last_name %><%= user.first_name %>さんのマイページ</h2>
 <div class="col-md-4 col-md-offset-4 col-xs-12">
-  <p class="col text-center"><%= attachment_image_tag user, :profile_image, format: "jpeg", fallback: "no_image.jpg", size: "200x200", class: "user-img" %></p>
+  <% if user == guest_user %>
+    <p class="col text-center"><%= attachment_image_tag user, :profile_image, format: "jpeg", fallback: "carp_boy.jpg", size: "200x200", class: "user-img" %></p>
+  <% else %>
+    <p class="col text-center"><%= attachment_image_tag user, :profile_image, format: "jpeg", fallback: "no_image.jpg", size: "200x200", class: "user-img" %></p>
+  <% end %>
+
   <table class="table col text-center">
     <tbody>
       <tr>
