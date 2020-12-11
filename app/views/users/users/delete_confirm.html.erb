@@ -1,0 +1,10 @@
+<div class="families-container">
+  <div class="row">
+    <div class="col text-center">
+      <h2>退会手続き</h2>
+      <h3><%= @user.last_name %><%= @user.first_name %>さま</h3>
+      <h4>本当に退会しますか？</h4>
+      <%= link_to "はい", user_path(current_user), method: :delete, class: "btn btn-danger"%>
+    </div>
+  </div>
+</div>

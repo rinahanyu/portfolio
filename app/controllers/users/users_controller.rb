@@ -2,7 +2,8 @@ class Users::UsersController < ApplicationController
   before_action :authenticate_user!, except: [:show, :families]
   before_action :correct_relationship, only: [:families]
   before_action :correct_user, only: [:edit]
-  before_action :set_user
+  before_action :correct_user_id, only: [:delete_confirm]
+  before_action :set_user, except: [:delete_confirm, :destroy]
   before_action :check_guest_user, only: [:update]
 
   def show
@@ -34,6 +35,17 @@ class Users::UsersController < ApplicationController
     else
       render "edit"
     end
+  end
+
+  def delete_confirm
+    @user = User.find(params[:user_id])
+  end
+
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    redirect_to root_path
+    flash[:notice] = '退会しました'
   end
 
   def families

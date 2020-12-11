@@ -29,6 +29,12 @@
           <th class="col text-center">かかりつけ医</th>
           <td class="col text-center"><%= link_to "一覧へ", families_user_path(user.id), class: "btn btn-primary" %></td>
         </tr>
+        <tr>
+          <th class="col text-center">退会</th>
+          <th class="col text-center">
+            <%= link_to "手続きへ", user_delete_confirm_path(user_id: current_user), class: "btn btn-danger" %>
+          </th>
+        </tr>
       </tbody>
     </table>
   <% end %>
