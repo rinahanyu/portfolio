@@ -30,7 +30,7 @@
   </nav>
 
 <% elsif hospital_signed_in? %>
-  <nav class="navbar header-nav navbar-fixed-top" id="header-medical">
+  <nav class="navbar navbar-fixed-top" id="header-medical">
     <div><span class="navbar-brand">Joy Health!</span></br>
       <div class="nav-user">for 医療関係者さま</div>
     </div>
@@ -59,9 +59,12 @@
   </nav>
 
 <% else %>
-  <nav class="navbar header-nav">
-    <div><span class="navbar-brand">Joy Health!</span></br></div>
+  <nav class="navbar header-nav navbar-fixed-top">
+    <div><span class="navbar-brand">Joy Health!</span></br>
+      <div class="nav-user">for 皆さま</div>
+    </div>
     <div id="sp-menu">
+      <h4>ようこそ！</br>皆さま！</h4>
       <ul>
         <li><%= link_to "トップ", root_path, class: "sidebar-item" %></li>
         <li><%= link_to "ログイン for 個人利用者", new_user_session_path, class: "sidebar-item" %></li>

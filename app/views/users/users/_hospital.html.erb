@@ -1,5 +1,4 @@
 <h2><%= user.last_name %><%= user.first_name %>さんのマイページ</h2>
-
   <div class="mypage-profile">
     <% if user == guest_user %>
       <p class="col text-center"><%= attachment_image_tag user, :profile_image, format: "jpeg", fallback: "carp_boy.jpg", size: "200x200", class: "user-img" %></p>
@@ -51,39 +50,39 @@
     </div>
   </div>
 
-<div class="col-xs-12">
-  <div class="user-show-daily">
-    <div class="user-show-daily-head">
-      <h3>日常投稿一覧</h3>
-      <h4>食事・運動などの健康を意識した取り組み</h4>
-    </div>
+  <div class="col-xs-12">
+    <div class="user-show-daily">
+      <div class="user-show-daily-head">
+        <h3>日常投稿一覧</h3>
+        <h4>食事・運動などの健康を意識した取り組み</h4>
+      </div>
 
-    <% if daily_records.present? %>
-      <table class="table">
-        <thead>
-          <tr>
-            <th class="text-center">投稿日</th>
-            <th class="text-center">題名</th>
-            <th class="text-center">ジャンル</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% daily_records.each do |daily_record| %>
+      <% if daily_records.present? %>
+        <table class="table">
+          <thead>
             <tr>
-              <td class="text-center"><%= daily_record.created_at.to_s(:datetime_jp) %></td>
-              <td class="text-center">
-                <%= link_to daily_record_path(daily_record) do %>
-                  <%= daily_record.theme %>
-                <% end %>
-              </td>
-              <td class="text-center"><%= daily_record.genre %></td>
+              <th class="text-center">投稿日</th>
+              <th class="text-center">題名</th>
+              <th class="text-center">ジャンル</th>
             </tr>
-          <% end %>
-        </tbody>
-      </table>
-      <%= paginate daily_records %>
-    <% else %>
-      <h4>投稿はありません</h4>
-    <% end %>
+          </thead>
+          <tbody>
+            <% daily_records.each do |daily_record| %>
+              <tr>
+                <td class="text-center"><%= daily_record.created_at.to_s(:datetime_jp) %></td>
+                <td class="text-center">
+                  <%= link_to daily_record_path(daily_record) do %>
+                    <%= daily_record.theme %>
+                  <% end %>
+                </td>
+                <td class="text-center"><%= daily_record.genre %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <%= paginate daily_records %>
+      <% else %>
+        <h4>投稿はありません</h4>
+      <% end %>
+    </div>
   </div>
-</div>

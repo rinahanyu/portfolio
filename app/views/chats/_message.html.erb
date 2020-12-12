@@ -1,11 +1,11 @@
 <tr>
-  <td class="col text-center" width="500"><b>＜わたし＞</b></td>
+  <td class="col text-center my-chat-non"><b>＜わたし＞</b></td>
   <td class="col text-center"><b>＜あいて＞</b></td>
 </tr>
 <% chats.each do |c| %>
   <% if c.user == current_user %>
     <tr>
-      <td width="500", class="my-chat">
+      <td class="my-chat col-xs-6">
         <%= c.message %></br>
         <%= c.created_at.to_s(:datetime_jp) %>
       </td>
@@ -13,7 +13,7 @@
     </tr>
   <% elsif c.hospital == current_hospital %>
     <tr>
-      <td width="500", class="my-chat">
+      <td class="my-chat col-xs-6">
         <%= c.message %></br>
         <%= c.created_at.to_s(:datetime_jp) %>
       </td>
@@ -21,7 +21,7 @@
     </tr>
   <% else %>
     <tr>
-      <td width="500"></td>
+      <td class="my-chat-non col-xs-6"></td>
       <td class="col-xs-6 other-chat">
         <%= c.message %></br>
         <%= c.created_at.to_s(:datetime_jp) %>
