@@ -16,6 +16,11 @@
   border-radius: 20px;
   border: 5px solid white;
   padding: 5px;
+  width: 500px;
+}
+
+.my-chat-non {
+  width: 500px;
 }
 
 .other-chat {
@@ -28,5 +33,20 @@
 @media screen and (max-width:1199px) {
   .chat-container {
     font-size: 15px;
+    .my-chat, .my-chat-non {
+      width: 500px;
+    }
+  }
+}
+
+@media screen and (max-width:768px) {
+  .my-chat, .my-chat-non {
+    width: 300px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .my-chat, .my-chat-non {
+    width: 200px;
   }
 }

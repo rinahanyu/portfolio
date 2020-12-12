@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "Joy Health! <delivery@joy_health.com>"
+  default from: "Joy Health! <delivery@joyhealth.work>"
   layout 'mailer'
 end
