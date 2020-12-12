@@ -4,94 +4,123 @@
   <h2><%= user.last_name %><%= user.first_name %>さんのマイページ</h2>
 <% end %>
 
-<div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-xs-12">
-  <% if user == guest_user %>
-    <p class="col text-center"><%= attachment_image_tag user, :profile_image, format: "jpeg", fallback: "carp_boy.jpg", size: "200x200", class: "user-img" %></p>
-  <% else %>
-    <p class="col text-center"><%= attachment_image_tag user, :profile_image, format: "jpeg", fallback: "no_image.jpg", size: "200x200", class: "user-img" %></p>
-  <% end %>
-
-  <% if user == current_user %>
-    <table class="table col text-center">
-      <thead>
-        <th colspan="2" class="text-center"><h3><%= user.last_name %><%= user.first_name %></h3></th>
-      </thead>
-      <tbody>
-        <tr>
-          <th class="col text-center">基本情報</th>
-          <td class="col text-center"> <%= link_to "編集する", edit_user_path(user), class: "btn btn-primary" %></td>
-        </tr>
-        <tr>
-          <th class="col text-center">わたしの病歴</th>
-          <td class="col text-center"><%= link_to "一覧へ", user_medical_histories_path(user), class: "btn btn-primary" %></td>
-        </tr>
-        <tr>
-          <th class="col text-center">わたしの健康管理</th>
-          <td class="col text-center"><%= link_to "一覧へ", user_health_cares_path(user), class: "btn btn-primary" %></td>
-        </tr>
-        <tr>
-          <th class="col text-center">かかりつけ医</th>
-          <td class="col text-center"><%= link_to "一覧へ", families_user_path(user.id), class: "btn btn-primary" %></td>
-        </tr>
-        <tr>
-          <th class="col text-center">退会</th>
-          <th class="col text-center">
-            <%= link_to "手続きへ", user_delete_confirm_path(user_id: current_user), class: "btn btn-danger" %>
-          </th>
-        </tr>
-      </tbody>
-    </table>
-  <% end %>
+<div class="mypage-profile">
+  <div class="row">
+    <% if user == current_user %>
+      <div class="col-xs-6 text-right">
+        <% if user == guest_user %>
+          <p><%= attachment_image_tag user, :profile_image, format: "jpeg", fallback: "carp_boy.jpg", size: "200x200", class: "user-img" %></p>
+        <% else %>
+          <p><%= attachment_image_tag user, :profile_image, format: "jpeg", fallback: "no_image.jpg", size: "200x200", class: "user-img" %></p>
+        <% end %>
+      </div>
+      <div class="col-xs-6 text-left">
+        <h3><%= user.last_name %><%= user.first_name %></h3>
+        <%= link_to "基本情報編集する", edit_user_path(user), class: "btn btn-primary" %>
+        <%= link_to "退会手続きへ", user_delete_confirm_path(user_id: current_user), class: "btn btn-danger" %>
+      </div>
+    <% else %>
+      <div class="col-xs-12 text-center">
+        <% if user == guest_user %>
+          <p><%= attachment_image_tag user, :profile_image, format: "jpeg", fallback: "carp_boy.jpg", size: "200x200", class: "user-img" %></p>
+        <% else %>
+          <p><%= attachment_image_tag user, :profile_image, format: "jpeg", fallback: "no_image.jpg", size: "200x200", class: "user-img" %></p>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 </div>
 
-<div class="col-md-10 col-md-offset-1 col-sm-12">
-  <% if user == current_user %>
-    <h4>＜わたしの投稿一覧＞</h4>
-  <% else %>
-    <h4>＜<%= user.last_name %>さんの投稿一覧＞</h4>
-  <% end %>
-  <% if daily_records.present? %>
-    <table class="table daily-table">
-      <thead>
-        <tr>
-          <th class="text-center">投稿日</th>
-          <th class="text-center">題名</th>
-          <th class="text-center">ジャンル</th>
-          <th></th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% daily_records.each do |daily_record| %>
-          <tr>
-            <td class="text-center"><%= daily_record.created_at.to_s(:datetime_jp) %></td>
-            <td class="text-center">
-              <%= link_to daily_record_path(daily_record) do %>
-                <%= daily_record.theme %>
-              <% end %>
-            </td>
-            <td class="text-center"><%= daily_record.genre %></td>
-            <td class="text-center">
-              <% if daily_record.favorited_by?(current_user) %>
-                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" style="color: red;"></span>
-                <span class="favorite-count-yes"><%= daily_record.favorites.count %></span>
-              <% else %>
-                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" style="color: black;"></span>
-                <span class="favorite-count-no"><%= daily_record.favorites.count %></span>
-              <% end %>
-            </td>
-            <td class="text-center">コメント<%= daily_record.comments.count %>件</td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  <% else %>
-    <h4>投稿はありません</h4>
-  <% end %>
-
-  <% if user == current_user %>
-    <div class="new-daily-records-link text-right">
-      <%= link_to "新しく投稿する！", new_daily_record_path, class: "btn btn-success" %>
+<% if user == current_user %>
+  <div class="col-sm-12 col-md-4">
+    <div class="mypage-select">
+      <i class="fas fa-procedures"></i>
+      <h3><b>わたしの病歴</b></h3>
+      <h4>現在治療中のものから、治癒したものまで</br>
+      一つに整理しておくことができます！</br>
+      新しい医療機関を受診する際や、</br>いざという時のためにも！</h4>
+      <h5><b>※データ出力可</b></h5>
+      <%= link_to "一覧へ", user_medical_histories_path(user), class: "btn btn-brown" %>
     </div>
-  <% end %>
+  </div>
+  <div class="col-sm-12 col-md-4">
+    <div class="mypage-select">
+      <i class="fas fa-file-medical-alt"></i>
+      <h3><b>わたしの健康管理</b></h3>
+      <h4>体重・血圧・血糖値まで</br>幅広く記録することができます！</br>
+      全て記録する必要はないので、</br>自分が必要な内容のみ簡単入力！</h4>
+      <h5><b>※データ出力可</b></h5>
+      <%= link_to "一覧へ", user_health_cares_path(user), class: "btn btn-brown" %>
+    </div>
+  </div>
+  <div class="col-sm-12 col-md-4">
+    <div class="mypage-select">
+      <i class="fas fa-user-md"></i>
+      <h3><b>かかりつけ医</b></h3>
+      <h4>かかりつけの医療機関を登録しておくと、</br>
+      病歴・健康管理・日常記録の内容を</br>共有することができます！</br>
+      また医療機関側が作成した診療記録を確認でき、</br>
+      かかりつけの医療機関同士での共有も可能です！</h4>
+      <%= link_to "一覧へ", families_user_path(user.id), class: "btn btn-brown" %>
+    </div>
+  </div>
+<% end %>
+
+<div class="col-xs-12">
+  <div class="user-show-daily">
+    <div class="user-show-daily-head">
+      <% if user == current_user %>
+        <h3>わたしの投稿一覧</h3>
+      <% else %>
+        <h3><%= user.last_name %>さんの投稿一覧</h3>
+      <% end %>
+      <h4>食事・運動などの健康を意識した取り組みから、息抜きの一コマまで！</br>
+      みんなでシェアしてがんばりましょう！</h4>
+      <% if user == current_user %>
+        <div class="new-daily-records-link text-center">
+          <%= link_to "新しく投稿する！", new_daily_record_path, class: "btn btn-success" %>
+        </div>
+      <% end %>
+    </div>
+
+    <% if daily_records.present? %>
+      <table class="table daily-table">
+        <thead>
+          <tr>
+            <th class="text-center">投稿日</th>
+            <th class="text-center">題名</th>
+            <th class="text-center">ジャンル</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% daily_records.each do |daily_record| %>
+            <tr>
+              <td class="text-center"><%= daily_record.created_at.to_s(:datetime_jp) %></td>
+              <td class="text-center">
+                <%= link_to daily_record_path(daily_record) do %>
+                  <%= daily_record.theme %>
+                <% end %>
+              </td>
+              <td class="text-center"><%= daily_record.genre %></td>
+              <td class="text-center">
+                <% if daily_record.favorited_by?(current_user) %>
+                  <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" style="color: red;"></span>
+                  <span class="favorite-count-yes"><%= daily_record.favorites.count %></span>
+                <% else %>
+                  <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" style="color: black;"></span>
+                  <span class="favorite-count-no"><%= daily_record.favorites.count %></span>
+                <% end %>
+              </td>
+              <td class="text-center">コメント<%= daily_record.comments.count %>件</td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= paginate daily_records %>
+    <% else %>
+      <h4>投稿はありません</h4>
+    <% end %>
+  </div>
 </div>

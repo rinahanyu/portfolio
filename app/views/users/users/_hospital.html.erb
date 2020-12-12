@@ -1,69 +1,87 @@
 <h2><%= user.last_name %><%= user.first_name %>さんのマイページ</h2>
-<div class="col-md-4 col-md-offset-4 col-xs-12">
+
   <% if user == guest_user %>
     <p class="col text-center"><%= attachment_image_tag user, :profile_image, format: "jpeg", fallback: "carp_boy.jpg", size: "200x200", class: "user-img" %></p>
   <% else %>
     <p class="col text-center"><%= attachment_image_tag user, :profile_image, format: "jpeg", fallback: "no_image.jpg", size: "200x200", class: "user-img" %></p>
   <% end %>
 
-  <table class="table col text-center">
-    <tbody>
-      <tr>
-        <th>病歴</th>
-        <td><%= link_to "一覧へ", user_medical_histories_path(user), class: "btn btn-success" %></td>
-      </tr>
-      <tr>
-        <th>健康管理</th>
-        <td><%= link_to "一覧へ", user_health_cares_path(user), class: "btn btn-success" %></td>
-      </tr>
-      <tr>
-        <th>かかりつけ医</th>
-        <td> <%= link_to "一覧へ", families_user_path(user.id), class: "btn btn-success" %></td>
-      </tr>
-      <tr>
-        <th>チャット</th>
-        <td>
-          <% if isRoom == true %>
-      			<p><%= link_to "つづき", chat_path(roomId, hospital_id: current_hospital.id, user_id: user.id), class: "btn btn-success" %></p>
-      		<% else %>
-      			<%= form_with(model:room, url: rooms_path, local: true) do |f| %>
-      				<%= f.hidden_field :hospital_id, value: current_hospital.id %>
-      				<%= f.hidden_field :user_id, value: user.id %>
-      				<%= f.submit "はじめる", class: "btn btn-success" %>
-      			<% end %>
-        	<% end %>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+  <div class="col-sm-12 col-md-3">
+    <div class="mypage-select">
+      <i class="fas fa-procedures"></i>
+      <h3><b>病歴</b></h3>
+      <h4>今までの治療歴</h4>
+      <h5><b>※データ出力可</b></h5>
+      <%= link_to "一覧へ", user_medical_histories_path(user), class: "btn btn-brown" %>
+    </div>
+  </div>
+  <div class="col-sm-12 col-md-3">
+    <div class="mypage-select">
+      <i class="fas fa-file-medical-alt"></i>
+      <h3><b>健康管理</b></h3>
+      <h4>体重・血圧・血糖値</h4>
+      <h5><b>※データ出力可</b></h5>
+      <%= link_to "一覧へ", user_health_cares_path(user), class: "btn btn-brown" %>
+    </div>
+  </div>
+  <div class="col-sm-12 col-md-3">
+    <div class="mypage-select">
+      <i class="fas fa-user-md"></i>
+      <h3><b>かかりつけ医</b></h3>
+      <h4>他医療機関との関係</h4></br>
+      <%= link_to "一覧へ", families_user_path(user.id), class: "btn btn-brown" %>
+    </div>
+  </div>
+  <div class="col-sm-12 col-md-3">
+    <div class="mypage-select">
+      <i class="fas fa-comments"></i>
+      <h3><b>チャット</b></h3>
+      <h4>簡易連絡</h4></br>
+      <% if isRoom == true %>
+  			<p><%= link_to "つづき", chat_path(roomId, hospital_id: current_hospital.id, user_id: user.id), class: "btn btn-brown" %></p>
+  		<% else %>
+  			<%= form_with(model:room, url: rooms_path, local: true) do |f| %>
+  				<%= f.hidden_field :hospital_id, value: current_hospital.id %>
+  				<%= f.hidden_field :user_id, value: user.id %>
+  				<%= f.submit "はじめる", class: "btn btn-brown" %>
+  			<% end %>
+    	<% end %>
+    </div>
+  </div>
 
-<div class="col-md-6 col-md-offset-3 col-xs-12">
-  <h4>＜日常投稿一覧＞</h4>
-  <% if daily_records.present? %>
-    <table class="table">
-      <thead>
-        <tr>
-          <th class="text-center">投稿日</th>
-          <th class="text-center">題名</th>
-          <th class="text-center">ジャンル</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% daily_records.each do |daily_record| %>
+<div class="col-xs-12">
+  <div class="user-show-daily">
+    <div class="user-show-daily-head">
+      <h3>日常投稿一覧</h3>
+      <h4>食事・運動などの健康を意識した取り組み</h4>
+    </div>
+
+    <% if daily_records.present? %>
+      <table class="table">
+        <thead>
           <tr>
-            <td class="text-center"><%= daily_record.created_at.to_s(:datetime_jp) %></td>
-            <td class="text-center">
-              <%= link_to daily_record_path(daily_record) do %>
-                <%= daily_record.theme %>
-              <% end %>
-            </td>
-            <td class="text-center"><%= daily_record.genre %></td>
+            <th class="text-center">投稿日</th>
+            <th class="text-center">題名</th>
+            <th class="text-center">ジャンル</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
-  <% else %>
-    <h4>投稿はありません</h4>
-  <% end %>
+        </thead>
+        <tbody>
+          <% daily_records.each do |daily_record| %>
+            <tr>
+              <td class="text-center"><%= daily_record.created_at.to_s(:datetime_jp) %></td>
+              <td class="text-center">
+                <%= link_to daily_record_path(daily_record) do %>
+                  <%= daily_record.theme %>
+                <% end %>
+              </td>
+              <td class="text-center"><%= daily_record.genre %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= paginate daily_records %>
+    <% else %>
+      <h4>投稿はありません</h4>
+    <% end %>
+  </div>
 </div>

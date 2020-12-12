@@ -4,67 +4,93 @@
   <h2>医療機関詳細</h2>
 <% end %>
 
-<div class="col-md-4 col-md-offset-4 col-xs-12">
-  <table class="table col text-center">
-    <thead>
-      <tr>
-        <th colspan="2" class="col text-center"><h3><b><%= hospital.name %></b></h3></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th class="col text-center">電話番号</th>
-        <td class="col text-center"><%= hospital.telphone_number %></td>
-      </tr>
-      <tr>
-        <th class="col text-center">郵便番号</th>
-        <td class="col text-center"><%= hospital.postal_code %></td>
-      </tr>
-      <tr>
-        <th class="col text-center">住所</th>
-        <td class="col text-center"><%= hospital.address %></td>
-      </tr>
-      <% if current_hospital.id == hospital.id %>
-        <tr>
-          <th class="col text-center">登録情報</th>
-          <td class="col text-center"><%= link_to "編集する", edit_hospital_path(hospital), class: "btn btn-primary" %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
-
-<% if current_hospital.id == hospital.id %>
-  <div class="col-md-10 col-md-offset-1 col-sm-12">
-    <h4><b>＜患者一覧＞</b></h4>
-    <% if hospital.patients.present? %>
-    <table class="table">
+<div class="row"></div>
+  <div class="col-md-6 col-md-offset-3 col-xs-12">
+    <table class="table col text-center">
       <thead>
         <tr>
-          <th class="col text-center">患者名</th>
-          <th class="col text-center">電話番号</th>
-          <th class="col text-center">郵便番号</th>
-          <th class="col text-center">住所</th>
-          <th></th>
+          <th colspan="2" class="col text-center"><h3><b><%= hospital.name %></b></h3></th>
         </tr>
       </thead>
       <tbody>
-        <% hospital.patients.each do |patient| %>
+        <tr>
+          <th class="col text-center">電話番号</th>
+          <td class="col text-center"><%= hospital.telphone_number %></td>
+        </tr>
+        <tr>
+          <th class="col text-center">郵便番号</th>
+          <td class="col text-center"><%= hospital.postal_code %></td>
+        </tr>
+        <tr>
+          <th class="col text-center">住所</th>
+          <td class="col text-center"><%= hospital.address %></td>
+        </tr>
+        <% if current_hospital.id == hospital.id %>
           <tr>
-            <td class="col text-center"><%= patient.last_name %></td>
-            <td class="col text-center"><%= patient.telphone_number %></td>
-            <td class="col text-center"><%= patient.postal_code %></td>
-            <td class="col text-center"><%= patient.address %></td>
-            <th class="col text-center">
-              <%= link_to "患者ページ", user_path(patient), class: "btn btn-warning" %>
-              <%= link_to "診療記録", user_medical_records_path(patient), class: "btn btn-success" %>
-            </th>
+            <th class="col text-center">登録情報</th>
+            <td class="col text-center"><%= link_to "編集する", edit_hospital_path(hospital), class: "btn btn-primary" %></td>
           </tr>
         <% end %>
       </tbody>
     </table>
-    <% else %>
-      <h4 class="col text-center">患者はいません</h4>
-    <% end %>
+  </div>
+</div>
+
+<% if current_hospital.id == hospital.id %>
+  <div class="col-sm-12 col-md-6">
+    <div class="hospital-select">
+      <i class="fas fa-user-check"></i>
+      <h3><b>患者ページ</b></h3>
+      <h4>病歴、血圧などの健康管理や、</br>食事・運動などの日常の取り組み、</br>
+      その他、チャットでの簡易連絡もできます！</br>
+      詳細は、患者一覧の「患者ページ」から！</h4>
+    </div>
+  </div>
+  <div class="col-sm-12 col-md-6">
+    <div class="hospital-select">
+      <i class="fas fa-file-medical"></i>
+      <h3><b>診療記録</b></h3>
+      <h4>診療記録を作成して、</br>患者と治療方針の共有、</br>
+      他かかりつけ医療機関との情報共有ができます！</br>
+      詳細は、患者一覧の「診療記録」から！</h4>
+    </div>
+  </div>
+
+  <div class="col-xs-12">
+    <div class="hospital-show-patient">
+      <div class="hospital-show-patient-head">
+        <h3>患者一覧</h3>
+      </div>
+
+      <% if hospital.patients.present? %>
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="col text-center">患者名</th>
+            <th class="col text-center">電話番号</th>
+            <th class="col text-center">郵便番号</th>
+            <th class="col text-center">住所</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% hospital.patients.each do |patient| %>
+            <tr>
+              <td class="col text-center"><%= patient.last_name %></td>
+              <td class="col text-center"><%= patient.telphone_number %></td>
+              <td class="col text-center"><%= patient.postal_code %></td>
+              <td class="col text-center"><%= patient.address %></td>
+              <th class="col text-center">
+                <%= link_to "患者ページ", user_path(patient), class: "btn btn-warning btn-sm" %>
+                <%= link_to "診療記録", user_medical_records_path(patient), class: "btn btn-success btn-sm" %>
+              </th>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <% else %>
+        <h4 class="col text-center">患者はいません</h4>
+      <% end %>
+    </div>
   </div>
 <% end %>
