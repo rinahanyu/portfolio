@@ -1,11 +1,15 @@
 <div class="families-container">
   <div class="row">
-    <h2>かかりつけ医一覧</h2>
-      <div class="families-info col-md-8 col-md-offset-2">
-        <i class="fas fa-hospital-user"></i>
-        <h4>医療機関のマイページで、かかりつけ医の登録ができます！</br>
-        さっそく「医療機関一覧」ボタンから、いつものあの病院を探してみよう！</h4>
-      </div>
+    <% if current_user.present? %>
+      <h2>かかりつけ医一覧</h2>
+        <div class="families-info col-md-8 col-md-offset-2">
+          <i class="fas fa-hospital-user"></i>
+          <h4>医療機関のマイページで、かかりつけ医の登録ができます！</br>
+          さっそく「医療機関一覧」ボタンから、いつものあの病院を探してみよう！</h4>
+        </div>
+    <% else %>
+      <h2><%= @user.last_name %><%= @user.first_name %>さんのかかりつけ医一覧</h2>
+    <% end %>
 
     <div class="col-md-10 col-md-offset-1 col-xs-12">
       <% if @hospitals.present? %>
@@ -38,6 +42,9 @@
       <% end %>
       <div class="hospital-link text-right">
         <%= link_to "医療機関一覧へ", hospitals_path, class: "btn btn-success btn-lg" %>
+        <% unless current_user.present? %>
+          <%= link_to "患者マイページへ戻る", user_path(@user), class: "btn btn-warning btn-lg" %>
+        <% end %>
       </div>
     </div>
   </div>

@@ -17,6 +17,55 @@
   }
 }
 
+// マイページ
+.hospital-select {
+   text-align: center;
+    background-color: #DCDCDC;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 15px 0 15px 0;
+    i {
+      font-size: 50px;
+    }
+    .attention {
+      color: red;
+    }
+}
+
+.hospital-show-patient {
+  text-align: center;
+  text-align: center;
+  border-radius: 10px;
+  margin-top: 15px;
+  border: 1px solid #DDDDDD;
+  .hospital-show-patient-head {
+    background-color: #F0E68C;
+    padding: 15px 0;
+    h3 {
+      margin: 0;
+    }
+  }
+}
+
+@media screen and (max-width:768px) {
+  .hospital-show-container {
+    font-size: 15px;
+    .hospital-show-patient {
+      table {
+        font-size: 10px;
+      }
+      .hospital-show-patient-head {
+        h3 {
+          font-size: 20px;
+        }
+        h4 {
+          font-size: 13px;
+        }
+      }
+    }
+  }
+}
+
 // 一覧画面
 .hospital-search {
   margin-bottom: 30px;
