@@ -59,7 +59,7 @@
       <h3><b>かかりつけ医</b></h3>
       <h4>かかりつけの医療機関を登録しておくと、</br>
       病歴・健康管理・日常記録の内容を</br>共有することができます！</br>
-      また医療機関側が作成した診療記録を確認でき、</br>
+      また医療機関側に診療記録を作成してもらうことができ、</br>
       かかりつけの医療機関同士での共有も可能です！</h4>
       <%= link_to "一覧へ", families_user_path(user.id), class: "btn btn-brown" %>
     </div>
@@ -71,15 +71,13 @@
     <div class="user-show-daily-head">
       <% if user == current_user %>
         <h3>わたしの投稿一覧</h3>
-      <% else %>
-        <h3><%= user.last_name %>さんの投稿一覧</h3>
-      <% end %>
-      <h4>食事・運動などの健康を意識した取り組みから、息抜きの一コマまで！</br>
-      みんなでシェアしてがんばりましょう！</h4>
-      <% if user == current_user %>
+        <h4>食事・運動などの健康を意識した取り組みから、息抜きの一コマまで！</br>
+        みんなでシェアしてがんばりましょう！</h4>
         <div class="new-daily-records-link text-center">
           <%= link_to "新しく投稿する！", new_daily_record_path, class: "btn btn-success" %>
         </div>
+      <% else %>
+        <h3><%= user.last_name %>さんの投稿一覧</h3>
       <% end %>
     </div>
 
