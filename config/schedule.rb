@@ -19,8 +19,7 @@ set :environment, :production
 # end
 #
 # 毎日午前8:00メール送信
-# every 1.days, at: '1:00 am' do
-every 1.minutes do
+every 1.days, at: '3:30 am' do
   runner "HelloMailer.hello_to_user.deliver"
 end
 
