@@ -10,7 +10,7 @@ env :PATH, ENV['PATH']
 # ログファイルの出力先
 set :output, 'log/cron.log'
 # ジョブの実行環境の指定
-set :environment, :development
+set :environment, :production
 #
 # every 2.hours do
 #   command "/usr/bin/some_great_command"
@@ -19,7 +19,8 @@ set :environment, :development
 # end
 #
 # 毎日午前8:00メール送信
-every 1.days, at: '1:00 am' do
+# every 1.days, at: '1:00 am' do
+every 1.minutes do
   runner "HelloMailer.hello_to_user.deliver"
 end
 
