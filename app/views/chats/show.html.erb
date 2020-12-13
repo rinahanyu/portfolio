@@ -17,7 +17,7 @@
         <% if current_user.present? %>　<!--個人利用者の場合-->
           <div class="post">
             <%= form_with(model: @chat, remote: true) do |f| %>
-              <%= f.text_field :message, id: "message" %>
+              <%= f.text_area :message, id: "message" %>
               <%= f.hidden_field :room_id, value: @room.id %>
               <%= f.hidden_field :user_id, value: current_user.id %>
               <%= f.button :type => "submit", class: "btn btn-warning" do %>
@@ -31,7 +31,7 @@
         <% elsif current_hospital.present? %>　<!--医療関係者の場合-->
           <div class="post">
             <%= form_with(model: @chat, remote: true) do |f| %>
-              <%= f.text_field :message, id: "message" %>
+              <%= f.text_area :message, id: "message" %>
               <%= f.hidden_field :room_id, value: @room.id %>
               <%= f.hidden_field :hospital_id, value: current_hospital.id %>
               <%= f.button :type => "submit", class: "btn btn-warning" do %>

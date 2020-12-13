@@ -34,19 +34,31 @@
   .chat-container {
     font-size: 15px;
     .my-chat, .my-chat-non {
-      width: 500px;
+      width: 400px;
     }
   }
 }
 
 @media screen and (max-width:768px) {
-  .my-chat, .my-chat-non {
-    width: 300px;
+  .chat-container {
+     .my-chat, .my-chat-non {
+      width: 300px;
+    }
   }
 }
 
 @media screen and (max-width: 425px) {
-  .my-chat, .my-chat-non {
-    width: 200px;
+  .chat-container {
+    .my-chat, .my-chat-non {
+      width: 200px;
+    }
+  }
+}
+
+@media screen and (max-width: 325px) {
+  .chat-container {
+    .my-chat, .my-chat-non {
+      width: 150px;
+    }
   }
 }
