@@ -1,14 +1,21 @@
 <div class="families-container">
   <div class="row">
     <% if current_user.present? %>
-      <h2>かかりつけ医一覧</h2>
-        <div class="families-info col-md-8 col-md-offset-2">
+      <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
+        <h2>かかりつけ医一覧</h2>
+      </div>
+
+      <div class="col-md-10 col-md-offset-1 col-xs-12">
+        <div class="families-info">
           <i class="fas fa-hospital-user"></i>
           <h4>医療機関のマイページで、かかりつけ医の登録ができます！</br>
           さっそく「医療機関一覧」ボタンから、いつものあの病院を探してみよう！</h4>
         </div>
+      </div>
     <% else %>
-      <h2><%= @user.last_name %><%= @user.first_name %>さんのかかりつけ医一覧</h2>
+      <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
+        <h2><%= @user.last_name %><%= @user.first_name %>さんのかかりつけ医一覧</h2>
+      </div>
     <% end %>
 
     <div class="col-md-10 col-md-offset-1 col-xs-12">

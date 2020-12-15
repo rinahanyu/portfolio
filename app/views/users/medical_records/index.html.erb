@@ -1,8 +1,12 @@
 <div class="medical-records-index-container">
   <div class="row">
-    <h2>診療記録</h2>
-    <h3>＜患者名＞<%= @user.last_name %><%= @user.first_name %>さん</h3>
+    <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
+      <h2>診療記録</h2>
+      <h3>＜患者名＞<%= @user.last_name %><%= @user.first_name %>さん</h3>
+    </div>
+  </div>
 
+  <div class="row">
     <% if current_hospital.present? %>
       <div class="col text-center">
         <%= link_to "新規作成はこちらから！", new_user_medical_record_path(@user), class: "btn btn-primary btn-lg" %>

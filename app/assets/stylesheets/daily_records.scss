@@ -9,7 +9,11 @@
   margin: 15px;
   h2 {
       text-align: center;
-      margin-bottom: 50px;
+      font-size: 40px;
+      margin: 40px 0px;
+      padding: 1rem 2rem;
+      border-top: 3px dashed #000;
+      border-bottom: 3px dashed #000;
   }
 }
 
@@ -17,6 +21,9 @@
   .daily-record-index-container, .daily-record-show-container, .daily-record-new-container,
   .daily-record-edit-container, .daily-record-search-container {
     font-size: 15px;
+    h2 {
+      font-size: 30px;
+    }
   }
 }
 

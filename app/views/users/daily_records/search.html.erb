@@ -1,7 +1,10 @@
 <div class="daily-record-search-container">
   <div class="row">
-    <h2>みんなの投稿一覧</h2>
-      <% if @daily_records.present? %>
+    <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
+      <h2>みんなの投稿一覧</h2>
+    </div>
+    
+    <% if @daily_records.present? %>
       <h3 class="col text-center">ジャンル</br>＜
         <% @daily_records.first(1).each do |daily_record| %>
           <%= daily_record.genre %>

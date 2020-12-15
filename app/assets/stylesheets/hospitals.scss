@@ -7,13 +7,20 @@
   font-size: 18px;
   h2 {
       text-align: center;
-      margin-bottom: 50px;
+      font-size: 40px;
+      margin: 40px 0px;
+      padding: 1rem 2rem;
+      border-top: 3px dashed #000;
+      border-bottom: 3px dashed #000;
   }
 }
 
 @media screen and (max-width:768px) {
   .hospital-show-container, .hospital-edit-container, .hospital-index-container {
     font-size: 15px;
+    h2 {
+      font-size: 30px;
+    }
   }
 }
 
@@ -52,7 +59,6 @@
 
 @media screen and (max-width:768px) {
   .hospital-show-container {
-    font-size: 15px;
     .hospital-show-patient {
       table {
         font-size: 10px;
@@ -95,8 +101,8 @@
     width: 300px;
   }
   .hospital-menu {
-  h3 {
-    font-size: 25px;
+    h3 {
+      font-size: 25px;
+    }
   }
-}
 }

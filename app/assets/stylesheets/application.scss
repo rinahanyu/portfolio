@@ -39,10 +39,12 @@ body {
  }
  .calendar-head {
    background-color: #F0E68C;
-   text-align: center;
+   th {
+     text-align: center;
+   }
  }
  .calendar-title {
-   font-size: 20px;
+   font-size: 25px;
    font-weight: bold;
  }
  .has-events {

@@ -1,60 +1,63 @@
-<h2>わたしの健康管理</h2>
-  <div class="col-md-10 col-md-offset-1 col-sm-12">
-    <% if health_cares.present? %>
-      <table class="table">
-        <thead>
+<div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
+  <h2>わたしの健康管理</h2>
+</div>
+
+<div class="col-md-10 col-md-offset-1 col-sm-12">
+  <% if health_cares.present? %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="col text-center" style="vertical-align : middle;text-align:center;" >日付</th>
+          <th class="col text-center" style="vertical-align : middle;text-align:center;">体重</th>
+          <th colspan="2" class="col text-center">血圧</br>（最高・最低）</th>
+          <th class="col text-center" style="vertical-align : middle;text-align:center;">血糖値</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% health_cares.each do |health_care| %>
           <tr>
-            <th class="col text-center" style="vertical-align : middle;text-align:center;" >日付</th>
-            <th class="col text-center" style="vertical-align : middle;text-align:center;">体重</th>
-            <th colspan="2" class="col text-center">血圧</br>（最高・最低）</th>
-            <th class="col text-center" style="vertical-align : middle;text-align:center;">血糖値</th>
-            <th></th>
+            <td class="col text-center"><%= health_care.date.strftime("%Y年%m月%d日") %></td>
+
+            <% if health_care.body_weight.present? %>
+              <td class="col text-center"><%= health_care.body_weight %></td>
+            <% else %>
+              <td class="col text-center">-</td>
+            <% end %>
+
+            <% if health_care.max_blood_pressure.present? %>
+              <td class="col text-center"><%= health_care.max_blood_pressure %></td>
+            <% else %>
+              <td class="col text-center">-</td>
+            <% end %>
+
+            <% if health_care.min_blood_pressure.present? %>
+              <td class="col text-center"><%= health_care.min_blood_pressure %></td>
+            <% else %>
+              <td class="col text-center">-</td>
+            <% end %>
+
+            <% if health_care.blood_sugar.present? %>
+              <td class="col text-center"><%= health_care.blood_sugar %></td>
+            <% else %>
+              <td class="col text-center">-</td>
+            <% end %>
+
+            <td class="col text-center">
+              <%= link_to "編集", edit_user_health_care_path(user_id: health_care.user_id, id: health_care.id), class: "btn btn-warning" %>
+              <%= link_to "削除", user_health_care_path(user_id: health_care.user_id, id: health_care.id),
+              method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn btn-danger" %>
+            </td>
           </tr>
-        </thead>
-        <tbody>
-          <% health_cares.each do |health_care| %>
-            <tr>
-              <td class="col text-center"><%= health_care.date.strftime("%Y年%m月%d日") %></td>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <h3>特にありません</h3>
+  <% end %>
 
-              <% if health_care.body_weight.present? %>
-                <td class="col text-center"><%= health_care.body_weight %></td>
-              <% else %>
-                <td class="col text-center">-</td>
-              <% end %>
-
-              <% if health_care.max_blood_pressure.present? %>
-                <td class="col text-center"><%= health_care.max_blood_pressure %></td>
-              <% else %>
-                <td class="col text-center">-</td>
-              <% end %>
-
-              <% if health_care.min_blood_pressure.present? %>
-                <td class="col text-center"><%= health_care.min_blood_pressure %></td>
-              <% else %>
-                <td class="col text-center">-</td>
-              <% end %>
-
-              <% if health_care.blood_sugar.present? %>
-                <td class="col text-center"><%= health_care.blood_sugar %></td>
-              <% else %>
-                <td class="col text-center">-</td>
-              <% end %>
-
-              <td class="col text-center">
-                <%= link_to "編集", edit_user_health_care_path(user_id: health_care.user_id, id: health_care.id), class: "btn btn-warning" %>
-                <%= link_to "削除", user_health_care_path(user_id: health_care.user_id, id: health_care.id),
-                method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn btn-danger" %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    <% else %>
-      <h3>特にありません</h3>
-    <% end %>
-
-    <div class="new-health_care-link text-right">
-      <%= link_to "新しい数値を記録する", new_user_health_care_path(current_user), class: "btn btn-primary btn-lg" %>
-      <%= link_to "CSV出力", user_health_cares_path(format: :csv), class: "btn btn-success btn-lg" %>
-    </div>
+  <div class="new-health_care-link text-right">
+    <%= link_to "新しい数値を記録する", new_user_health_care_path(current_user), class: "btn btn-primary btn-lg" %>
+    <%= link_to "CSV出力", user_health_cares_path(format: :csv), class: "btn btn-success btn-lg" %>
   </div>
+</div>
