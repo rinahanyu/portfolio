@@ -7,8 +7,12 @@
   font-size: 18px;
   padding-bottom: 10px;
   h2 {
+      font-size: 40px;
+      margin: 40px 0px;
+      padding: 1rem 2rem;
+      border-top: 3px dashed #000;
+      border-bottom: 3px dashed #000;
       text-align: center;
-      margin-bottom: 25px;
   }
 }
 
@@ -54,13 +58,25 @@
 // 編集ページ
 .user-edit-container {
   font-size: 18px;
+  h2 {
+      font-size: 40px;
+      margin: 40px 0px;
+      padding: 1rem 2rem;
+      border-top: 3px dashed #000;
+      border-bottom: 3px dashed #000;
+      text-align: center;
+  }
 }
 
 // かかりつけ医一覧ページ
 .families-container {
   font-size: 18px;
   h2 {
-    margin: 40px 0 25px 0;
+    margin: 40px 0px;
+    font-size: 40px;
+    padding: 1rem 2rem;
+    border-top: 3px dashed #000;
+    border-bottom: 3px dashed #000;
     text-align: center;
   }
   .families-info {
@@ -78,9 +94,16 @@
 @media screen and (max-width:768px) {
   .user-edit-container, .families-container {
     font-size: 15px;
+    h2 {
+      font-size: 30px;
+    }
   }
+  
   .user-show-container {
     font-size: 15px;
+    h2 {
+      font-size: 30px;
+    }
     .daily-table {
       font-size: 10px;
     }

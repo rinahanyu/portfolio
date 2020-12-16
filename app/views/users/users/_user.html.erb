@@ -1,8 +1,10 @@
-<% if user == current_user %>
-  <h2>マイページ</h2>
-<% else %>
-  <h2><%= user.last_name %><%= user.first_name %>さんのマイページ</h2>
-<% end %>
+<div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
+  <% if user == current_user %>
+    <h2>マイページ</h2>
+  <% else %>
+    <h2><%= user.last_name %><%= user.first_name %>さんのマイページ</h2>
+  <% end %>
+</div>
 
 <div class="mypage-profile">
   <div class="row">

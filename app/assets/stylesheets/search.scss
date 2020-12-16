@@ -5,8 +5,12 @@
 .hospital-search-container {
   font-size: 18px;
   h2 {
+      font-size: 40px;
+      margin: 40px 0px;
+      padding: 1rem 2rem;
+      border-top: 3px dashed #000;
+      border-bottom: 3px dashed #000;
       text-align: center;
-      margin-bottom: 50px;
   }
   h3 {
     text-align: center;
@@ -19,5 +23,8 @@
 @media screen and (max-width:768px) {
   .hospital-search-container {
     font-size: 15px;
+    h2 {
+      font-size: 30px;
+    }
   }
 }

@@ -1,34 +1,37 @@
-<h2>わたしの病歴</h2>
-  <div class="col-md-10 col-md-offset-1 col-sm-12">
-    <% if medical_histories.present? %>
-      <table style="table-layout:fixed;width:100%;" class="table">
-        <tbody>
-          <% medical_histories.each do |medical_history| %>
-            <tr>
-              <td rowspan="2" class="text-center align-center" style="vertical-align : middle;text-align:center;"><%= medical_history.disease %></td>
-              <td class="text-center"><%= medical_history.started_on.strftime("%Y年%m月%d日") %></br>
-              <% if medical_history.finished_on.present? %>
-                〜<%= medical_history.finished_on.strftime("%Y年%m月%d日") %></td>
-              <% else %>
-                〜現在</td>
-              <% end %>
-              <td class="text-center"><%= medical_history.hospital %></td>
-              <td class="text-center"><%= link_to "編集", edit_user_medical_history_path(user_id: medical_history.user_id, id: medical_history.id), class: "btn btn-warning" %>
-              <%= link_to "削除", user_medical_history_path(user_id: medical_history.user_id, id: medical_history.id),
-                  method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn btn-danger" %></td>
-            </tr>
-            <tr>
-              <td colspan="3" style="word-wrap:break-word;" class="text-left">治療内容：<%= medical_history.treatment %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    <% else %>
-      <h3>特にありません</h3>
-    <% end %>
+<div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
+  <h2>わたしの病歴</h2>
+</div>
 
-    <div class="new-medical-history-link text-right">
-      <%= link_to "新しい歴史をつくる", new_user_medical_history_path(current_user), class: "btn btn-primary btn-lg" %>
-      <%= link_to "CSV出力", user_medical_histories_path(format: :csv), class: "btn btn-success btn-lg" %>
-    </div>
+<div class="col-md-10 col-md-offset-1 col-sm-12">
+  <% if medical_histories.present? %>
+    <table style="table-layout:fixed;width:100%;" class="table">
+      <tbody>
+        <% medical_histories.each do |medical_history| %>
+          <tr>
+            <td rowspan="2" class="text-center align-center" style="vertical-align : middle;text-align:center;"><%= medical_history.disease %></td>
+            <td class="text-center"><%= medical_history.started_on.strftime("%Y年%m月%d日") %></br>
+            <% if medical_history.finished_on.present? %>
+              〜<%= medical_history.finished_on.strftime("%Y年%m月%d日") %></td>
+            <% else %>
+              〜現在</td>
+            <% end %>
+            <td class="text-center"><%= medical_history.hospital %></td>
+            <td class="text-center"><%= link_to "編集", edit_user_medical_history_path(user_id: medical_history.user_id, id: medical_history.id), class: "btn btn-warning" %>
+            <%= link_to "削除", user_medical_history_path(user_id: medical_history.user_id, id: medical_history.id),
+                method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn btn-danger" %></td>
+          </tr>
+          <tr>
+            <td colspan="3" style="word-wrap:break-word;" class="text-left">治療内容：<%= medical_history.treatment %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <h3>特にありません</h3>
+  <% end %>
+
+  <div class="new-medical-history-link text-right">
+    <%= link_to "新しい歴史をつくる", new_user_medical_history_path(current_user), class: "btn btn-primary btn-lg" %>
+    <%= link_to "CSV出力", user_medical_histories_path(format: :csv), class: "btn btn-success btn-lg" %>
   </div>
+</div>

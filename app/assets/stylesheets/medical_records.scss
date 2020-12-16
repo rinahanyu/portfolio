@@ -8,18 +8,31 @@
 .medical-records-show-container, .medical-records-edit-container {
   font-size: 18px;
   margin: 15px;
-  h2, h3 {
+  h2 {
       text-align: center;
+      font-size: 40px;
+      margin: 40px 0px;
+      padding: 1rem 2rem;
+      border-top: 3px dashed #000;
+      border-bottom: 3px dashed #000;
   }
   h3 {
     margin-bottom: 45px;
+    text-align: center;
   }
+}
+
+.medical-records-index-container {
+  text-align: center;
 }
 
 @media screen and (max-width:1199px) {
   .medical-records-index-container, .medical-records-new-container,
   .medical-records-show-container, .medical-records-edit-container {
     font-size: 15px;
+    h2 {
+      font-size: 30px;
+    }
   }
 }
 
