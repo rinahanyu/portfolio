@@ -2,7 +2,14 @@
   <div class="row">
     <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
       <h2>診療記録</h2>
-      <h3>＜患者名＞<%= @user.last_name %><%= @user.first_name %>さん</h3>
+      <h3 class="patient-name">＜患者名＞<%= @user.last_name %><%= @user.first_name %>さん</h3>
+    </div>
+    <div class="col-md-10 col-md-offset-1 col-xs-12">
+      <div class="medical-record-info">
+        <i class="fas fa-notes-medical"></i>
+        <h4>かかりつけ医登録の医療機関が今まで作成した診療記録を確認できます！</br>
+        新しく診療記録が作成されると、メールによる通知も！</h4>
+      </div>
     </div>
   </div>
 

@@ -113,7 +113,10 @@
                   <span class="favorite-count-no"><%= daily_record.favorites.count %></span>
                 <% end %>
               </td>
-              <td class="text-center">コメント<%= daily_record.comments.count %>件</td>
+              <td class="text-center">
+                <i class="far fa-comment"></i>
+                <span><%= daily_record.comments.count %></span>
+              </td>
             </tr>
           <% end %>
         </tbody>

@@ -4,7 +4,7 @@
       <h2>みんなの投稿一覧</h2>
     </div>
 
-    <div class="genre-search col-sm-4 col-xs-12">
+    <div class="genre-search col-sm-3 col-sm-offset-1 col-xs-12">
       <table class="table table-bordered col-sm-6">
         <thead><th class="text-center">ジャンル検索</th></thead>
         <tbody>
@@ -15,8 +15,11 @@
       </table>
     </div>
 
-    <div class="all-index col-sm-8 col-xs-12">
+    <div class="all-index col-sm-6 col-xs-12">
       <%= render "index", daily_records: @daily_records %>
+    </div>
+
+    <div class="col-sm-2">
     </div>
   </div>
 </div>
