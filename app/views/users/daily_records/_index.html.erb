@@ -6,19 +6,18 @@
 
     <div class="daily-record-index-main">
       <div><%= daily_record.created_at.to_s(:datetime_jp) %></div>
-      <div>＜<%= daily_record.genre %>＞</div>
       <div>
         <%= link_to daily_record_path(daily_record), class: "theme-item" do %>
           <%= daily_record.theme %>
         <% end %>
-        <span>
-           by
-          <%= link_to user_path(daily_record.user), class: "user-name-item" do %>
-            <%= daily_record.user.last_name %>
-          <% end %>
-        </span>
       </div>
-      <div>コメント<%= daily_record.comments.count %>件</div>
+      <div>＜<%= daily_record.genre %>＞</div>
+      <div>
+         written by
+        <%= link_to user_path(daily_record.user), class: "user-name-item" do %>
+          <%= daily_record.user.last_name %>
+        <% end %>
+      </div>
       <div>
         <% if daily_record.favorited_by?(current_user) %>
           <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" style="color: red;"></span>
@@ -27,6 +26,10 @@
           <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" style="color: black;"></span>
           <span class="favorite-count-no"><%= daily_record.favorites.count %></span>
         <% end %>
+      </div>
+      <div>
+        <i class="far fa-comment"></i>
+        <span><%= daily_record.comments.count %></span>
       </div>
     </div>
   </div>

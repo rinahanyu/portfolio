@@ -51,7 +51,11 @@
 }
 
 .daily-record-index-main {
-  .theme-item, .user-name-item {
+  .theme-item {
+    color: #3366CC;
+    font-size: 23px;
+  }
+  .user-name-item {
     color: #3366CC;
   }
 }
