@@ -1,9 +1,11 @@
-<div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
-  <% if daily_record.user == current_user %>
-    <h2>わたしの投稿詳細</h2>
-  <% else %>
-    <h2><%= daily_record.user.last_name %>さんの投稿詳細</h2>
-  <% end %>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
+    <% if daily_record.user == current_user %>
+      <h2>わたしの投稿詳細</h2>
+    <% else %>
+      <h2><%= daily_record.user.last_name %>さんの投稿詳細</h2>
+    <% end %>
+  </div>
 </div>
 
 <div class="daily-record-show col-lg-6 col-lg-offset-3">
