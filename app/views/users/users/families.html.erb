@@ -48,7 +48,7 @@
         <h3>まだ登録されていません</h3>
       <% end %>
       <div class="hospital-link text-right">
-        <%= link_to "医療機関一覧へ", hospitals_path, class: "btn btn-success btn-lg" %>
+        <%= link_to "医療機関一覧へ", hospitals_path, class: "btn btn-primary btn-lg" %>
         <% unless current_user.present? %>
           <%= link_to "患者マイページへ戻る", user_path(@user), class: "btn btn-warning btn-lg" %>
         <% end %>
