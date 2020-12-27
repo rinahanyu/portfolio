@@ -84,43 +84,45 @@
     </div>
 
     <% if daily_records.present? %>
-      <table class="table daily-table">
-        <thead>
-          <tr>
-            <th class="text-center">投稿日</th>
-            <th class="text-center">題名</th>
-            <th class="text-center">ジャンル</th>
-            <th></th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% daily_records.each do |daily_record| %>
+      <div class="table-responsive">
+        <table class="table daily-table">
+          <thead>
             <tr>
-              <td class="text-center"><%= daily_record.created_at.to_s(:datetime_jp) %></td>
-              <td class="text-center">
-                <%= link_to daily_record_path(daily_record) do %>
-                  <%= daily_record.theme %>
-                <% end %>
-              </td>
-              <td class="text-center"><%= daily_record.genre %></td>
-              <td class="text-center">
-                <% if daily_record.favorited_by?(current_user) %>
-                  <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" style="color: red;"></span>
-                  <span class="favorite-count-yes"><%= daily_record.favorites.count %></span>
-                <% else %>
-                  <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" style="color: black;"></span>
-                  <span class="favorite-count-no"><%= daily_record.favorites.count %></span>
-                <% end %>
-              </td>
-              <td class="text-center">
-                <i class="far fa-comment"></i>
-                <span><%= daily_record.comments.count %></span>
-              </td>
+              <th class="text-center">投稿日</th>
+              <th class="text-center">題名</th>
+              <th class="text-center">ジャンル</th>
+              <th></th>
+              <th></th>
             </tr>
-          <% end %>
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            <% daily_records.each do |daily_record| %>
+              <tr>
+                <td class="text-center"><%= daily_record.created_at.to_s(:datetime_jp) %></td>
+                <td class="text-center">
+                  <%= link_to daily_record_path(daily_record) do %>
+                    <%= daily_record.theme %>
+                  <% end %>
+                </td>
+                <td class="text-center"><%= daily_record.genre %></td>
+                <td class="text-center">
+                  <% if daily_record.favorited_by?(current_user) %>
+                    <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" style="color: red;"></span>
+                    <span class="favorite-count-yes"><%= daily_record.favorites.size %></span>
+                  <% else %>
+                    <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" style="color: black;"></span>
+                    <span class="favorite-count-no"><%= daily_record.favorites.size %></span>
+                  <% end %>
+                </td>
+                <td class="text-center">
+                  <i class="far fa-comment"></i>
+                  <span><%= daily_record.comments.size %></span>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
       <%= paginate daily_records %>
     <% else %>
       <h4>投稿はありません</h4>

@@ -21,15 +21,15 @@
       <div>
         <% if daily_record.favorited_by?(current_user) %>
           <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" style="color: red;"></span>
-          <span class="favorite-count-yes"><%= daily_record.favorites.count %></span>
+          <span class="favorite-count-yes"><%= daily_record.favorites.size %></span>
         <% else %>
           <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true" style="color: black;"></span>
-          <span class="favorite-count-no"><%= daily_record.favorites.count %></span>
+          <span class="favorite-count-no"><%= daily_record.favorites.size %></span>
         <% end %>
       </div>
       <div>
         <i class="far fa-comment"></i>
-        <span><%= daily_record.comments.count %></span>
+        <span><%= daily_record.comments.size %></span>
       </div>
     </div>
   </div>

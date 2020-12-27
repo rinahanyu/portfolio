@@ -4,47 +4,49 @@
 
 <div class="col-md-10 col-md-offset-1 col-sm-12">
   <% if health_cares.present? %>
-    <table class="table">
-      <thead>
-        <tr>
-          <th class="col text-center" style="vertical-align : middle;text-align:center;" >日付</th>
-          <th class="col text-center" style="vertical-align : middle;text-align:center;">体重</th>
-          <th colspan="2" class="col text-center">血圧</br>（最高・最低）</th>
-          <th class="col text-center" style="vertical-align : middle;text-align:center;">血糖値</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% health_cares.each do |health_care| %>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
           <tr>
-            <td class="col text-center"><%= health_care.date.strftime("%Y年%m月%d日") %></td>
-
-            <% if health_care.body_weight.present? %>
-              <td class="col text-center"><%= health_care.body_weight %></td>
-            <% else %>
-              <td class="col text-center">-</td>
-            <% end %>
-
-            <% if health_care.max_blood_pressure.present? %>
-              <td class="col text-center"><%= health_care.max_blood_pressure %></td>
-            <% else %>
-              <td class="col text-center">-</td>
-            <% end %>
-
-            <% if health_care.min_blood_pressure.present? %>
-              <td class="col text-center"><%= health_care.min_blood_pressure %></td>
-            <% else %>
-              <td class="col text-center">-</td>
-            <% end %>
-
-            <% if health_care.blood_sugar.present? %>
-              <td class="col text-center"><%= health_care.blood_sugar %></td>
-            <% else %>
-              <td class="col text-center">-</td>
-            <% end %>
+            <th class="col text-center" style="vertical-align : middle;text-align:center;" >日付</th>
+            <th class="col text-center" style="vertical-align : middle;text-align:center;">体重</th>
+            <th colspan="2" class="col text-center">血圧</br>（最高・最低）</th>
+            <th class="col text-center" style="vertical-align : middle;text-align:center;">血糖値</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          <% health_cares.each do |health_care| %>
+            <tr>
+              <td class="col text-center"><%= health_care.date.strftime("%Y年%m月%d日") %></td>
+
+              <% if health_care.body_weight.present? %>
+                <td class="col text-center"><%= health_care.body_weight %></td>
+              <% else %>
+                <td class="col text-center">-</td>
+              <% end %>
+
+              <% if health_care.max_blood_pressure.present? %>
+                <td class="col text-center"><%= health_care.max_blood_pressure %></td>
+              <% else %>
+                <td class="col text-center">-</td>
+              <% end %>
+
+              <% if health_care.min_blood_pressure.present? %>
+                <td class="col text-center"><%= health_care.min_blood_pressure %></td>
+              <% else %>
+                <td class="col text-center">-</td>
+              <% end %>
+
+              <% if health_care.blood_sugar.present? %>
+                <td class="col text-center"><%= health_care.blood_sugar %></td>
+              <% else %>
+                <td class="col text-center">-</td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   <% else %>
     <h3>特にありません</h3>
   <% end %>
