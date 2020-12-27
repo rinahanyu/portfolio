@@ -20,7 +20,7 @@ class Users::DailyRecordsController < ApplicationController
   end
 
   def index
-    @daily_records = DailyRecord.all.order(created_at: :desc).page(params[:page]).per(10)
+    @daily_records = DailyRecord.includes(:user, :comments, :favorites).all.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def show
@@ -46,7 +46,7 @@ class Users::DailyRecordsController < ApplicationController
   end
 
   def search
-    @daily_records = DailyRecord.where(genre: params[:genre])
+    @daily_records = DailyRecord.includes(:user, :comments, :favorites).where(genre: params[:genre]).order(created_at: :desc)
   end
 
   private

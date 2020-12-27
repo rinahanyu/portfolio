@@ -1,24 +1,26 @@
-<table class="table">
-  <thead>
-    <tr>
-      <th class="col text-center col-xs-3">医療機関名</th>
-      <th class="col text-center col-xs-2">電話番号</th>
-      <th class="col text-center col-xs-2">郵便番号</th>
-      <th class="col text-center col-xs-5">住所</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% hospitals.each do |hospital| %>
-      <tr class="col text-center">
-        <td>
-          <%= link_to hospital_path(hospital) do %>
-            <%= hospital.name %>
-          <% end %>
-        </td>
-        <td class="col text-center"><%= hospital.telphone_number %></td>
-        <td class="col text-center"><%= hospital.postal_code %></td>
-        <td class="col text-center"><%= hospital.address %></td>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th class="col text-center col-xs-3">医療機関名</th>
+        <th class="col text-center col-xs-2">電話番号</th>
+        <th class="col text-center col-xs-2">郵便番号</th>
+        <th class="col text-center col-xs-5">住所</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% hospitals.each do |hospital| %>
+        <tr class="col text-center">
+          <td>
+            <%= link_to hospital_path(hospital) do %>
+              <%= hospital.name %>
+            <% end %>
+          </td>
+          <td class="col text-center"><%= hospital.telphone_number %></td>
+          <td class="col text-center"><%= hospital.postal_code %></td>
+          <td class="col text-center"><%= hospital.address %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

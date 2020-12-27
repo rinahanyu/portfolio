@@ -7,7 +7,7 @@ class Users::UsersController < ApplicationController
   before_action :check_guest_user, only: [:update, :destroy]
 
   def show
-    @daily_records = @user.daily_records.order(created_at: :desc).page(params[:page]).per(5)
+    @daily_records = @user.daily_records.includes(:favorites, :comments).order(created_at: :desc).page(params[:page]).per(5)
     @guest_user = User.find_by(email: "guest_user_@example.com")
     # 医療機関関係者がアクセスしている場合
     if current_hospital.present?
