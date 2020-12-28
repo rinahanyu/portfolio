@@ -1,13 +1,13 @@
 <div class="row">
-  <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
+  <div class="col-md-10 col-md-offset-1 col-sm-8 col-sm-offset-2">
     <h2><%= daily_record.user.last_name %>さんの投稿詳細</h2>
   </div>
 </div>
 
-<div class="daily-record-show col-lg-6 col-lg-offset-3">
+<div class="daily-record-show col-lg-8 col-lg-offset-2">
   <div class="daily-record-content-show">
     <div class="daily-record-show-img">
-      <%= attachment_image_tag daily_record, :daily_image, format: "jpeg", size: "250x200" %>
+      <%= attachment_image_tag daily_record, :daily_image, format: "jpeg", class: "daily-image" %>
     </div>
 
     <div class="daily-record-show-main">
