@@ -85,6 +85,10 @@
 .daily-record-show-img {
   float: left;
   margin-right: 20px;
+  .daily-image {
+    width: 400px;
+    height: 350px;
+  }
 }
 
 .daily-record-theme {
@@ -106,8 +110,13 @@
 @media screen and (max-width:768px) {
   .daily-record-content-show {
     display: block;
+    margin-bottom: 60px;
   }
   .daily-record-show-img {
-    float: none;
+    .daily-image {
+      width: 250px;
+      height: 200px;
+      margin-bottom: 10px;
     }
+  }
 }
