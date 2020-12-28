@@ -40,28 +40,30 @@
       </div>
       <% if @medical_records.present? %>
         <div class="hospital-index col-md-10 col-md-offset-1 col-sm-12">
-          <table class="table">
-            <thead>
-              <tr>
-                <th class="text-center">医療機関名</th>
-                <th class="text-center">診察日</th>
-                <th class="text-center">傷病名</th>
-                <th class="text-center">担当医師名</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @medical_records.each do |medical_record| %>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
                 <tr>
-                  <td class="text-center"><%= medical_record.hospital.name %></td>
-                  <td class="text-center"><%= medical_record.start_time.strftime("%Y年%m月%d日") %></td>
-                  <td class="text-center"><%= medical_record.disease %></td>
-                  <td class="text-center"><%= medical_record.doctor %></td>
-                  <td class="text-center"><%= link_to "詳細", user_medical_record_path(user_id: @user.id, id: medical_record.id), class: "btn btn-success" %></td>
+                  <th class="text-center">医療機関名</th>
+                  <th class="text-center">診察日</th>
+                  <th class="text-center">傷病名</th>
+                  <th class="text-center">担当医師名</th>
+                  <th></th>
                 </tr>
-              <% end %>
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                <% @medical_records.each do |medical_record| %>
+                  <tr>
+                    <td class="text-center"><%= medical_record.hospital.name %></td>
+                    <td class="text-center"><%= medical_record.start_time.strftime("%Y年%m月%d日") %></td>
+                    <td class="text-center"><%= medical_record.disease %></td>
+                    <td class="text-center"><%= medical_record.doctor %></td>
+                    <td class="text-center"><%= link_to "詳細", user_medical_record_path(user_id: @user.id, id: medical_record.id), class: "btn btn-success" %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
         </div>
       <% else %>
         <h4>まだ診療記録はありません</h4>

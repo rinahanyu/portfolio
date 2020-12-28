@@ -26,9 +26,12 @@
 - 患者の健康状態の管理、診療記録の共有、他病院での治療内容の確認。
 
 ## 設計書
+- ER図
 https://app.diagrams.net/#G1a7H_0hG17tRlGsoXQo5vt4q3MAhcqrbW
+- インフラ構成図
+https://docs.google.com/presentation/d/18OVpavL-CDuRNJ4rhfZceKev5C0NZouM/edit#slide=id.p1
 
-### 機能一覧
+## 機能一覧
 https://docs.google.com/spreadsheets/d/1TvfVfAquGcsNjv_WC4zYFMEHMDkhrOnCAXF3dbZwEuI/edit#gid=0
 
 ## 開発環境
