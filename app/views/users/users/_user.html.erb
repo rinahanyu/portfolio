@@ -72,14 +72,14 @@
   <div class="user-show-daily">
     <div class="user-show-daily-head">
       <% if user == current_user %>
-        <h3>わたしの投稿一覧</h3>
+        <h3>わたしの日常記録</h3>
         <h4>食事・運動などの健康を意識した取り組みから、息抜きの一コマまで！</br>
         みんなでシェアしてがんばりましょう！</h4>
         <div class="new-daily-records-link text-center">
           <%= link_to "新しく投稿する！", new_daily_record_path, class: "btn btn-success" %>
         </div>
       <% else %>
-        <h3><%= user.last_name %>さんの投稿一覧</h3>
+        <h3><%= user.last_name %>さんの日常記録</h3>
       <% end %>
     </div>
 

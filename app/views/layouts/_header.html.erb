@@ -7,7 +7,7 @@
       <h4>ようこそ！</br><%= current_user.last_name %>さん！</h4>
       <ul>
         <li><%= link_to "マイページ", user_path(current_user), class: "sidebar-item" %></li>
-        <li><%= link_to "みんなの投稿一覧", daily_records_path, class: "sidebar-item" %></li>
+        <li><%= link_to "みんなの日常記録", daily_records_path, class: "sidebar-item" %></li>
         <li><%= link_to "診療記録一覧", user_medical_records_path(current_user), class: "sidebar-item" %></li>
         <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "sidebar-item" %></li>
       </ul>
