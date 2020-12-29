@@ -81,9 +81,59 @@
 
 // アバウトページ
 .about-container {
-  h1, h2 {
+  h1 {
     margin-bottom: 30px;
-    margin-left: 20px;
+    margin: 50px 0 15px 50px;
+    text-align: center;
+    span {
+      position: relative;
+      padding: 1rem 2rem calc(1rem + 10px);
+      background: #FFD700;
+    }
+    span:before {
+      position: absolute;
+      top: -7px;
+      left: -7px;
+      width: 100%;
+      height: 100%;
+      content: '';
+      border: 4px solid #000;
+    }
+  }
+  h2 {
+    text-align: center;
+    margin: 50px 0;
+  }
+  h2 span {
+    position: relative;
+    padding: 1.5rem 2rem;
+    border-bottom: 3px solid #000;
+    border-left: 3px solid #000;
+    border-radius: 0 0 0 20px;
+  }
+
+  h2 span:before {
+    position: absolute;
+    right: 50px;
+    bottom: -21px;
+    width: 0;
+    height: 0;
+    content: '';
+    border-width: 21px 21px 0 0;
+    border-style: solid;
+    border-color: #000 transparent transparent transparent;
+  }
+
+  h2 span:after {
+    position: absolute;
+    right: 54px;
+    bottom: -14px;
+    width: 0;
+    height: 0;
+    content: '';
+    border-width: 14px 14px 0 0;
+    border-style: solid;
+    border-color: #fff transparent transparent transparent;
   }
   .attention {
     color: red;
@@ -96,14 +146,58 @@
 .about-icon {
   background-color: #DCDCDC;
   border-radius: 10px;
-  padding: 10px;
-  margin-top: 15px;
+  padding: 25px 10px;
+  margin-top: 30px;
   text-align: center;
+  height: 280px;
   i {
     font-size: 50px;
+  }
+  h3 {
+    padding-bottom: 10px;
+  }
+  b {
+    background:linear-gradient(transparent 60%, #F0E68C 60%);
   }
 }
 
 .about-new-btn {
   margin-top: 30px;
+  .btn-new {
+    background-color: #2F4F4F;
+    color: white;
+    font-size: 25px;
+    padding: 10px;
+  }
+}
+
+@media screen and (max-width:1200px) {
+  .about-container {
+    h1 {
+      font-size: 30px;
+    }
+    h2 {
+      font-size: 20px;
+    }
+    h3 {
+      font-size: 20px;
+    }
+    h4 {
+      font-size: 15px;
+    }
+  }
+}
+
+@media screen and (max-width:768px) {
+  .about-container {
+    h1 {
+      font-size: 25px;
+    }
+    h2 {
+      font-size: 20px;
+    }
+    .about-icon {
+      height: 250px;
+    }
+  }
 }
