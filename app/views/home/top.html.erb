@@ -1,30 +1,38 @@
 <div class="top-container">
-  <h1 class="top-logo"><b>Joy Health!</b></h1>
-  <h3 class="top-text">健康と医療の両方を簡単に管理できるサイトです！</h3>
   <% if current_user.present? || current_hospital.present? %>
     <h4 class="top-login-message">すでにログインしています</h4>
   <% else %>
-    <div class="row">
-      <div class="col-sm-12 col-md-6">
-        <div class="user-top">
-          <h4><b>個人の利用者さま</b></h4>
-          <div class="col text-center">
-            <%= link_to "はじめまして", about_user_path, class: "btn btn-primary" %>
-            <%= link_to "ログイン", new_user_session_path, class: "btn btn-success" %>
-            <%= link_to 'ゲストログイン（閲覧用）', home_user_guest_sign_in_path, method: :post, class: "btn btn-warning" %>
+    <div class="top-image">
+      <div class="background-black">
+      <div class="top-content">
+        <h3 class="top-text"><b>健康と医療を管理して、</br>毎日をもっと楽しく！</b></h3>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12 col-md-6">
+          <div class="user-top">
+            <i class="fas fa-user"></i>
+            <h4><b>個人利用者さま</b></h4>
+            <div class="col text-center">
+              <%= link_to "はじめまして", about_user_path, class: "btn btn-primary" %>
+              <%= link_to "ログイン", new_user_session_path, class: "btn btn-success" %>
+              <%= link_to 'ゲストログイン（閲覧用）', home_user_guest_sign_in_path, method: :post, class: "btn btn-warning" %>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-12 col-md-6">
+          <div class="hospital-top">
+            <i class="fas fa-user-md"></i>
+            <h4><b>医療関係者さま</b></h4>
+            <div class="col text-center">
+              <%= link_to "はじめまして", about_hospital_path, class: "btn btn-primary" %>
+              <%= link_to "ログイン", new_hospital_session_path, class: "btn btn-success" %>
+              <%= link_to 'ゲストログイン（閲覧用）', home_hospital_guest_sign_in_path, method: :post, class: "btn btn-warning" %>
+            </div>
           </div>
         </div>
       </div>
-
-      <div class="col-sm-12 col-md-6">
-        <div class="hospital-top">
-          <h4><b>医療関係者さま</b></h4>
-          <div class="col text-center">
-            <%= link_to "はじめまして", about_hospital_path, class: "btn btn-primary" %>
-            <%= link_to "ログイン", new_hospital_session_path, class: "btn btn-success" %>
-            <%= link_to 'ゲストログイン（閲覧用）', home_hospital_guest_sign_in_path, method: :post, class: "btn btn-warning" %>
-          </div>
-        </div>
       </div>
     </div>
   <% end %>
