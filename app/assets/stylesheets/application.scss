@@ -63,6 +63,7 @@ body {
   text-align: center;
   margin-top: -20px;
   width: 100%;
+  font-size: 25px;
   .notice {
     background-color: lightBlue;
     padding: 0px;
@@ -70,6 +71,12 @@ body {
   .alert {
     background-color: orange;
     padding: 0px;
+  }
+}
+
+@media screen and (max-width:768px) {
+  .notifications {
+  font-size: 15px;
   }
 }
 
