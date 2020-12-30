@@ -39,8 +39,7 @@
       <i class="fas fa-procedures"></i>
       <h3><b>わたしの病歴</b></h3>
       <h4>現在治療中のものから、治癒したものまで</br>
-      一つに整理しておくことができます！</br>
-      新しい医療機関を受診する際や、</br>いざという時のためにも！</h4>
+      一つに整理しておくことができます！</h4>
       <h5><b>※データ出力可</b></h5>
       <%= link_to "一覧へ", user_medical_histories_path(user), class: "btn btn-brown" %>
     </div>
@@ -49,8 +48,7 @@
     <div class="mypage-select">
       <i class="fas fa-file-medical-alt"></i>
       <h3><b>わたしの健康管理</b></h3>
-      <h4>体重・血圧・血糖値まで</br>幅広く記録することができます！</br>
-      全て記録する必要はないので、</br>自分が必要な内容のみ簡単入力！</h4>
+      <h4>体重・血圧・血糖値の中で、</br>自分が必要な内容のみ簡単入力！</h4>
       <h5><b>※データ出力可</b></h5>
       <%= link_to "一覧へ", user_health_cares_path(user), class: "btn btn-brown" %>
     </div>
@@ -59,10 +57,8 @@
     <div class="mypage-select">
       <i class="fas fa-user-md"></i>
       <h3><b>かかりつけ医</b></h3>
-      <h4>かかりつけの医療機関を登録しておくと、</br>
-      病歴・健康管理・日常記録の内容を</br>共有することができます！</br>
-      また医療機関側に診療記録を作成してもらうことができ、</br>
-      かかりつけの医療機関同士での共有も可能です！</h4>
+      <h4>かかりつけ医登録をして、</br>
+      診療記録をチェック！</br>気軽にチャットで質問もできます！</h4>
       <%= link_to "一覧へ", families_user_path(user.id), class: "btn btn-brown" %>
     </div>
   </div>
