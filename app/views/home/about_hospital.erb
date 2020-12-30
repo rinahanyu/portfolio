@@ -6,7 +6,7 @@
     <div class="col-sm-12 col-md-4">
       <div class="about-icon">
         <i class="far fa-calendar-check"></i>
-        <h3><b>毎日の状態の確認に！</b></h3>
+        <h3><b>毎日の体調確認に！</b></h3>
         <h4>患者さまの食事・運動から、</br>血圧などの数値まで、</br>
         幅広く管理することができます！</br>
         診察時にまとめて話を聞く必要がなく、</br>かつ内容も漏れがありません！</h4>
@@ -17,7 +17,7 @@
       <div class="about-icon">
         <i class="fas fa-share-square"></i>
         <h3><b>診療内容の共有に！</b></h3>
-        <h4>診療内容を患者さまと共有できるので、</br>
+        <h4>診療内容を作成して、</br>患者さまと共有できるので、</br>
         治療方針の意識統一ができます！</br>
         データとして残るため、</br>伝え忘れもありません！</h4>
       </div>
@@ -32,7 +32,10 @@
       </div>
     </div>
   </div>
-  <div class="about-new-btn col text-center">
-    <%= link_to "さっそく新規登録！", new_hospital_registration_path, class: "btn btn-new" %>
-  </div>
+  <div class="attention">※患者さまにより、「かかりつけ医の登録」をしてもらうことで、上記内容が可能となります。</div>
+  <% unless current_hospital.present? %>
+    <div class="about-new-btn col text-center">
+      <%= link_to "さっそく新規登録！", new_hospital_registration_path, class: "btn btn-new" %>
+    </div>
+  <% end %>
 </div>
