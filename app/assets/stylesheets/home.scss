@@ -66,6 +66,27 @@
   }
 }
 
+.mouse {
+  text-align: center;
+  h4 {
+    color: white;
+    font-size: 30px;
+    margin-top: 40px;
+  }
+  i {
+    font-size: 50px;
+    color: white;
+  }
+}
+
+.mouse:hover .what {
+  display: inline;
+}
+
+.what {
+  display: none;
+}
+
 @media screen and (max-width:768px) {
   .top-container {
     background-size: 100%;
@@ -84,8 +105,7 @@
 // アバウトページ
 .about-container {
   h1 {
-    margin-bottom: 30px;
-    margin: 50px 0 15px 50px;
+    margin: 50px 0 15px 0;
     text-align: center;
     span {
       position: relative;
