@@ -67,32 +67,61 @@
 }
 
 .mouse {
+  margin: 60px 0px;
   text-align: center;
   h4 {
     color: white;
-    font-size: 30px;
-    margin-top: 40px;
+    font-size: 35px;
   }
   i {
     font-size: 50px;
-    color: white;
-  }
-  .can-content {
-    i {
-      color: #333333;
-    }
   }
   .what {
     display: inline;
     background-color: #F0E68C;
     border-radius: 10px;
     padding: 10px;
+    i {
+      color: #333333;
+    }
+    .can-content {
+      padding-bottom: 10px;
+    }
     .can h3 {
       background-color: #FFD700;
       border-radius: 100px;
-      padding: -15px;
+    }
+    .can h5 {
+      font-size: 20px;
+    }
+    .can i {
+      color: #666666;
+      font-size: 40px;
+    }
+    .can p {
+      font-size: 17px;
+    }
+    .can-finish {
+      span {
+        font-size: 20px;
+        background:linear-gradient(transparent 60%, #8EB8FF 60%);
+      }
+      h5 {
+        margin-top: 25px;
+        font-size: 20px;
+        color: #0000CD;
+      }
     }
   }
+}
+
+#slide {
+  display: none;
+}
+
+#can-button {
+  color: #CC3333;
+  box-shadow: 2px 2px 4px #444444;
 }
 
 @media screen and (max-width:768px) {
