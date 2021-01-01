@@ -77,14 +77,22 @@
     font-size: 50px;
     color: white;
   }
-}
-
-.mouse:hover .what {
-  display: inline;
-}
-
-.what {
-  display: none;
+  .can-content {
+    i {
+      color: #333333;
+    }
+  }
+  .what {
+    display: inline;
+    background-color: #F0E68C;
+    border-radius: 10px;
+    padding: 10px;
+    .can h3 {
+      background-color: #FFD700;
+      border-radius: 100px;
+      padding: -15px;
+    }
+  }
 }
 
 @media screen and (max-width:768px) {
