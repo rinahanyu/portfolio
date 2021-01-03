@@ -36,7 +36,7 @@
   <div class="attention">※かかりつけ医登録をしている医療機関同士では、診療記録が共有されることとなるので、ご注意ください。</div>
   <% unless current_user.present? %>
     <div class="about-new-btn col text-center">
-      <%= link_to "さっそく新規登録！", new_user_registration_path, class: "btn btn-new" %>
+      <%= link_to "さっそく新規登録！", new_user_registration_path, class: "btn btn-new", data: {"turbolinks" => false} %>
     </div>
   <% end %>
 </div>

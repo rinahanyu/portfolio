@@ -35,7 +35,7 @@
   <div class="attention">※患者さまにより、「かかりつけ医の登録」をしてもらうことで、上記内容が可能となります。</div>
   <% unless current_hospital.present? %>
     <div class="about-new-btn col text-center">
-      <%= link_to "さっそく新規登録！", new_hospital_registration_path, class: "btn btn-new" %>
+      <%= link_to "さっそく新規登録！", new_hospital_registration_path, class: "btn btn-new", data: {"turbolinks" => false} %>
     </div>
   <% end %>
 </div>
