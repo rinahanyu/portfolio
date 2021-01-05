@@ -15,7 +15,7 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  validates :last_name, :first_name, :last_name_kana, :first_name_kana, :address, :email, 
+  validates :last_name, :first_name, :last_name_kana, :first_name_kana, :address, :email,
             presence: true
   validates :telphone_number, :postal_code, numericality: { only_integer: true }
   attachment :profile_image
