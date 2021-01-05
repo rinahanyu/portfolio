@@ -94,7 +94,7 @@ ja:
         health_care:
           attributes:
             body_weight_or_max_blood_pressure_or_min_blood_pressure_or_blood_sugar:
-              blank: 体重・最高血圧・最低血圧・血糖値のいずれかを入力してください。
+              blank: 体重・最高血圧・最低血圧・血糖値のいずれかを入力してください
   # 共通
   attributes:
     created_at: 作成日
