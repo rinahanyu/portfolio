@@ -9,43 +9,46 @@ RSpec.describe HealthCare, type: :model do
       it "全て入力してあるので保存される" do
         expect(health_care_a).to be_valid
       end
+    end
 
-      context "体重が入力してあるので保存される" do
-        before do
-          @health_care_b = FactoryBot.create(:health_care, max_blood_pressure: "", min_blood_pressure: "", blood_sugar: "",  user: user_a)
-        end
-        it "全て入力してあるので保存される" do
-          expect(@health_care_b).to be_valid
-        end
+    context "データが正しく保存される" do
+      before do
+        @health_care_b = FactoryBot.create(:health_care, max_blood_pressure: "", min_blood_pressure: "", blood_sugar: "",  user: user_a)
       end
-
-      context "最高血圧が入力してあるので保存される" do
-        before do
-          @health_care_c = FactoryBot.create(:health_care, body_weight: "", min_blood_pressure: "", blood_sugar: "",  user: user_a)
-        end
-        it "全て入力してあるので保存される" do
-          expect(@health_care_c).to be_valid
-        end
+      
+      it "体重が入力してあるので保存される" do
+        expect(@health_care_b).to be_valid
       end
+    end
 
-      context "最低血圧が入力してあるので保存される" do
-        before do
-          @health_care_d = FactoryBot.create(:health_care, body_weight: "", max_blood_pressure: "", blood_sugar: "",  user: user_a)
-        end
-        it "全て入力してあるので保存される" do
-          expect(@health_care_d).to be_valid
-        end
+    context "データが正しく保存される" do
+      before do
+        @health_care_c = FactoryBot.create(:health_care, body_weight: "", min_blood_pressure: "", blood_sugar: "",  user: user_a)
       end
-
-      context "血糖値が入力してあるので保存される" do
-        before do
-          @health_care_e = FactoryBot.create(:health_care, body_weight: "",  max_blood_pressure: "", min_blood_pressure: "", user: user_a)
-        end
-        it "全て入力してあるので保存される" do
-          expect(@health_care_e).to be_valid
-        end
+      
+      it "最高血圧が入力してあるので保存される" do
+        expect(@health_care_c).to be_valid
       end
+    end
 
+    context "データが正しく保存される" do
+      before do
+        @health_care_d = FactoryBot.create(:health_care, body_weight: "", max_blood_pressure: "", blood_sugar: "",  user: user_a)
+      end
+      
+      it "最低血圧が入力してあるので保存される" do
+        expect(@health_care_d).to be_valid
+      end
+    end
+
+    context "データが正しく保存される" do
+      before do
+        @health_care_e = FactoryBot.create(:health_care, body_weight: "",  max_blood_pressure: "", min_blood_pressure: "", user: user_a)
+      end
+      
+      it "血糖値が入力してあるので保存される" do
+        expect(@health_care_e).to be_valid
+      end
     end
 
     context "データが正しく保存されない" do

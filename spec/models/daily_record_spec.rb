@@ -17,7 +17,7 @@ RSpec.describe DailyRecord, type: :model do
         @daily_record.valid?
       end
 
-      it "theme, introductionが入力されていないので保存されない" do
+      it "題名・が入力されていないので保存されない" do
         expect(@daily_record).to be_invalid
         expect(@daily_record.errors[:theme]).to include("を入力してください")
         expect(@daily_record.errors[:introduction]).to include("を入力してください")
