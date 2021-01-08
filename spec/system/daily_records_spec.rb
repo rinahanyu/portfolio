@@ -11,7 +11,7 @@ require 'rails_helper'
       click_button 'ログイン'
     end
 
-    describe '新規登録画面のテスト' do
+    describe '新規登録画面' do
       before do
         visit new_daily_record_path
       end
@@ -25,7 +25,7 @@ require 'rails_helper'
           expect(page).to have_field 'daily_record[genre]'
         end
 
-        it 'Create Bookボタンが表示される' do
+        it '新規登録ボタンが表示される' do
           expect(page).to have_button '新規登録'
         end
       end
@@ -55,7 +55,7 @@ require 'rails_helper'
       end
     end
 
-    describe '詳細画面のテスト' do
+    describe '詳細画面' do
       before do
         visit daily_record_path(daily_record)
       end
@@ -70,7 +70,9 @@ require 'rails_helper'
         it '編集のリンクが表示されているか' do
           expect(page).to have_link('編集する', href: '/daily_records/' + daily_record.id.to_s + '/edit')
         end
+      end
 
+      context '動作の確認' do
         it '編集リンクの遷移先確認' do
           edit_link = find_all('a')[12]
 	        edit_link.click
@@ -80,15 +82,58 @@ require 'rails_helper'
         it '削除の確認' do
           expect{ daily_record.destroy }.to change{ DailyRecord.count }.by(-1)
         end
+
+        it '削除に成功しメッセージが表示される' do
+          destroy_link = find_all('a')[13]
+          destroy_link.click
+	        expect(page).to have_content '削除しました'
+        end
       end
     end
-    # context 'book削除のテスト' do
-    #   it 'bookの削除' do
-    #     expect{ book.destroy }.to change{ Book.count }.by(-1)
-    #     # ※本来はダイアログのテストまで行うがココではデータが削除されることだけをテスト
-    #   end
-    # end
 
+    describe '編集画面' do
+      before do
+        visit edit_daily_record_path(daily_record)
+      end
+
+      context '表示の確認' do
+	      it '編集前の内容が表示されている' do
+	        expect(page).to have_field 'daily_record[theme]', with: '題名'
+	        expect(page).to have_field 'daily_record[introduction]', with: '内容'
+	        select(value = '食事', from: 'daily_record_genre')
+	      end
+	      it '更新ボタンが表示される' do
+	        expect(page).to have_button '変更を保存'
+	      end
+	    end
+
+	    context '動作の確認' do
+	      it '更新に成功しサクセスメッセージが表示されるか' do
+	        fill_in 'daily_record[theme]', with: '題名２'
+          fill_in 'daily_record[introduction]', with: '内容２'
+          select '運動', from: 'daily_record_genre'
+	        click_button '変更を保存'
+	        expect(page).to have_content '更新しました'
+	      end
+
+	      it '更新に失敗しエラーメッセージが表示されるか' do
+	        fill_in 'daily_record[theme]', with: ''
+          fill_in 'daily_record[introduction]', with: ''
+          select(value = '食事', from: 'daily_record[genre]')
+	        click_button '変更を保存'
+	        expect(page).to have_content '入力してください'
+	      end
+
+	      it '更新後のリダイレクト先は正しいか' do
+	        fill_in 'daily_record[theme]', with: '題名２'
+          fill_in 'daily_record[introduction]', with: '内容２'
+          select '運動', from: 'daily_record_genre'
+	        click_button '変更を保存'
+	        expect(page).to have_current_path daily_record_path(daily_record)
+	      end
+	    end
+
+    end
 
   # it "bookの一覧表示(tableタグ)と投稿フォームが同一画面に表示されているか" do
   #   expect(page).to have_selector 'table'
