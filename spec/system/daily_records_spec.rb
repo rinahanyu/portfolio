@@ -1,46 +1,85 @@
 require 'rails_helper'
 
-  describe "新規登録画面のテスト" do
-    context '投稿処理に関するテスト' do
-      let!(:user) {FactoryBot.create(:user)}
+  describe "日常記録関連テスト" do
+    let!(:user) {FactoryBot.create(:user)}
+    let!(:daily_record) {FactoryBot.create(:daily_record, user: user)}
 
+    before do
+      visit new_user_session_path
+      fill_in 'user[email]', with: 'h@h'
+      fill_in 'user[password]', with: 'password'
+      click_button 'ログイン'
+    end
+
+    describe '新規登録画面のテスト' do
       before do
-        visit new_user_session_path
-        fill_in 'user[email]', with: 'h@h'
-        fill_in 'user[password]', with: 'password'
-        click_button 'ログイン'
         visit new_daily_record_path
       end
 
-      it "投稿フォームが表示される" do
-        expect(page).to have_content '新規登録'
-        expect(page).to have_field 'daily_record[daily_image]'
-        expect(page).to have_field 'daily_record[theme]'
-        expect(page).to have_field 'daily_record[introduction]'
-        expect(page).to have_field 'daily_record[genre]'
-      end
-      it 'Create Bookボタンが表示される' do
-        expect(page).to have_button '新規登録'
+      context '表示の確認' do
+        it "投稿フォームが表示される" do
+          expect(page).to have_content '新規登録'
+          expect(page).to have_field 'daily_record[daily_image]'
+          expect(page).to have_field 'daily_record[theme]'
+          expect(page).to have_field 'daily_record[introduction]'
+          expect(page).to have_field 'daily_record[genre]'
+        end
+
+        it 'Create Bookボタンが表示される' do
+          expect(page).to have_button '新規登録'
+        end
       end
 
-      it '投稿に成功しサクセスメッセージが表示されるか' do
-        fill_in 'daily_record[theme]', with: '題名'
-        fill_in 'daily_record[introduction]', with: '内容'
-        select '食事', from: 'daily_record_genre'
-        click_button '新規登録'
-        expect(page).to have_content '投稿しました'
+      context '投稿処理に関するテスト' do
+        it '投稿に成功しサクセスメッセージが表示されるか' do
+          fill_in 'daily_record[theme]', with: '題名'
+          fill_in 'daily_record[introduction]', with: '内容'
+          select '食事', from: 'daily_record_genre'
+          click_button '新規登録'
+          expect(page).to have_content '投稿しました'
+        end
+
+        it '投稿に失敗する' do
+          click_button '新規登録'
+          expect(page).to have_content '入力してください'
+          expect(current_path).to eq('/daily_records')
+        end
+
+        it '投稿後のリダイレクト先は正しいか' do
+          fill_in 'daily_record[theme]', with: '題名'
+          fill_in 'daily_record[introduction]', with: '内容'
+          select '食事', from: 'daily_record_genre'
+          click_button '新規登録'
+          expect(page).to have_current_path user_path(user)
+        end
       end
-      it '投稿に失敗する' do
-        click_button '新規登録'
-        expect(page).to have_content '入力してください'
-        expect(current_path).to eq('/daily_records')
+    end
+
+    describe '詳細画面のテスト' do
+      before do
+        visit daily_record_path(daily_record)
       end
-      it '投稿後のリダイレクト先は正しいか' do
-        fill_in 'daily_record[theme]', with: '題名'
-        fill_in 'daily_record[introduction]', with: '内容'
-        select '食事', from: 'daily_record_genre'
-        click_button '新規登録'
-        expect(page).to have_current_path user_path(user)
+
+      context '表示の確認' do
+        it '日常記録の題名・内容・ジャンル名が表示されているか' do
+          expect(page).to have_content daily_record.theme
+          expect(page).to have_content daily_record.introduction
+          expect(page).to have_content daily_record.genre
+        end
+
+        it '編集のリンクが表示されているか' do
+          expect(page).to have_link('編集する', href: '/daily_records/' + daily_record.id.to_s + '/edit')
+        end
+
+        it '編集リンクの遷移先確認' do
+          edit_link = find_all('a')[12]
+	        edit_link.click
+	        expect(current_path).to eq('/daily_records/' + daily_record.id.to_s + '/edit')
+        end
+
+        it '削除の確認' do
+          expect{ daily_record.destroy }.to change{ DailyRecord.count }.by(-1)
+        end
       end
     end
     # context 'book削除のテスト' do
@@ -113,4 +152,3 @@ require 'rails_helper'
   #     end
   #   end
   end
-
