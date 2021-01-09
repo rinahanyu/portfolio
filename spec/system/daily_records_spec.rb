@@ -76,7 +76,7 @@ require 'rails_helper'
         it '編集リンクの遷移先確認' do
           edit_link = find_all('a')[12]
 	        edit_link.click
-	        expect(current_path).to eq('/daily_records/' + daily_record.id.to_s + '/edit')
+	        expect(page).to have_current_path edit_daily_record_path(daily_record)
         end
 
         it '削除の確認' do
@@ -132,68 +132,48 @@ require 'rails_helper'
 	        expect(page).to have_current_path daily_record_path(daily_record)
 	      end
 	    end
+	  end
 
+    describe '一覧画面' do
+      before do
+        (1..4).each do |i|
+          FactoryBot.create(:daily_record, theme: '題名テスト'+ i.to_s, introduction: '内容テスト'+ i.to_s, user: user)
+        end
+        visit daily_records_path
+      end
+
+      context '表示の確認' do
+        it "daily_recordの題名・ジャンル・投稿者の表示がされているか" do
+          DailyRecord.all.each_with_index do |daily_record|
+            expect(page).to have_content daily_record.theme
+            expect(page).to have_content daily_record.genre
+            expect(page).to have_content daily_record.user.last_name
+          end
+        end
+        it "詳細・投稿者マイページへのリンクが表示されているか" do
+          DailyRecord.all.each_with_index do |daily_record|
+            expect(page).to have_link(daily_record.theme, href: '/daily_records/' + daily_record.id.to_s)
+            expect(page).to have_link(daily_record.user.last_name, href: '/users/' + daily_record.user_id.to_s)
+          end
+        end
+      end
+
+      context '動作の確認' do
+        it '詳細リンクの遷移先確認' do
+          DailyRecord.all.each_with_index do |daily_record, i|
+            j = i * 2
+            show_link = find_all('a')[22 - j]
+  	        expect(show_link[:href]).to eq daily_record_path(daily_record)
+  	      end
+        end
+
+        it '投稿者マイページリンクの遷移先確認' do
+          DailyRecord.all.each_with_index do |daily_record, i|
+            j = i * 2
+            mypage_link = find_all('a')[23 - j]
+  	        expect(mypage_link[:href]).to eq user_path(daily_record.user)
+  	      end
+        end
+      end
     end
-
-  # it "bookの一覧表示(tableタグ)と投稿フォームが同一画面に表示されているか" do
-  #   expect(page).to have_selector 'table'
-  #   expect(page).to have_field 'book[title]'
-  #   expect(page).to have_field 'book[body]'
-  # end
-  # it "bookのタイトルと感想を表示し、詳細・編集・削除のリンクが表示されているか" do
-  #     (1..5).each do |i|
-  #       Book.create(title:'hoge'+i.to_s,body:'body'+i.to_s)
-  #     end
-  #     visit books_path
-  #     Book.all.each_with_index do |book,i|
-  #       j = i * 3
-  #       expect(page).to have_content book.title
-  #       expect(page).to have_content book.body
-  #       # Showリンク
-  #       show_link = find_all('a')[j]
-  #       expect(show_link.native.inner_text).to match(/show/i)
-  #       expect(show_link[:href]).to eq book_path(book)
-  #       # Editリンク
-  #       show_link = find_all('a')[j+1]
-  #       expect(show_link.native.inner_text).to match(/edit/i)
-  #       expect(show_link[:href]).to eq edit_book_path(book)
-  #       # Destroyリンク
-  #       show_link = find_all('a')[j+2]
-  #       expect(show_link.native.inner_text).to match(/destroy/i)
-  #       expect(show_link[:href]).to eq book_path(book)
-  #     end
-  # end
-
-
-  # describe '一覧ページ' do
-  #   context "一覧ページが正しく表示される" do
-  #     before do
-  #       get daily_records_path
-  #     end
-
-  #     it 'リクエストは200 OKとなること' do
-  #       expect(response.status).to eq 200
-  #     end
-  #     # 上記はbefore_actionを外して成功
-  #     it 'タイトルが正しく表示されていること' do
-  #       expect(response.body).to include("みんなの投稿一覧")
-  #     end
-  #   end
-  # end
-
-  # describe '編集ページ' do
-  #   context "編集ページが正しく表示される" do
-  #     before do
-  #       @daily_record = FactoryBot.create(:daily_record)
-  #       get edit_daily_record_path(id: @daily_record.id)
-  #     end
-
-  #     it 'リクエストは200 OKとなること' do
-  #       expect(response.status).to eq 200
-  #     end
-  #     # 上記はbefore_actionを外して成功
-  #     it 'タイトルが正しく表示されていること' do
-  #       expect(response.body).to include("編集")
-  #     end
-  #   end
   end
