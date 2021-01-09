@@ -7,22 +7,12 @@ Rails.application.routes.draw do
   resources :chats, only: [:create, :show], param: :room_id
   resources :rooms, only: [:create]
 
-  devise_for :users, controllers: {
-    registrations: "users/registrations",
-    sessions: "users/sessions",
-  }
-
-  devise_for :hospitals, controllers: {
-    registrations: "hospitals/registrations",
-    sessions: "hospitals/sessions",
-  }
-
   scope module: :users do
-    get "sign_up", :to => "users/registrations#new"
-    get "sign_in", :to => "users/sessions#new"
-    get "sign_out", :to => "users/sessions#destroy"
+    devise_for :users, controllers: {
+      registrations: "users/registrations",
+      sessions: "users/sessions",
+    }
     get "daily_records/search", :to => "daily_records#search"
-
     resources :users, only: [:show, :edit, :update, :destroy] do
       get "delete_confirm", :to => "users#delete_confirm"
       resources :medical_histories, except: [:show]
@@ -37,9 +27,10 @@ Rails.application.routes.draw do
   end
 
   scope module: :hospitals do
-    get "sign_up", :to => "hospitals/registraions#new"
-    get "sign_in", :to => "hospitals/sessions#new"
-    get "sign_out", :to => "hospitals/sessions#destroy"
+    devise_for :hospitals, controllers: {
+      registrations: "hospitals/registrations",
+      sessions: "hospitals/sessions",
+    }
     get "hospitals/search", :to => "search#search"
     resources :hospitals, only: [:index, :show, :edit, :update]
     resources :medical_relationships, only: [:create, :destroy]
