@@ -31,7 +31,7 @@
     <div class="mypage-select">
       <i class="fas fa-user-md"></i>
       <h3><b>かかりつけ医</b></h3>
-      <h4>他医療機関との関係</h4></br>
+      <h4>他医療機関との関係</h4><br>
       <%= link_to "一覧へ", families_user_path(user.id), class: "btn btn-brown" %>
     </div>
   </div>
@@ -39,7 +39,7 @@
     <div class="mypage-select">
       <i class="fas fa-comments"></i>
       <h3><b>チャット</b></h3>
-      <h4>簡易連絡</h4></br>
+      <h4>簡易連絡</h4><br>
       <% if isRoom == true %>
   			<p><%= link_to "つづき", chat_path(roomId, hospital_id: current_hospital.id, user_id: user.id), class: "btn btn-brown" %></p>
   		<% else %>

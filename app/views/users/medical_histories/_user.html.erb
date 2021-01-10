@@ -9,7 +9,7 @@
         <% medical_histories.each do |medical_history| %>
           <tr>
             <td rowspan="2" class="text-center align-center" style="vertical-align : middle;text-align:center;"><%= medical_history.disease %></td>
-            <td class="text-center"><%= medical_history.started_on.strftime("%Y年%m月%d日") %></br>
+            <td class="text-center"><%= medical_history.started_on.strftime("%Y年%m月%d日") %><br>
             <% if medical_history.finished_on.present? %>
               〜<%= medical_history.finished_on.strftime("%Y年%m月%d日") %></td>
             <% else %>

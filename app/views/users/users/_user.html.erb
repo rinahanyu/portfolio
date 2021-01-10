@@ -38,7 +38,7 @@
     <div class="mypage-select">
       <i class="fas fa-procedures"></i>
       <h3><b>わたしの病歴</b></h3>
-      <h4>現在治療中のものから、治癒したものまで</br>
+      <h4>現在治療中のものから、治癒したものまで<br>
       一つに整理しておくことができます！</h4>
       <h5><b>※データ出力可</b></h5>
       <%= link_to "一覧へ", user_medical_histories_path(user), class: "btn btn-brown" %>
@@ -48,7 +48,7 @@
     <div class="mypage-select">
       <i class="fas fa-file-medical-alt"></i>
       <h3><b>わたしの健康管理</b></h3>
-      <h4>体重・血圧・血糖値の中で、</br>自分が必要な内容のみ簡単入力！</h4>
+      <h4>体重・血圧・血糖値の中で、<br>自分が必要な内容のみ簡単入力！</h4>
       <h5><b>※データ出力可</b></h5>
       <%= link_to "一覧へ", user_health_cares_path(user), class: "btn btn-brown" %>
     </div>
@@ -57,8 +57,8 @@
     <div class="mypage-select">
       <i class="fas fa-user-md"></i>
       <h3><b>かかりつけ医</b></h3>
-      <h4>かかりつけ医登録をして、</br>
-      診療記録をチェック！</br>気軽にチャットで質問もできます！</h4>
+      <h4>かかりつけ医登録をして、<br>
+      診療記録をチェック！<br>気軽にチャットで質問もできます！</h4>
       <%= link_to "一覧へ", families_user_path(user.id), class: "btn btn-brown" %>
     </div>
   </div>
@@ -69,7 +69,7 @@
     <div class="user-show-daily-head">
       <% if user == current_user %>
         <h3>わたしの日常記録</h3>
-        <h4>食事・運動などの健康を意識した取り組みから、息抜きの一コマまで！</br>
+        <h4>食事・運動などの健康を意識した取り組みから、息抜きの一コマまで！<br>
         みんなでシェアしてがんばりましょう！</h4>
         <div class="new-daily-records-link text-center">
           <%= link_to "新しく投稿する！", new_daily_record_path, class: "btn btn-success" %>

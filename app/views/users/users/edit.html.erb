@@ -8,45 +8,45 @@
 
     　　<div class="user-input">
     　　    <div class="user-input-form">
-            <%= f.label :profile_image, "プロフィール画像" %></br>
+            <%= f.label :profile_image, "プロフィール画像" %><br>
             <% if @user.profile_image.present? %>
               <%= attachment_image_tag @user, :profile_image, format: "jpeg", size: "250x200", id: "img-edit" %>
             <% end %>
-            <%= f.attachment_field :profile_image, type: 'file', id: "img-file" %></br>
+            <%= f.attachment_field :profile_image, type: 'file', id: "img-file" %><br>
           </div>
 
           <div class="user-input-form">
-            <%= f.label :last_name, "姓" %></br>
-            <%= f.text_field :last_name, autofocus: true, class: "form-control" %></br>
-            <%= f.label :first_name, "名" %></br>
-            <%= f.text_field :first_name, class: "form-control" %></br>
+            <%= f.label :last_name, "姓" %><br>
+            <%= f.text_field :last_name, autofocus: true, class: "form-control" %><br>
+            <%= f.label :first_name, "名" %><br>
+            <%= f.text_field :first_name, class: "form-control" %><br>
           </div>
 
           <div class="user-input-form">
-            <%= f.label :last_name_kana, "セイ" %></br>
-            <%= f.text_field :last_name_kana, class: "form-control" %></br>
-            <%= f.label :first_name_kana, "メイ" %></br>
-            <%= f.text_field :first_name_kana, class: "form-control" %></br>
+            <%= f.label :last_name_kana, "セイ" %><br>
+            <%= f.text_field :last_name_kana, class: "form-control" %><br>
+            <%= f.label :first_name_kana, "メイ" %><br>
+            <%= f.text_field :first_name_kana, class: "form-control" %><br>
           </div>
 
           <div class="user-input-form">
-            <%= f.label :email, "メールアドレス" %></br>
-           <%= f.email_field :email, type: "email", autocomplete: "email", class: "form-control" %></br>
+            <%= f.label :email, "メールアドレス" %><br>
+            <%= f.email_field :email, type: "email", autocomplete: "email", class: "form-control" %><br>
           </div>
 
           <div class="user-input-form">
-            <%= f.label :postal_code, "郵便番号（ハイフンなし）" %></br>
-            <%= f.text_field :postal_code, class: "form-control" %></br>
+            <%= f.label :postal_code, "郵便番号（ハイフンなし）" %><br>
+            <%= f.text_field :postal_code, class: "form-control" %><br>
           </div>
 
           <div class="user-input-form">
-            <%= f.label :address, "住所" %></br>
-            <%= f.text_field :address, class: "form-control" %></br>
+            <%= f.label :address, "住所" %><br>
+            <%= f.text_field :address, class: "form-control" %><br>
           </div>
 
           <div class="user-input-form">
-            <%= f.label :telphone_number, "電話番号（ハイフンなし）" %></br>
-            <%= f.text_field :telphone_number, type: "tel", class: "form-control" %></br>
+            <%= f.label :telphone_number, "電話番号（ハイフンなし）" %><br>
+            <%= f.text_field :telphone_number, type: "tel", class: "form-control" %><br>
           </div>
         </div>
 

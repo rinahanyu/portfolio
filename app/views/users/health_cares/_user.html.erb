@@ -10,7 +10,7 @@
           <tr>
             <th class="col text-center" style="vertical-align : middle;text-align:center;" >日付</th>
             <th class="col text-center" style="vertical-align : middle;text-align:center;">体重</th>
-            <th colspan="2" class="col text-center">血圧</br>（最高・最低）</th>
+            <th colspan="2" class="col text-center">血圧<br>（最高・最低）</th>
             <th class="col text-center" style="vertical-align : middle;text-align:center;">血糖値</th>
             <th></th>
           </tr>
@@ -19,31 +19,10 @@
           <% health_cares.each do |health_care| %>
             <tr>
               <td class="col text-center"><%= health_care.date.strftime("%Y年%m月%d日") %></td>
-
-              <% if health_care.body_weight.present? %>
-                <td class="col text-center"><%= health_care.body_weight %></td>
-              <% else %>
-                <td class="col text-center">-</td>
-              <% end %>
-
-              <% if health_care.max_blood_pressure.present? %>
-                <td class="col text-center"><%= health_care.max_blood_pressure %></td>
-              <% else %>
-                <td class="col text-center">-</td>
-              <% end %>
-
-              <% if health_care.min_blood_pressure.present? %>
-                <td class="col text-center"><%= health_care.min_blood_pressure %></td>
-              <% else %>
-                <td class="col text-center">-</td>
-              <% end %>
-
-              <% if health_care.blood_sugar.present? %>
-                <td class="col text-center"><%= health_care.blood_sugar %></td>
-              <% else %>
-                <td class="col text-center">-</td>
-              <% end %>
-
+              <td class="col text-center"><%= health_care(health_care.body_weight) %></td>
+              <td class="col text-center"><%= health_care(health_care.max_blood_pressure) %></td>
+              <td class="col text-center"><%= health_care(health_care.min_blood_pressure) %></td>
+              <td class="col text-center"><%= health_care(health_care.blood_sugar) %></td>
               <td class="col text-center">
                 <%= link_to "編集", edit_user_health_care_path(user_id: health_care.user_id, id: health_care.id), class: "btn btn-warning" %>
                 <%= link_to "削除", user_health_care_path(user_id: health_care.user_id, id: health_care.id),

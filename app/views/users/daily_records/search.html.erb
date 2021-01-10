@@ -7,7 +7,7 @@
 
   <div class="row">
     <% if @daily_records.present? %>
-      <h3 class="col text-center">ジャンル</br>＜
+      <h3 class="col text-center">ジャンル<br>＜
         <% @daily_records.first(1).each do |daily_record| %>
           <%= daily_record.genre %>
         <% end %>
