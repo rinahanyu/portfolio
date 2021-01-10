@@ -8,7 +8,7 @@
           <%= form_with model: @health_care, url: user_health_care_path(@health_care), local: true do |f| %>
             <!--編集では、今日の日付をデフォルト入力しないため、日付カラムはrenderの外とする-->
             <div class="form-group">
-              <%= f.label :date, "日付" %></br>
+              <%= f.label :date, "日付" %><br>
               <%= raw sprintf(
                 f.date_select(
                   :date,

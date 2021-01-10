@@ -4,7 +4,7 @@
     <h5 class="login-user">for 個人利用者さま</h5>
     <nav class="sidebar-nav">
       <ul>
-        <li class="welcome-user"><b>ようこそ！</br><%= current_user.last_name %>さん！</b></li>
+        <li class="welcome-user"><b>ようこそ！<br><%= current_user.last_name %>さん！</b></li>
         <li><%= link_to "マイページ", user_path(current_user), class: "sidebar-item" %></li>
         <li><%= link_to "アバウト", about_user_path, class: "sidebar-item" %></li>
         <li><%= link_to "みんなの日常記録", daily_records_path, class: "sidebar-item" %></li>
@@ -19,7 +19,7 @@
     <h5 class="login-user">for 医療関係者さま</h5>
     <nav class="sidebar-nav">
       <ul>
-        <li class="welcome-user"><b>ようこそ！</br><%= current_hospital.name %>さん！</b></li>
+        <li class="welcome-user"><b>ようこそ！<br><%= current_hospital.name %>さん！</b></li>
         <li><%= link_to "マイページ", hospital_path(current_hospital), class: "sidebar-item" %></li>
         <li><%= link_to "アバウト", about_hospital_path, class: "sidebar-item" %></li>
         <li><%= link_to "ログアウト", destroy_hospital_session_path, method: :delete, class: "sidebar-item" %></li>
@@ -35,22 +35,22 @@
         <li><%= link_to "トップ", root_path, class: "sidebar-item" %></li>
         <li>
           <%= link_to new_user_session_path, class: "sidebar-item" do %>
-            ログイン</br>for 個人利用者
+            ログイン<br>for 個人利用者
           <% end %>
         </li>
         <li>
           <%= link_to about_user_path, class: "sidebar-item" do %>
-            はじめまして</br>for 個人利用者
+            はじめまして<br>for 個人利用者
           <% end %>
         </li>
         <li>
           <%= link_to new_hospital_session_path, class: "sidebar-item" do %>
-            ログイン</br>for 医療関係者
+            ログイン<br>for 医療関係者
           <% end %>
         </li>
         <li>
           <%= link_to about_hospital_path, class: "sidebar-item" do %>
-            はじめまして</br>for 医療関係者
+            はじめまして<br>for 医療関係者
           <% end %>
         </li>
       </ul>

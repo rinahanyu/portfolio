@@ -1,22 +1,22 @@
 <div class="form-group">
-  <%= f.label :daily_image, "画像" %></br>
+  <%= f.label :daily_image, "画像" %><br>
   <% if daily_record.daily_image.present? %>
     <%= attachment_image_tag daily_record, :daily_image, format: "jpeg", size: "250x200", id: "img-edit" %>
   <% end %>
-  <%= f.attachment_field :daily_image, type: 'file', id: "img-file" %></br>
+  <%= f.attachment_field :daily_image, type: 'file', id: "img-file" %><br>
 </div>
 
 <div class="form-group">
-  <%= f.label :theme, "題名" %></br>
-  <%= f.text_field :theme, class: "form-control" %></br>
+  <%= f.label :theme, "題名" %><br>
+  <%= f.text_field :theme, class: "form-control" %><br>
 </div>
 <div class="form-group">
-  <%= f.label :introduction, "内容" %></br>
-  <%= f.text_area :introduction, rows: 8, class: "form-control" %></br>
+  <%= f.label :introduction, "内容" %><br>
+  <%= f.text_area :introduction, rows: 8, class: "form-control" %><br>
 </div>
 <div class="form-group">
-  <%= f.label :genre, "ジャンル" %></br>
-  <%= f.select :genre, DailyRecord.genres.keys, {prompt: "選択してください"}, class: "form-control" %></br>
+  <%= f.label :genre, "ジャンル" %><br>
+  <%= f.select :genre, DailyRecord.genres.keys, {prompt: "選択してください"}, class: "form-control" %><br>
 </div>
 
 <% if local_assigns[:edit_flag].present? %>

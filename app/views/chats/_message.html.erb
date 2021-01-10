@@ -6,7 +6,7 @@
   <% if c.user == current_user %>
     <tr>
       <td class="my-chat col-xs-6">
-        <%= c.message %></br>
+        <%= c.message %><br>
         <%= c.created_at.to_s(:datetime_jp) %>
       </td>
       <td class="col-xs-6"></td>
@@ -14,7 +14,7 @@
   <% elsif c.hospital == current_hospital %>
     <tr>
       <td class="my-chat col-xs-6">
-        <%= c.message %></br>
+        <%= c.message %><br>
         <%= c.created_at.to_s(:datetime_jp) %>
       </td>
       <td class="col-xs-6"></td>
@@ -23,7 +23,7 @@
     <tr>
       <td class="my-chat-non col-xs-6"></td>
       <td class="col-xs-6 other-chat">
-        <%= c.message %></br>
+        <%= c.message %><br>
         <%= c.created_at.to_s(:datetime_jp) %>
       </td>
     </tr>
