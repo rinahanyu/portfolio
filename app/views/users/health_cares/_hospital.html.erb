@@ -18,30 +18,10 @@
           <% health_cares.each do |health_care| %>
             <tr>
               <td class="col text-center"><%= health_care.date.strftime("%Y年%m月%d日") %></td>
-
-              <% if health_care.body_weight.present? %>
-                <td class="col text-center"><%= health_care.body_weight %></td>
-              <% else %>
-                <td class="col text-center">-</td>
-              <% end %>
-
-              <% if health_care.max_blood_pressure.present? %>
-                <td class="col text-center"><%= health_care.max_blood_pressure %></td>
-              <% else %>
-                <td class="col text-center">-</td>
-              <% end %>
-
-              <% if health_care.min_blood_pressure.present? %>
-                <td class="col text-center"><%= health_care.min_blood_pressure %></td>
-              <% else %>
-                <td class="col text-center">-</td>
-              <% end %>
-
-              <% if health_care.blood_sugar.present? %>
-                <td class="col text-center"><%= health_care.blood_sugar %></td>
-              <% else %>
-                <td class="col text-center">-</td>
-              <% end %>
+              <td class="col text-center"><%= health_care(health_care.body_weight) %></td>
+              <td class="col text-center"><%= health_care(health_care.max_blood_pressure) %></td>
+              <td class="col text-center"><%= health_care(health_care.min_blood_pressure) %></td>
+              <td class="col text-center"><%= health_care(health_care.blood_sugar) %></td>
             </tr>
           <% end %>
         </tbody>
