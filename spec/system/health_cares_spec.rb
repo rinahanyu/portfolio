@@ -32,10 +32,10 @@ describe "健康管理関連テスト" do
 
     context '投稿処理に関するテスト' do
       it '投稿に成功しサクセスメッセージが表示されるか' do
-        fill_in 'health_care[body_weight]', with: 00
-        fill_in 'health_care[max_blood_pressure]', with: 00
-        fill_in 'health_care[min_blood_pressure]', with: 00
-        fill_in 'health_care[blood_sugar]', with: 00
+        fill_in 'health_care[body_weight]', with: 0
+        fill_in 'health_care[max_blood_pressure]', with: 0
+        fill_in 'health_care[min_blood_pressure]', with: 0
+        fill_in 'health_care[blood_sugar]', with: 0
         select '2021', from: 'health_care_date_1i'
         select '1', from: 'health_care_date_2i'
         select '5', from: 'health_care_date_3i'
@@ -50,10 +50,10 @@ describe "健康管理関連テスト" do
       end
 
       it '投稿後のリダイレクト先は正しいか' do
-        fill_in 'health_care[body_weight]', with: 00
-        fill_in 'health_care[max_blood_pressure]', with: 00
-        fill_in 'health_care[min_blood_pressure]', with: 00
-        fill_in 'health_care[blood_sugar]', with: 00
+        fill_in 'health_care[body_weight]', with: 0
+        fill_in 'health_care[max_blood_pressure]', with: 0
+        fill_in 'health_care[min_blood_pressure]', with: 0
+        fill_in 'health_care[blood_sugar]', with: 0
         select '2021', from: 'health_care_date_1i'
         select '1', from: 'health_care_date_2i'
         select '5', from: 'health_care_date_3i'
@@ -63,41 +63,61 @@ describe "健康管理関連テスト" do
     end
   end
 
-  # describe '詳細画面' do
-  #   before do
-  #     visit daily_record_path(daily_record)
-  #   end
+  describe '一覧画面' do
+    before do
+      (1..4).each do |i|
+        FactoryBot.create(:health_care, body_weight: 0 + i, max_blood_pressure: 0 + i,
+        min_blood_pressure: 0 + i, blood_sugar: 0 + i, date: '2021-01-05', user: user)
+      end
+      visit user_health_cares_path(user)
+    end
 
-  #   context '表示の確認' do
-  #     it '日常記録の題名・内容・ジャンル名が表示されているか' do
-  #       expect(page).to have_content daily_record.theme
-  #       expect(page).to have_content daily_record.introduction
-  #       expect(page).to have_content daily_record.genre
-  #     end
+    context '表示の確認' do
+      it "健康管理の体重・最高血圧・最低血圧・血糖値・日付の表示がされているか" do
+        HealthCare.all.each_with_index do |health_care|
+          expect(page).to have_content health_care.body_weight
+          expect(page).to have_content health_care.max_blood_pressure
+          expect(page).to have_content health_care.min_blood_pressure
+          expect(page).to have_content health_care.blood_sugar
+          expect(page).to have_content health_care.date.strftime("%Y年%m月%d日")
+        end
+      end
+      it "編集へのリンクが表示されているか" do
+        HealthCare.all.each_with_index do |health_care|
+          expect(page).to have_link('編集', href: '/users/' + user.id.to_s + '/health_cares/' + health_care.id.to_s + '/edit')
+        end
+      end
+      it "新規投稿へのリンクが表示されているか" do
+        expect(page).to have_link('新しい数値を記録する', href: '/users/' + user.id.to_s + '/health_cares/new')
+      end
+    end
 
-  #     it '編集のリンクが表示されているか' do
-  #       expect(page).to have_link('編集する', href: '/daily_records/' + daily_record.id.to_s + '/edit')
-  #     end
-  #   end
+    context '動作の確認' do
+      it '編集リンクの遷移先確認' do
+        HealthCare.all.each_with_index do |health_care, i|
+          j = i * 2
+          edit_link = find_all('a')[11 + j]
+	        expect(edit_link[:href]).to eq edit_user_health_care_path(user, health_care)
+	      end
+      end
 
-  #   context '動作の確認' do
-  #     it '編集リンクの遷移先確認' do
-  #       edit_link = find_all('a')[12]
-  #       edit_link.click
-  #       expect(page).to have_current_path edit_daily_record_path(daily_record)
-  #     end
+      it '削除の確認' do
+        HealthCare.all.each_with_index do |health_care|
+          expect{ health_care.destroy }.to change{ HealthCare.count }.by(-1)
+        end
+      end
 
-  #     it '削除の確認' do
-  #       expect{ daily_record.destroy }.to change{ DailyRecord.count }.by(-1)
-  #     end
-
-  #     it '削除に成功しメッセージが表示される' do
-  #       destroy_link = find_all('a')[13]
-  #       destroy_link.click
-  #       expect(page).to have_content '削除しました'
-  #     end
-  #   end
-  # end
+      it '削除に成功しメッセージが表示される' do
+        HealthCare.all.each_with_index do |health_care, i|
+          j = i * 2
+          destroy_link = find_all('a')[20 - j]
+          # 削除により順番が変わってしまうため、下から順に削除
+	        destroy_link.click
+          expect(page).to have_content '削除しました'
+	      end
+      end
+    end
+  end
 
   describe '編集画面' do
     before do
@@ -158,47 +178,4 @@ describe "健康管理関連テスト" do
       end
     end
   end
-
-  # describe '一覧画面' do
-  #   before do
-  #     (1..4).each do |i|
-  #       FactoryBot.create(:daily_record, theme: '題名テスト'+ i.to_s, introduction: '内容テスト'+ i.to_s, user: user)
-  #     end
-  #     visit daily_records_path
-  #   end
-
-  #   context '表示の確認' do
-  #     it "daily_recordの題名・ジャンル・投稿者の表示がされているか" do
-  #       DailyRecord.all.each_with_index do |daily_record|
-  #         expect(page).to have_content daily_record.theme
-  #         expect(page).to have_content daily_record.genre
-  #         expect(page).to have_content daily_record.user.last_name
-  #       end
-  #     end
-  #     it "詳細・投稿者マイページへのリンクが表示されているか" do
-  #       DailyRecord.all.each_with_index do |daily_record|
-  #         expect(page).to have_link(daily_record.theme, href: '/daily_records/' + daily_record.id.to_s)
-  #         expect(page).to have_link(daily_record.user.last_name, href: '/users/' + daily_record.user_id.to_s)
-  #       end
-  #     end
-  #   end
-
-  #   context '動作の確認' do
-  #     it '詳細リンクの遷移先確認' do
-  #       DailyRecord.all.each_with_index do |daily_record, i|
-  #         j = i * 2
-  #         show_link = find_all('a')[22 - j]
-	 #       expect(show_link[:href]).to eq daily_record_path(daily_record)
-	 #     end
-  #     end
-
-  #     it '投稿者マイページリンクの遷移先確認' do
-  #       DailyRecord.all.each_with_index do |daily_record, i|
-  #         j = i * 2
-  #         mypage_link = find_all('a')[23 - j]
-	 #       expect(mypage_link[:href]).to eq user_path(daily_record.user)
-	 #     end
-  #     end
-  #   end
-  # end
 end
