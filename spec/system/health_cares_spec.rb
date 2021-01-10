@@ -45,7 +45,7 @@ describe "健康管理関連テスト" do
 
       it '投稿に失敗する' do
         click_button '新規登録'
-        expect(page).to have_content '入力してください'
+        expect(page).to have_content '体重・最高血圧・最低血圧・血糖値のいずれかを入力してください'
         expect(current_path).to eq('/users/' + user.id.to_s + '/health_cares')
       end
 
@@ -99,48 +99,65 @@ describe "健康管理関連テスト" do
   #   end
   # end
 
-  # describe '編集画面' do
-  #   before do
-  #     visit edit_daily_record_path(daily_record)
-  #   end
+  describe '編集画面' do
+    before do
+      visit edit_user_health_care_path(health_care, user)
+    end
 
-  #   context '表示の確認' do
-  #     it '編集前の内容が表示されている' do
-  #       expect(page).to have_field 'daily_record[theme]', with: '題名'
-  #       expect(page).to have_field 'daily_record[introduction]', with: '内容'
-  #       select(value = '食事', from: 'daily_record_genre')
-  #     end
-  #     it '更新ボタンが表示される' do
-  #       expect(page).to have_button '変更を保存'
-  #     end
-  #   end
+    context '表示の確認' do
+      it '編集前の内容が表示されている' do
+        expect(page).to have_field 'health_care[body_weight]', with: 00
+        expect(page).to have_field 'health_care[max_blood_pressure]', with: 00
+        expect(page).to have_field 'health_care[min_blood_pressure]', with: 00
+        expect(page).to have_field 'health_care[blood_sugar]', with: 00
+        select(value = '2021', from: 'health_care_date_1i')
+        select(value = '1', from: 'health_care_date_2i')
+        select(value = '5', from: 'health_care_date_3i')
+      end
+      it '更新ボタンが表示される' do
+        expect(page).to have_button '変更を保存'
+      end
+    end
 
-  #   context '動作の確認' do
-  #     it '更新に成功しサクセスメッセージが表示されるか' do
-  #       fill_in 'daily_record[theme]', with: '題名２'
-  #       fill_in 'daily_record[introduction]', with: '内容２'
-  #       select '運動', from: 'daily_record_genre'
-  #       click_button '変更を保存'
-  #       expect(page).to have_content '更新しました'
-  #     end
+    context '動作の確認' do
+      it '更新に成功しサクセスメッセージが表示されるか' do
+        fill_in 'health_care[body_weight]', with: 11
+        fill_in 'health_care[max_blood_pressure]', with: 11
+        fill_in 'health_care[min_blood_pressure]', with: 11
+        fill_in 'health_care[blood_sugar]', with: 11
+        select '2021', from: 'health_care_date_1i'
+        select '1', from: 'health_care_date_2i'
+        select '5', from: 'health_care_date_3i'
+        click_button '変更を保存'
+        expect(page).to have_content '更新しました'
+      end
 
-  #     it '更新に失敗しエラーメッセージが表示されるか' do
-  #       fill_in 'daily_record[theme]', with: ''
-  #       fill_in 'daily_record[introduction]', with: ''
-  #       select(value = '食事', from: 'daily_record[genre]')
-  #       click_button '変更を保存'
-  #       expect(page).to have_content '入力してください'
-  #     end
+      it '更新に失敗しエラーメッセージが表示されるか' do
+        fill_in 'health_care[body_weight]', with: ''
+        fill_in 'health_care[max_blood_pressure]', with: ''
+        fill_in 'health_care[min_blood_pressure]', with: ''
+        fill_in 'health_care[blood_sugar]', with: ''
+        select '', from: 'health_care_date_1i'
+        select '', from: 'health_care_date_2i'
+        select '', from: 'health_care_date_3i'
+        click_button '変更を保存'
+        expect(page).to have_content '体重・最高血圧・最低血圧・血糖値のいずれかを入力してください'
+        expect(page).to have_content '日付を入力してください'
+      end
 
-  #     it '更新後のリダイレクト先は正しいか' do
-  #       fill_in 'daily_record[theme]', with: '題名２'
-  #       fill_in 'daily_record[introduction]', with: '内容２'
-  #       select '運動', from: 'daily_record_genre'
-  #       click_button '変更を保存'
-  #       expect(page).to have_current_path daily_record_path(daily_record)
-  #     end
-  #   end
-  # end
+      it '更新後のリダイレクト先は正しいか' do
+        fill_in 'health_care[body_weight]', with: 11
+        fill_in 'health_care[max_blood_pressure]', with: 11
+        fill_in 'health_care[min_blood_pressure]', with: 11
+        fill_in 'health_care[blood_sugar]', with: 11
+        select '2021', from: 'health_care_date_1i'
+        select '1', from: 'health_care_date_2i'
+        select '5', from: 'health_care_date_3i'
+        click_button '変更を保存'
+        expect(page).to have_current_path user_health_cares_path(user)
+      end
+    end
+  end
 
   # describe '一覧画面' do
   #   before do
