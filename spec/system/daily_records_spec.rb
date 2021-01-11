@@ -99,6 +99,7 @@ describe "日常記録関連テスト" do
         expect(page).to have_field 'daily_record[introduction]', with: '内容'
         select(value = '食事', from: 'daily_record_genre')
       end
+      
       it '更新ボタンが表示される' do
         expect(page).to have_button '変更を保存'
       end
@@ -147,6 +148,7 @@ describe "日常記録関連テスト" do
           expect(page).to have_content daily_record.user.last_name
         end
       end
+      
       it "詳細・投稿者マイページへのリンクが表示されているか" do
         DailyRecord.all.each_with_index do |daily_record|
           expect(page).to have_link(daily_record.theme, href: '/daily_records/' + daily_record.id.to_s)

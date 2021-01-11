@@ -91,11 +91,13 @@ describe "病歴関連テスト" do
           expect(page).to have_content medical_history.hospital
         end
       end
+
       it "編集へのリンクが表示されているか" do
         MedicalHistory.all.each_with_index do |medical_history|
           expect(page).to have_link('編集', href: '/users/' + user.id.to_s + '/medical_histories/' + medical_history.id.to_s + '/edit')
         end
       end
+
       it "新規投稿へのリンクが表示されているか" do
         expect(page).to have_link('新しい歴史をつくる', href: '/users/' + user.id.to_s + '/medical_histories/new')
       end
@@ -151,6 +153,7 @@ describe "病歴関連テスト" do
         expect(page).to have_field 'medical_history[treatment]', with: '治療内容'
         expect(page).to have_field 'medical_history[hospital]', with: '治療先'
       end
+
       it '更新ボタンが表示される' do
         expect(page).to have_button '変更を保存'
       end
