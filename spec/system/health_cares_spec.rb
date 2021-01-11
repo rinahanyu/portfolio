@@ -93,6 +93,12 @@ describe "健康管理関連テスト" do
     end
 
     context '動作の確認' do
+      it '新規投稿リンクの遷移先確認' do
+        new_link = find_all('a')[21]
+        new_link.click
+        expect(page).to have_content '健康管理の新規登録'
+      end
+
       it '編集リンクの遷移先確認' do
         HealthCare.all.each_with_index do |health_care, i|
           j = i * 2
