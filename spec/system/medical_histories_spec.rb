@@ -114,8 +114,8 @@ describe "病歴関連テスト" do
         MedicalHistory.all.each_with_index do |medical_history, i|
           j = i * 2
           edit_link = find_all('a')[11 + j]
-	        expect(edit_link[:href]).to eq edit_user_medical_history_path(user, medical_history)
-	      end
+          expect(edit_link[:href]).to eq edit_user_medical_history_path(user, medical_history)
+        end
       end
 
       it '削除の確認' do
@@ -129,9 +129,9 @@ describe "病歴関連テスト" do
           j = i * 2
           destroy_link = find_all('a')[20 - j]
           # 削除により順番が変わってしまうため、下から順に削除
-	        destroy_link.click
+          destroy_link.click
           expect(page).to have_content '削除しました'
-	      end
+        end
       end
     end
   end
