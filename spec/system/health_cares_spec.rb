@@ -82,17 +82,25 @@ describe "健康管理関連テスト" do
           expect(page).to have_content health_care.date.strftime("%Y年%m月%d日")
         end
       end
+      
       it "編集へのリンクが表示されているか" do
         HealthCare.all.each_with_index do |health_care|
           expect(page).to have_link('編集', href: '/users/' + user.id.to_s + '/health_cares/' + health_care.id.to_s + '/edit')
         end
       end
+      
       it "新規投稿へのリンクが表示されているか" do
         expect(page).to have_link('新しい数値を記録する', href: '/users/' + user.id.to_s + '/health_cares/new')
       end
     end
 
     context '動作の確認' do
+      it '新規投稿リンクの遷移先確認' do
+        new_link = find_all('a')[21]
+        new_link.click
+        expect(page).to have_content '健康管理の新規登録'
+      end
+
       it '編集リンクの遷移先確認' do
         HealthCare.all.each_with_index do |health_care, i|
           j = i * 2
@@ -134,6 +142,7 @@ describe "健康管理関連テスト" do
         select(value = '1', from: 'health_care_date_2i')
         select(value = '5', from: 'health_care_date_3i')
       end
+      
       it '更新ボタンが表示される' do
         expect(page).to have_button '変更を保存'
       end
