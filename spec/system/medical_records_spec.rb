@@ -191,8 +191,8 @@ describe "診療記録関連テスト" do
       it '詳細リンクの遷移先確認' do
         MedicalRecord.all.each_with_index do |medical_record, i|
           show_link = find_all('a')[15 + i]
-	        expect(show_link[:href]).to eq user_medical_record_path(user, medical_record)
-	      end
+          expect(show_link[:href]).to eq user_medical_record_path(user, medical_record)
+        end
       end
     end
   end
