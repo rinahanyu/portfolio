@@ -7,7 +7,7 @@ describe "診療記録関連テスト" do
 
   before do
     family_registration(user, hospital)
-    sign_in_as(hospital)
+    sign_in_as_hospital(hospital)
   end
 
   describe '新規登録画面' do
@@ -115,7 +115,7 @@ describe "診療記録関連テスト" do
         expect(page).to have_field 'medical_record[disease]', with: '傷病名'
         expect(page).to have_field 'medical_record[treatment]', with: '診察内容'
       end
-      
+
       it '更新ボタンが表示される' do
         expect(page).to have_button '変更を保存'
       end
@@ -178,13 +178,13 @@ describe "診療記録関連テスト" do
           expect(page).to have_content medical_record.disease
         end
       end
-      
+
       it "詳細へのリンクが表示されているか" do
         MedicalRecord.all.each_with_index do |medical_record|
           expect(page).to have_link('詳細', href: '/users/' + user.id.to_s + '/medical_records/' + medical_record.id.to_s)
         end
       end
-      
+
       it "新規作成へのリンクが表示されているか" do
         expect(page).to have_link('新規作成はこちらから！', href: '/users/' + user.id.to_s + '/medical_records/new')
       end
