@@ -6,8 +6,8 @@ FactoryBot.define do
     first_name_kana { "タロウ" }
     address { "広島県" }
     email { "h@h" }
-    telphone_number { 0o0000000000 }
-    postal_code { 0o000000 }
+    telphone_number { 000000000000 }
+    postal_code { 00000000 }
     password { "password" }
   end
 end
