@@ -16,10 +16,10 @@ ja:
     attributes:
         user:
           id: ID
-          first_name: 名前
+          first_name: 名
           last_name: 姓
-          first_name_kana: 名前カナ
-          last_name_kana: 姓カナ
+          first_name_kana: メイ
+          last_name_kana: セイ
           email: メールアドレス
           encrypted_password: パスワード
           postal_code: 郵便番号
