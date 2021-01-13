@@ -5,7 +5,7 @@ describe "個人利用者関連テスト" do
   let!(:hospital) {FactoryBot.create(:hospital)}
   let!(:daily_record) {FactoryBot.create(:daily_record, user: user)}
 
-  describe '詳細画面' do
+  describe 'マイページ（詳細）画面' do
     before do
       sign_in_as(user)
       visit user_path(user)
@@ -98,8 +98,8 @@ describe "個人利用者関連テスト" do
         expect(page).to have_field 'user[first_name_kana]', with: 'タロウ'
         expect(page).to have_field 'user[address]', with: '広島県'
         expect(page).to have_field 'user[email]', with: 'h@h'
-        expect(page).to have_field 'user[telphone_number]', with: 0o0000000000
-        expect(page).to have_field 'user[postal_code]', with: 0o000000
+        expect(page).to have_field 'user[telphone_number]', with: 000000000000
+        expect(page).to have_field 'user[postal_code]', with: 00000000
       end
 
       it '更新ボタンが表示される' do
@@ -115,8 +115,8 @@ describe "個人利用者関連テスト" do
         fill_in 'user[first_name_kana]', with: 'タロウあ'
         fill_in 'user[address]', with: '広島県あ'
         fill_in 'user[email]', with: 'h@hあ'
-        fill_in 'user[telphone_number]', with: 0o0000000000
-        fill_in 'user[postal_code]', with: 0o000000
+        fill_in 'user[telphone_number]', with: 000000000000
+        fill_in 'user[postal_code]', with: 00000000
         click_button '編集する'
         expect(page).to have_content '更新しました'
       end
@@ -148,8 +148,8 @@ describe "個人利用者関連テスト" do
         fill_in 'user[first_name_kana]', with: 'タロウあ'
         fill_in 'user[address]', with: '広島県あ'
         fill_in 'user[email]', with: 'h@hあ'
-        fill_in 'user[telphone_number]', with: 0o0000000000
-        fill_in 'user[postal_code]', with: 0o000000
+        fill_in 'user[telphone_number]', with: 000000000000
+        fill_in 'user[postal_code]', with: 00000000
         click_button '編集する'
         expect(page).to have_current_path user_path(user)
       end
@@ -217,8 +217,8 @@ describe "個人利用者関連テスト" do
         fill_in 'user[first_name_kana]', with: 'タロウ'
         fill_in 'user[address]', with: '広島県'
         fill_in 'user[email]', with: 'y@y'
-        fill_in 'user[telphone_number]', with: 0o0000000000
-        fill_in 'user[postal_code]', with: 0o000000
+        fill_in 'user[telphone_number]', with: 000000000000
+        fill_in 'user[postal_code]', with: 00000000
         fill_in 'user[password]', with: 'password'
         fill_in 'user[password_confirmation]', with: 'password'
         click_button '新規登録'
@@ -246,8 +246,8 @@ describe "個人利用者関連テスト" do
         fill_in 'user[first_name_kana]', with: 'タロウ'
         fill_in 'user[address]', with: '広島県'
         fill_in 'user[email]', with: 'y@y'
-        fill_in 'user[telphone_number]', with: 0o0000000000
-        fill_in 'user[postal_code]', with: 0o000000
+        fill_in 'user[telphone_number]', with: 000000000000
+        fill_in 'user[postal_code]', with: 00000000
         fill_in 'user[password]', with: 'password'
         fill_in 'user[password_confirmation]', with: 'password'
         click_button '新規登録'
