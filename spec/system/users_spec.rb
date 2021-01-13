@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 describe "個人利用者関連テスト" do
-  let(:user) {FactoryBot.create(:user)}
+  let!(:user) {FactoryBot.create(:user)}
+  let!(:hospital) {FactoryBot.create(:hospital)}
   let!(:daily_record) {FactoryBot.create(:daily_record, user: user)}
 
   describe '詳細画面' do
@@ -210,18 +211,18 @@ describe "個人利用者関連テスト" do
 
     context '新規登録処理に関するテスト' do
       it '投稿に成功しサクセスメッセージが表示されるか' do
-        fill_in 'user[last_name]', with: '広島'
+        fill_in 'user[last_name]', with: '横浜'
         fill_in 'user[first_name]', with: '太郎'
         fill_in 'user[last_name_kana]', with: 'ヒロシマ'
         fill_in 'user[first_name_kana]', with: 'タロウ'
         fill_in 'user[address]', with: '広島県'
-        fill_in 'user[email]', with: 'h@h'
+        fill_in 'user[email]', with: 'y@y'
         fill_in 'user[telphone_number]', with: 0o0000000000
         fill_in 'user[postal_code]', with: 0o000000
         fill_in 'user[password]', with: 'password'
         fill_in 'user[password_confirmation]', with: 'password'
         click_button '新規登録'
-        expect(page).to have_content 'ログインしました'
+        expect(page).to have_content 'アカウント登録が完了しました'
       end
 
       it '新規登録に失敗する' do
@@ -239,18 +240,18 @@ describe "個人利用者関連テスト" do
       end
 
       it '投稿後のリダイレクト先は正しいか' do
-        fill_in 'user[last_name]', with: '広島あ'
-        fill_in 'user[first_name]', with: '太郎あ'
-        fill_in 'user[last_name_kana]', with: 'ヒロシマあ'
-        fill_in 'user[first_name_kana]', with: 'タロウあ'
-        fill_in 'user[address]', with: '広島県あ'
-        fill_in 'user[email]', with: 'h@hあ'
+        fill_in 'user[last_name]', with: '横浜'
+        fill_in 'user[first_name]', with: '太郎'
+        fill_in 'user[last_name_kana]', with: 'ヒロシマ'
+        fill_in 'user[first_name_kana]', with: 'タロウ'
+        fill_in 'user[address]', with: '広島県'
+        fill_in 'user[email]', with: 'y@y'
         fill_in 'user[telphone_number]', with: 0o0000000000
         fill_in 'user[postal_code]', with: 0o000000
         fill_in 'user[password]', with: 'password'
         fill_in 'user[password_confirmation]', with: 'password'
         click_button '新規登録'
-        expect(page).to have_current_path user_path(user)
+        expect(page).to have_current_path user_path(2)
       end
     end
   end
@@ -291,6 +292,46 @@ describe "個人利用者関連テスト" do
         fill_in 'user[password]', with: 'password'
         click_button 'ログイン'
         expect(page).to have_current_path user_path(user)
+      end
+    end
+  end
+
+  describe 'かかりつけ医一覧画面' do
+    before do
+      sign_in_as(user)
+      family_registration(user, hospital)
+      visit families_user_path(user)
+    end
+
+    context '表示の確認' do
+      it '題名・かかりつけ医の医療機関名・電話番号・郵便番号・住所が表示されているか' do
+        expect(page).to have_content 'かかりつけ医一覧'
+        expect(page).to have_content hospital.name
+        expect(page).to have_content hospital.telphone_number
+        expect(page).to have_content hospital.postal_code
+        expect(page).to have_content hospital.address
+      end
+
+      it '医療機関一覧へのリンクが表示されているか' do
+        expect(page).to have_link('医療機関一覧へ', href: '/hospitals')
+      end
+
+      it '医療機関詳細へのリンクが表示されているか' do
+        expect(page).to have_link(hospital.name, href: '/hospitals/' + hospital.id.to_s)
+      end
+    end
+
+    context '動作の確認' do
+      it '医療機関一覧リンクの遷移先確認' do
+        hospitals_link = find_all('a')[12]
+        hospitals_link.click
+        expect(page).to have_current_path hospitals_path
+      end
+
+      it '退会ページのリンク遷移先確認' do
+        family_link = find_all('a')[11]
+        family_link.click
+        expect(page).to have_current_path hospital_path(hospital)
       end
     end
   end

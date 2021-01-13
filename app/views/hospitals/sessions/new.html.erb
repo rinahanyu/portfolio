@@ -4,7 +4,6 @@
       <h2 class="col text-center">ログイン<br>（医療関係者さま）</h2>
 
       <%= form_with model: @hospital, url: hospital_session_path, local: true do |f| %>
-        <%= flash[:alert]%>
 
         <div class="hospital-login-input">
           <%= f.label :email, "メールアドレス" %><br>
