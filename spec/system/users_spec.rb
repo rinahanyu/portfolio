@@ -2,7 +2,6 @@ require 'rails_helper'
 
 describe "個人利用者関連テスト" do
   let!(:user) {FactoryBot.create(:user)}
-  # let!(:hospital) {FactoryBot.create(:hospital)}
   let!(:daily_record) {FactoryBot.create(:daily_record, user: user)}
 
   before do
@@ -42,37 +41,49 @@ describe "個人利用者関連テスト" do
       end
     end
 
-    # context '動作の確認' do
-    #   it '基本情報編集・退会ページリンクの遷移先確認' do
-    #     user_edit_link = find_all('a')[11]
-    #     user_edit_link.click
-    #     expect(page).to have_current_path edit_user_path(user)
-    #     delete_confirm_link = find_all('a')[12]
-    #     delete_confirm_link.click
-    #     expect(page).to have_current_path user_delete_confirm_path(user)
-    #   end
+    context '動作の確認' do
+      it '基本情報編集リンクの遷移先確認' do
+        user_edit_link = find_all('a')[11]
+        user_edit_link.click
+        expect(page).to have_current_path edit_user_path(user)
+      end
 
-    #   it '病歴・健康管理・かかりつけ医一覧リンクの遷移先確認' do
-    #     medical_history_link = find_all('a')[13]
-    #     medical_history_link.click
-    #     expect(page).to have_current_path user_medical_histories_path(user)
-    #     health_care_link = find_all('a')[14]
-    #     health_care_link.click
-    #     expect(page).to have_current_path user_health_cares_path(user)
-    #     family_link = find_all('a')[15]
-    #     family_link.click
-    #     expect(page).to have_current_path families_user_path(user)
-    #   end
+      it '退会ページのリンク遷移先確認' do
+        delete_confirm_link = find_all('a')[12]
+        delete_confirm_link.click
+        expect(page).to have_current_path user_delete_confirm_path(user)
+      end
 
-    #   it '日常記録の新規投稿・詳細リンクの遷移先確認' do
-    #     daily_record_new_link = find_all('a')[16]
-    #     daily_record_new_link.click
-    #     expect(page).to have_current_path new_daily_record_path
-    #     daily_record_show_link = find_all('a')[17]
-    #     daily_record_show_link.click
-    #     expect(page).to have_current_path daily_record_path(daily_record)
-    #   end
-    # end
+      it '病歴一覧リンクの遷移先確認' do
+        medical_history_link = find_all('a')[13]
+        medical_history_link.click
+        expect(page).to have_current_path user_medical_histories_path(user)
+      end
+
+       it '健康管理一覧リンクの遷移先確認' do
+        health_care_link = find_all('a')[14]
+        health_care_link.click
+        expect(page).to have_current_path user_health_cares_path(user)
+      end
+
+      it 'かかりつけ医一覧リンクの遷移先確認' do
+        family_link = find_all('a')[15]
+        family_link.click
+        expect(page).to have_current_path families_user_path(user)
+      end
+
+      it '日常記録の新規投稿リンクの遷移先確認' do
+        daily_record_new_link = find_all('a')[16]
+        daily_record_new_link.click
+        expect(page).to have_current_path new_daily_record_path
+      end
+
+      it '日常記録の詳細リンクの遷移先確認' do
+        daily_record_show_link = find_all('a')[17]
+        daily_record_show_link.click
+        expect(page).to have_current_path daily_record_path(daily_record)
+      end
+    end
   end
 
   # ---------------------

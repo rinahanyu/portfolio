@@ -18,6 +18,9 @@ module SignInModule
     fill_in 'hospital[email]', with: 's@s'
     fill_in 'hospital[password]', with: 'password'
     click_button 'ログイン'
+    def current_hospital
+      hospital
+    end
   end
 
   def patients?(user, hospital)
