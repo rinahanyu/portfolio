@@ -4,7 +4,6 @@
       <h2 class="col text-center">ログイン<br>（個人利用者さま）</h2>
 
       <%= form_with model: @user, url: user_session_path, local: true do |f| %>
-        <%= flash[:alert]%>
 
         <div class="user-login-input">
           <%= f.label :email, "メールアドレス" %><br>
