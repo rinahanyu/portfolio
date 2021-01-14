@@ -197,7 +197,7 @@ describe "日常記録関連テスト" do
           expect(page).to have_content daily_record.genre
         end
 
-        it '編集のリンクが表示されているか' do
+        it '編集のリンクが表示されていないか' do
           expect(page).not_to have_link('編集する', href: '/daily_records/' + daily_record.id.to_s + '/edit')
         end
       end
