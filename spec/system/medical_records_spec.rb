@@ -221,7 +221,7 @@ describe '診療記録関連テスト' do
           expect(page).to have_content medical_record.treatment
         end
 
-        it '編集のリンクが表示されているか' do
+        it '編集のリンクが表示されていないか' do
           expect(page).not_to have_link('編集', href: '/users/' + user.id.to_s + '/medical_records/' + medical_record.id.to_s + '/edit')
         end
       end
@@ -252,7 +252,7 @@ describe '診療記録関連テスト' do
           end
         end
 
-        it "新規作成へのリンクが表示されているか" do
+        it "新規作成へのリンクが表示されていないか" do
           expect(page).not_to have_link('新規作成はこちらから！', href: '/users/' + user.id.to_s + '/medical_records/new')
         end
       end
