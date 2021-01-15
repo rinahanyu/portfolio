@@ -7,7 +7,7 @@ describe "病歴関連テスト" do
   let!(:hospital2) {FactoryBot.create(:hospital, email: 's@s2')}
   let!(:medical_history) {FactoryBot.create(:medical_history, user: user)}
 
-  describe '個人利用者ログイン' do
+  describe '個人利用者ログイン（本人）' do
     before do
       sign_in_as(user)
     end
