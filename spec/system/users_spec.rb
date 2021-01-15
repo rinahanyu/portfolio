@@ -2,10 +2,12 @@ require 'rails_helper'
 
 describe "個人利用者関連テスト" do
   let!(:user) {FactoryBot.create(:user)}
+  let!(:user2) {FactoryBot.create(:user, email: 'h@h2')}
   let!(:hospital) {FactoryBot.create(:hospital)}
+  let!(:hospital2) {FactoryBot.create(:hospital, email: 's@s2')}
   let!(:daily_record) {FactoryBot.create(:daily_record, user: user)}
 
-  describe '個人利用者ログイン' do
+  describe '個人利用者ログイン（本人）' do
     describe 'マイページ（詳細）画面' do
       before do
         sign_in_as(user)
@@ -252,7 +254,7 @@ describe "個人利用者関連テスト" do
           fill_in 'user[password]', with: 'password'
           fill_in 'user[password_confirmation]', with: 'password'
           click_button '新規登録'
-          expect(page).to have_current_path user_path(2)
+          expect(page).to have_current_path user_path(3)
         end
       end
     end
@@ -329,10 +331,95 @@ describe "個人利用者関連テスト" do
           expect(page).to have_current_path hospitals_path
         end
 
-        it '退会ページのリンク遷移先確認' do
+        it '医療機関詳細のリンク遷移先確認' do
           family_link = find_all('a')[11]
           family_link.click
           expect(page).to have_current_path hospital_path(hospital)
+        end
+      end
+    end
+  end
+
+  describe '個人利用者ログイン（本人以外）' do
+    before do
+      sign_in_as(user2)
+    end
+
+    describe '他者マイページ（詳細）画面' do
+      before do
+        visit user_path(user)
+      end
+
+      context '表示の確認' do
+        it '氏名が表示されているか' do
+          expect(page).to have_content user.first_name
+          expect(page).to have_content user.last_name
+        end
+
+        it '基本情報編集・退会ページへのリンクが表示されていないか' do
+          expect(page).not_to have_link('基本情報編集する', href: '/users/' + user.id.to_s + '/edit')
+          expect(page).not_to have_link('退会手続きへ', href: '/users/' + user.id.to_s + '/delete_confirm')
+        end
+
+        it '病歴・健康管理・かかりつけ医の一覧へのリンクが表示されていないか' do
+          expect(page).not_to have_link('一覧へ', href: '/users/' + user.id.to_s + '/medical_histories')
+          expect(page).not_to have_link('一覧へ', href: '/users/' + user.id.to_s + '/health_cares')
+          expect(page).not_to have_link('一覧へ', href: '/users/' + user.id.to_s + '/families')
+        end
+
+        it '日常記録の題名・ジャンルが表示されているか' do
+          expect(page).to have_content daily_record.theme
+          expect(page).to have_content daily_record.genre
+        end
+
+        it '日常記録の新規投稿へのリンクが表示されていないか' do
+          expect(page).not_to have_link('新しく投稿する！', href: '/daily_records/new')
+        end
+
+        it '日常記録の詳細へのリンクが表示されているか' do
+          expect(page).to have_link(daily_record.theme, href: '/daily_records/' + daily_record.id.to_s)
+        end
+      end
+
+      context '動作の確認' do
+        it '日常記録の詳細リンクの遷移先確認' do
+          daily_record_show_link = find_all('a')[11]
+          daily_record_show_link.click
+          expect(page).to have_current_path daily_record_path(daily_record)
+        end
+      end
+    end
+
+    describe '編集画面' do
+      before do
+        visit edit_user_path(user)
+      end
+
+      context '表示の確認' do
+        it 'ログイン画面へ遷移させられている' do
+          expect(page).to have_current_path user_path(user2)
+        end
+      end
+    end
+
+    describe '退会画面' do
+      before do
+        visit user_delete_confirm_path(user)
+      end
+
+      it 'ログイン画面へ遷移させられている' do
+        expect(page).to have_current_path user_path(user2)
+      end
+    end
+
+    describe 'かかりつけ医一覧画面' do
+      before do
+        visit families_user_path(user)
+      end
+
+      context '表示の確認' do
+        it '自分のマイページへ遷移させられている' do
+          expect(page).to have_current_path user_path(user2)
         end
       end
     end
@@ -406,17 +493,126 @@ describe "個人利用者関連テスト" do
         end
       end
     end
+
+    describe 'かかりつけ医一覧画面' do
+      before do
+        visit families_user_path(user)
+      end
+
+      context '表示の確認' do
+        it '題名・かかりつけ医の医療機関名・電話番号・郵便番号・住所が表示されているか' do
+          expect(page).to have_content 'かかりつけ医一覧'
+          expect(page).to have_content hospital.name
+          expect(page).to have_content hospital.telphone_number
+          expect(page).to have_content hospital.postal_code
+          expect(page).to have_content hospital.address
+        end
+
+        it '医療機関一覧へのリンクが表示されているか' do
+          expect(page).to have_link('医療機関一覧へ', href: '/hospitals')
+        end
+
+        it '医療機関詳細へのリンクが表示されているか' do
+          expect(page).to have_link(hospital.name, href: '/hospitals/' + hospital.id.to_s)
+        end
+
+        it '患者マイページへのリンクが表示されているか' do
+          expect(page).to have_link('患者マイページへ戻る', href: '/users/' + user.id.to_s)
+        end
+      end
+
+      context '動作の確認' do
+        it '医療機関一覧リンクの遷移先確認' do
+          hospitals_link = find_all('a')[8]
+          hospitals_link.click
+          expect(page).to have_current_path hospitals_path
+        end
+
+        it '医療機関詳細リンク遷移先確認' do
+          family_link = find_all('a')[7]
+          family_link.click
+          expect(page).to have_current_path hospital_path(hospital)
+        end
+
+        it '患者マイページリンク遷移先確認' do
+          user_link = find_all('a')[9]
+          user_link.click
+          expect(page).to have_current_path user_path(user)
+        end
+      end
+    end
+
+    describe '編集画面' do
+      before do
+        visit edit_user_path(user)
+      end
+
+      context '表示の確認' do
+        it 'ログイン画面へ遷移させられている' do
+          expect(page).to have_current_path new_user_session_path
+        end
+      end
+    end
+
+    describe '退会画面' do
+      before do
+        visit user_delete_confirm_path(user)
+      end
+
+      it 'ログイン画面へ遷移させられている' do
+        expect(page).to have_current_path new_user_session_path
+      end
+    end
   end
 
   describe '医療関係者ログイン（かかりつけなし）' do
     before do
-      sign_in_as_hospital(hospital)
-      visit user_path(user)
+      sign_in_as_hospital(hospital2)
     end
 
-    context '表示の確認' do
-      it 'メッセージが表示されているか' do
-        expect(page).to have_content 'かかりつけ医の登録がされていない患者です'
+    describe 'マイページ（詳細）画面' do
+      before do
+        visit user_path(user)
+      end
+
+      context '表示の確認' do
+        it 'メッセージが表示されているか' do
+          expect(page).to have_content 'かかりつけ医の登録がされていない患者です'
+        end
+      end
+    end
+
+    describe '編集画面' do
+      before do
+        visit edit_user_path(user)
+      end
+
+      context '表示の確認' do
+        it 'ログイン画面へ遷移させられている' do
+          expect(page).to have_current_path new_user_session_path
+        end
+      end
+    end
+
+    describe '退会画面' do
+      before do
+        visit user_delete_confirm_path(user)
+      end
+
+      it 'ログイン画面へ遷移させられている' do
+        expect(page).to have_current_path new_user_session_path
+      end
+    end
+
+    describe 'かかりつけ医一覧画面' do
+      before do
+        visit families_user_path(user)
+      end
+
+      context '表示の確認' do
+        it '自分のマイページへ遷移させられている' do
+          expect(page).to have_current_path hospital_path(hospital2)
+        end
       end
     end
   end
