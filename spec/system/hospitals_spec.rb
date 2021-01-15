@@ -2,13 +2,15 @@ require 'rails_helper'
 
 describe "医療関係者関連テスト" do
   let!(:hospital) {FactoryBot.create(:hospital)}
+  let!(:hospital2) {FactoryBot.create(:hospital, email: 's@s2', name: '横浜病院')}
   let!(:user) {FactoryBot.create(:user)}
+  let!(:user2) {FactoryBot.create(:user, email: 'h@h2')}
   let!(:medical_record) {FactoryBot.create(:medical_record, user: user, hospital: hospital)}
   let(:medical_relationship) {FactoryBot.create(:medical_relationship, user: user, hospital: hospital)}
   let!(:room) {FactoryBot.create(:room, user: user, hospital: hospital)}
   let!(:chat) {FactoryBot.create(:chat, user: user, hospital: hospital, room: room)}
 
-  describe '医療関係者ログイン' do
+  describe '医療関係者ログイン（本人）' do
     describe 'マイページ（詳細）画面' do
       before do
         family_registration(user, hospital)
@@ -175,7 +177,7 @@ describe "医療関係者関連テスト" do
           fill_in 'hospital[password]', with: 'password'
           fill_in 'hospital[password_confirmation]', with: 'password'
           click_button '新規登録'
-          expect(page).to have_current_path hospital_path(2)
+          expect(page).to have_current_path hospital_path(3)
         end
       end
     end
@@ -255,6 +257,51 @@ describe "医療関係者関連テスト" do
   	        expect(hospital_show_link[:href]).to eq hospital_path(hospital)
   	      end
         end
+      end
+    end
+  end
+
+  describe '医療関係者ログイン（本人以外）' do
+    before do
+      family_registration(user, hospital)
+      sign_in_as_hospital(hospital2)
+    end
+
+    describe 'マイページ（詳細）画面' do
+      before do
+        visit hospital_path(hospital)
+      end
+
+      context '表示の確認' do
+        it '医療機関情報が表示されているか' do
+          expect(page).to have_content hospital.name
+          expect(page).to have_content hospital.telphone_number
+          expect(page).to have_content hospital.postal_code
+          expect(page).to have_content hospital.address
+        end
+
+        it '患者情報が表示されていないか' do
+          expect(page).not_to have_content '患者一覧'
+        end
+
+        it '編集へのリンクが表示されていないか' do
+          expect(page).not_to have_link('編集する', href: '/hospitals/' + hospital.id.to_s + '/edit')
+        end
+
+        it '患者ページ・診療記録へのリンクが表示されていないか' do
+          expect(page).not_to have_link('患者ページ', href: '/users/' + user.id.to_s)
+          expect(page).not_to have_link('診療記録', href: '/users/' + user.id.to_s + '/medical_records')
+        end
+      end
+    end
+
+    describe '編集画面' do
+      before do
+        visit edit_hospital_path(hospital)
+      end
+
+      it 'ログイン画面へ遷移させられている' do
+        expect(page).to have_current_path hospital_path(hospital2)
       end
     end
   end
@@ -356,11 +403,22 @@ describe "医療関係者関連テスト" do
         end
       end
     end
+
+    describe '編集画面' do
+      before do
+        visit edit_hospital_path(hospital)
+      end
+
+      it 'ログイン画面へ遷移させられている' do
+        expect(page).to have_current_path new_hospital_session_path
+      end
+    end
   end
 
   describe '個人利用者ログイン（かかりつけなし）' do
     before do
-      sign_in_as(user)
+      family_registration(user, hospital)
+      sign_in_as(user2)
     end
 
     describe '医療機関マイページ（詳細）画面' do
@@ -376,8 +434,8 @@ describe "医療関係者関連テスト" do
           expect(page).to have_content hospital.address
         end
 
-        it 'かかりつけ医の説明が表示されているか' do
-          expect(page).not_to have_link('チャットをはじめる', href: '/chats/' + room.id.to_s)
+        it 'チャットが表示されていないか' do
+          expect(page).not_to have_button 'チャットをはじめる'
         end
 
         it '編集へのリンクが表示されていないか' do
@@ -389,7 +447,7 @@ describe "医療関係者関連テスト" do
         end
 
         it 'かかりつけ医一覧へのリンクが表示されているか' do
-          expect(page).to have_link('かかりつけ医一覧に戻る', href: '/users/' + user.id.to_s + '/families')
+          expect(page).to have_link('かかりつけ医一覧に戻る', href: '/users/' + user2.id.to_s + '/families')
         end
       end
 
@@ -402,45 +460,18 @@ describe "医療関係者関連テスト" do
         it 'かかりつけ医一覧リンクの遷移先確認' do
           family_link = find_all('a')[11]
           family_link.click
-          expect(page).to have_current_path families_user_path(user)
+          expect(page).to have_current_path families_user_path(user2)
         end
       end
     end
 
-    describe '医療機関一覧画面' do
+    describe '編集画面' do
       before do
-        (1..4).each do |i|
-          FactoryBot.create(:hospital, name: '医療機関名テスト'+ i.to_s, address: '住所テスト'+ i.to_s, email: 't@t'+ i.to_s,
-          postal_code: 0000000, telphone_number: 00000000000)
-        end
-        visit hospitals_path
+        visit edit_hospital_path(hospital)
       end
 
-      context '表示の確認' do
-        it '題名・医療機関名・電話番号・郵便番号・住所が表示されているか' do
-          Hospital.all.each_with_index do |hospital|
-            expect(page).to have_content '医療機関一覧'
-            expect(page).to have_content hospital.name
-            expect(page).to have_content hospital.telphone_number
-            expect(page).to have_content hospital.postal_code
-            expect(page).to have_content hospital.address
-          end
-        end
-
-        it '医療機関詳細へのリンクが表示されているか' do
-          Hospital.all.each_with_index do |hospital|
-            expect(page).to have_link(hospital.name, href: '/hospitals/' + hospital.id.to_s)
-          end
-        end
-      end
-
-      context '動作の確認' do
-        it '医療機関一覧リンクの遷移先確認' do
-          Hospital.all.each_with_index do |hospital, i|
-            hospital_show_link = find_all('a')[11 + i]
-  	        expect(hospital_show_link[:href]).to eq hospital_path(hospital)
-  	      end
-        end
+      it 'ログイン画面へ遷移させられている' do
+        expect(page).to have_current_path new_hospital_session_path
       end
     end
   end
