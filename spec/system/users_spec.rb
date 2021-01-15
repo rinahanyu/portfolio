@@ -338,7 +338,7 @@ describe "個人利用者関連テスト" do
     end
   end
 
-  describe '医療関係者ログイン' do
+  describe '医療関係者ログイン（かかりつけあり）' do
     before do
       family_registration(user, hospital)
       sign_in_as_hospital(hospital)
@@ -404,6 +404,19 @@ describe "個人利用者関連テスト" do
           daily_record_show_link.click
           expect(page).to have_current_path daily_record_path(daily_record)
         end
+      end
+    end
+  end
+
+  describe '医療関係者ログイン（かかりつけなし）' do
+    before do
+      sign_in_as_hospital(hospital)
+      visit user_path(user)
+    end
+
+    context '表示の確認' do
+      it 'メッセージが表示されているか' do
+        expect(page).to have_content 'かかりつけ医の登録がされていない患者です'
       end
     end
   end
