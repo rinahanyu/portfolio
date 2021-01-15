@@ -2,7 +2,9 @@ require 'rails_helper'
 
 describe "病歴関連テスト" do
   let!(:user) {FactoryBot.create(:user)}
+  let!(:user2) {FactoryBot.create(:user, email: 'h@h2')}
   let!(:hospital) {FactoryBot.create(:hospital)}
+  let!(:hospital2) {FactoryBot.create(:hospital, email: 's@s2')}
   let!(:medical_history) {FactoryBot.create(:medical_history, user: user)}
 
   describe '個人利用者ログイン' do
@@ -210,7 +212,37 @@ describe "病歴関連テスト" do
     end
   end
 
-  describe '医療関係者ログイン' do
+  describe '個人利用者ログイン（本人以外）' do
+    before do
+      sign_in_as(user2)
+    end
+
+    describe '一覧画面' do
+      before do
+        visit user_medical_histories_path(user)
+      end
+
+      context '表示の確認' do
+        it '自分のマイページへ遷移させられている' do
+          expect(page).to have_current_path user_path(user2)
+        end
+      end
+    end
+
+    describe '編集画面' do
+      before do
+        visit edit_user_medical_history_path(user, medical_history)
+      end
+
+      context '表示の確認' do
+        it '自分のマイページへ遷移させられている' do
+          expect(page).to have_current_path user_path(user2)
+        end
+      end
+    end
+  end
+
+  describe '医療関係者ログイン（かかりつけあり）' do
     before do
       family_registration(user, hospital)
       sign_in_as_hospital(hospital)
@@ -244,6 +276,48 @@ describe "病歴関連テスト" do
 
         it "新規投稿へのリンクが表示されていないか" do
           expect(page).not_to have_link('新しい歴史をつくる', href: '/users/' + user.id.to_s + '/medical_histories/new')
+        end
+      end
+    end
+
+    describe '編集画面' do
+      before do
+        visit edit_user_medical_history_path(user, medical_history)
+      end
+
+      context '表示の確認' do
+        it '自分のマイページへ遷移させられている' do
+          expect(page).to have_current_path new_user_session_path
+        end
+      end
+    end
+  end
+
+  describe '医療関係者ログイン（かかりつけなし）' do
+    before do
+      sign_in_as_hospital(hospital2)
+    end
+
+    describe '一覧画面' do
+      before do
+        visit user_medical_histories_path(user)
+      end
+
+      context '表示の確認' do
+        it '自分のマイページへ遷移させられている' do
+          expect(page).to have_current_path hospital_path(hospital2)
+        end
+      end
+    end
+
+    describe '編集画面' do
+      before do
+        visit edit_user_medical_history_path(user, medical_history)
+      end
+
+      context '表示の確認' do
+        it '自分のマイページへ遷移させられている' do
+          expect(page).to have_current_path new_user_session_path
         end
       end
     end
