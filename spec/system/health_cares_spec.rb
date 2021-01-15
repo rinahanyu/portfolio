@@ -285,7 +285,7 @@ describe "健康管理関連テスト" do
       end
 
       context '表示の確認' do
-        it '自分のマイページへ遷移させられている' do
+        it 'ログインへ遷移させられている' do
           expect(page).to have_current_path new_user_session_path
         end
       end
