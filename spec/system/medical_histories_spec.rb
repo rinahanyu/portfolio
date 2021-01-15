@@ -316,7 +316,7 @@ describe "病歴関連テスト" do
       end
 
       context '表示の確認' do
-        it 'ログインへ遷移させられている' do
+        it 'ログイン画面へ遷移させられている' do
           expect(page).to have_current_path new_user_session_path
         end
       end
