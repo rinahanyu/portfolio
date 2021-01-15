@@ -2,10 +2,12 @@ require 'rails_helper'
 
 describe '診療記録関連テスト' do
   let!(:user) {FactoryBot.create(:user)}
+  let!(:user2) {FactoryBot.create(:user, email: 'h@h2')}
   let!(:hospital) {FactoryBot.create(:hospital)}
+  let!(:hospital2) {FactoryBot.create(:hospital, email: 's@s2')}
   let!(:medical_record) {FactoryBot.create(:medical_record, user: user, hospital: hospital)}
 
-  describe '医療機関ログイン' do
+  describe '医療機関ログイン（かかりつけあり）' do
     before do
       family_registration(user, hospital)
       sign_in_as_hospital(hospital)
@@ -202,7 +204,61 @@ describe '診療記録関連テスト' do
     end
   end
 
-  describe '個人利用者ログイン' do
+  describe '医療機関ログイン（かかりつけなし）' do
+    before do
+      sign_in_as_hospital(hospital2)
+    end
+
+    describe '新規登録画面' do
+      before do
+        visit new_user_medical_record_path(user)
+      end
+
+      context '表示の確認' do
+        it '自分のマイページへ遷移させられている' do
+          expect(page).to have_current_path hospital_path(hospital2)
+        end
+      end
+    end
+
+    describe '詳細画面' do
+      before do
+        visit user_medical_record_path(user, medical_record)
+      end
+
+      context '表示の確認' do
+        it '自分のマイページへ遷移させられている' do
+          expect(page).to have_current_path hospital_path(hospital2)
+        end
+      end
+    end
+
+    describe '編集画面' do
+      before do
+        visit edit_user_medical_record_path(user, medical_record)
+      end
+
+      context '表示の確認' do
+        it '自分のマイページへ遷移させられている' do
+          expect(page).to have_current_path hospital_path(hospital2)
+        end
+      end
+    end
+
+    describe '一覧画面' do
+      before do
+        visit user_medical_records_path(user)
+      end
+
+      context '表示の確認' do
+        it '自分のマイページへ遷移させられている' do
+          expect(page).to have_current_path hospital_path(hospital2)
+        end
+      end
+    end
+  end
+
+  describe '個人利用者ログイン（本人）' do
     before do
       sign_in_as(user)
       family_registration(user, hospital)
@@ -263,6 +319,84 @@ describe '診療記録関連テスト' do
             show_link = find_all('a')[18 + i]
             expect(show_link[:href]).to eq user_medical_record_path(user, medical_record)
           end
+        end
+      end
+    end
+
+    describe '新規登録画面' do
+      before do
+        visit new_user_medical_record_path(user)
+      end
+
+      context '表示の確認' do
+        it 'ログイン画面へ遷移させられている' do
+          expect(page).to have_current_path new_hospital_session_path
+        end
+      end
+    end
+
+    describe '編集画面' do
+      before do
+        visit edit_user_medical_record_path(user, medical_record)
+      end
+
+      context '表示の確認' do
+        it 'ログイン画面へ遷移させられている' do
+          expect(page).to have_current_path new_hospital_session_path
+        end
+      end
+    end
+  end
+
+  describe '個人利用者ログイン（本人以外）' do
+    before do
+      sign_in_as(user2)
+    end
+
+    describe '新規登録画面' do
+      before do
+        visit new_user_medical_record_path(user)
+      end
+
+      context '表示の確認' do
+        it 'ログイン画面へ遷移させられている' do
+          expect(page).to have_current_path new_hospital_session_path
+        end
+      end
+    end
+
+    describe '詳細画面' do
+      before do
+        visit user_medical_record_path(user, medical_record)
+      end
+
+      context '表示の確認' do
+        it '自分のマイページへ遷移させられている' do
+          expect(page).to have_current_path user_path(user2)
+        end
+      end
+    end
+
+    describe '編集画面' do
+      before do
+        visit edit_user_medical_record_path(user, medical_record)
+      end
+
+      context '表示の確認' do
+        it 'ログイン画面へ遷移させられている' do
+          expect(page).to have_current_path new_hospital_session_path
+        end
+      end
+    end
+
+    describe '一覧画面' do
+      before do
+        visit user_medical_records_path(user)
+      end
+
+      context '表示の確認' do
+        it '自分のマイページへ遷移させられている' do
+          expect(page).to have_current_path user_path(user2)
         end
       end
     end

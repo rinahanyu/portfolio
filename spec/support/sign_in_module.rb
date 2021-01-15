@@ -1,8 +1,8 @@
 module SignInModule
   def sign_in_as(user)
     visit new_user_session_path
-    fill_in 'user[email]', with: 'h@h'
-    fill_in 'user[password]', with: 'password'
+    fill_in 'user[email]', with: user.email
+    fill_in 'user[password]', with: user.password
     click_button 'ログイン'
     def current_user
       user
@@ -15,8 +15,8 @@ module SignInModule
 
   def sign_in_as_hospital(hospital)
     visit new_hospital_session_path
-    fill_in 'hospital[email]', with: 's@s'
-    fill_in 'hospital[password]', with: 'password'
+    fill_in 'hospital[email]', with: hospital.email
+    fill_in 'hospital[password]', with: hospital.password
     click_button 'ログイン'
     def current_hospital
       hospital

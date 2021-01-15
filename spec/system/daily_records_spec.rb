@@ -2,10 +2,11 @@ require 'rails_helper'
 
 describe "日常記録関連テスト" do
   let!(:user) {FactoryBot.create(:user)}
+  let!(:user2) {FactoryBot.create(:user, email: 'h@h2')}
   let!(:hospital) {FactoryBot.create(:hospital)}
   let!(:daily_record) {FactoryBot.create(:daily_record, user: user)}
 
-  describe '個人利用者ログイン' do
+  describe '個人利用者ログイン（本人）' do
     before do
       sign_in_as(user)
     end
@@ -179,7 +180,87 @@ describe "日常記録関連テスト" do
     end
   end
 
-  describe '医療関係者ログイン' do
+  describe '個人利用者ログイン（本人以外）' do
+    before do
+      sign_in_as(user2)
+    end
+
+    describe '詳細画面' do
+      before do
+        visit daily_record_path(daily_record)
+      end
+
+      context '表示の確認' do
+        it '日常記録の題名・内容・ジャンル名が表示されているか' do
+          expect(page).to have_content daily_record.theme
+          expect(page).to have_content daily_record.introduction
+          expect(page).to have_content daily_record.genre
+        end
+
+        it '編集のリンクが表示されていないか' do
+          expect(page).not_to have_link('編集する', href: '/daily_records/' + daily_record.id.to_s + '/edit')
+        end
+      end
+    end
+
+    describe '編集画面' do
+      before do
+        visit edit_daily_record_path(daily_record)
+      end
+
+      context '表示の確認' do
+        it '自分のマイページへ遷移させられている' do
+          expect(page).to have_current_path user_path(user2)
+        end
+      end
+    end
+
+    describe '一覧画面（本人以外の投稿）' do
+      before do
+        (1..4).each do |i|
+          FactoryBot.create(:daily_record, theme: '題名テスト'+ i.to_s, introduction: '内容テスト'+ i.to_s, user: user)
+        end
+        visit daily_records_path
+      end
+
+      context '表示の確認' do
+        it "daily_recordの題名・ジャンル・投稿者の表示がされているか" do
+          DailyRecord.all.each_with_index do |daily_record|
+            expect(page).to have_content daily_record.theme
+            expect(page).to have_content daily_record.genre
+            expect(page).to have_content daily_record.user.last_name
+          end
+        end
+
+        it "詳細・投稿者マイページへのリンクが表示されているか" do
+          DailyRecord.all.each_with_index do |daily_record|
+            expect(page).to have_link(daily_record.theme, href: '/daily_records/' + daily_record.id.to_s)
+            expect(page).to have_link(daily_record.user.last_name, href: '/users/' + daily_record.user_id.to_s)
+          end
+        end
+      end
+
+      context '動作の確認' do
+        it '詳細リンクの遷移先確認' do
+          DailyRecord.all.each_with_index do |daily_record, i|
+            j = i * 2
+            show_link = find_all('a')[22 - j]
+  	        expect(show_link[:href]).to eq daily_record_path(daily_record)
+  	      end
+        end
+
+        it '投稿者マイページリンクの遷移先確認' do
+          DailyRecord.all.each_with_index do |daily_record, i|
+            j = i * 2
+            mypage_link = find_all('a')[23 - j]
+  	        expect(mypage_link[:href]).to eq user_path(daily_record.user)
+  	      end
+        end
+      end
+    end
+  end
+
+  describe '医療関係者ログイン（かかりつけあり）' do
     before do
       family_registration(user, hospital)
       sign_in_as_hospital(hospital)
@@ -199,6 +280,30 @@ describe "日常記録関連テスト" do
 
         it '編集のリンクが表示されていないか' do
           expect(page).not_to have_link('編集する', href: '/daily_records/' + daily_record.id.to_s + '/edit')
+        end
+      end
+    end
+
+    describe '編集画面' do
+      before do
+        visit edit_daily_record_path(daily_record)
+      end
+
+      context '表示の確認' do
+        it '自分のマイページへ遷移させられている' do
+          expect(page).to have_current_path hospital_path(hospital)
+        end
+      end
+    end
+
+    describe '新規登録画面' do
+      before do
+        visit new_daily_record_path
+      end
+
+      context '表示の確認' do
+        it '自分のマイページへ遷移させられている' do
+          expect(page).to have_content hospital.name
         end
       end
     end
