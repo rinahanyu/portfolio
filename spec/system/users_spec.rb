@@ -344,7 +344,7 @@ describe "個人利用者関連テスト" do
       sign_in_as_hospital(hospital)
     end
 
-    describe 'マイページ（詳細）画面' do
+    describe '個人利用者マイページ（詳細）画面' do
       before do
         visit user_path(user)
       end
