@@ -1,4 +1,7 @@
 class ApplicationController < ActionController::Base
+
+  private
+
   # 患者本人かどうか（user_id）
   def correct_user_id
     @user = User.find(params[:user_id])

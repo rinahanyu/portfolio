@@ -1,39 +1,21 @@
-<div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
-  <% if user == current_user %>
+<% if user == current_user %>
+  <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
     <h2>マイページ</h2>
-  <% else %>
-    <h2><%= user.last_name %><%= user.first_name %>さんのマイページ</h2>
-  <% end %>
-</div>
-
-<div class="mypage-profile">
-  <div class="row">
-    <% if user == current_user %>
+  </div>
+  
+  <div class="mypage-profile">
+    <div class="row">
       <div class="col-xs-6 text-right">
-        <% if user == guest_user %>
-          <p><%= attachment_image_tag user, :profile_image, format: "jpeg", fallback: "carp_boy.jpg", size: "200x200", class: "user-img" %></p>
-        <% else %>
-          <p><%= attachment_image_tag user, :profile_image, format: "jpeg", fallback: "no_image.jpg", size: "200x200", class: "user-img" %></p>
-        <% end %>
+        <%= render "profile_image", user: @user, guest_user: @guest_user %>
       </div>
       <div class="col-xs-6 text-left">
         <h3><%= user.last_name %><%= user.first_name %></h3>
         <%= link_to "基本情報編集する", edit_user_path(user), class: "btn btn-primary" %>
         <%= link_to "退会手続きへ", user_delete_confirm_path(user_id: current_user), class: "btn btn-danger" %>
       </div>
-    <% else %>
-      <div class="col-xs-12 text-center">
-        <% if user == guest_user %>
-          <p><%= attachment_image_tag user, :profile_image, format: "jpeg", fallback: "carp_boy.jpg", size: "200x200", class: "user-img" %></p>
-        <% else %>
-          <p><%= attachment_image_tag user, :profile_image, format: "jpeg", fallback: "no_image.jpg", size: "200x200", class: "user-img" %></p>
-        <% end %>
-      </div>
-    <% end %>
+    </div>
   </div>
-</div>
-
-<% if user == current_user %>
+  
   <div class="col-sm-12 col-md-4">
     <div class="mypage-select">
       <i class="fas fa-procedures"></i>
@@ -60,6 +42,18 @@
       <h4>かかりつけ医登録をして、<br>
       診療記録をチェック！<br>気軽にチャットで質問もできます！</h4>
       <%= link_to "一覧へ", families_user_path(user.id), class: "btn btn-brown" %>
+    </div>
+  </div>
+<% else %>
+  <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
+    <h2><%= user.last_name %><%= user.first_name %>さんのマイページ</h2>
+  </div>
+  
+  <div class="mypage-profile">
+    <div class="row">
+      <div class="col-xs-12 text-center">
+        <%= render "profile_image", user: @user, guest_user: @guest_user %>
+      </div>
     </div>
   </div>
 <% end %>
