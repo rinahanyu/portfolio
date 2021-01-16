@@ -1,0 +1,5 @@
+<% if user == guest_user %>
+  <p><%= attachment_image_tag user, :profile_image, format: "jpeg", fallback: "carp_boy.jpg", size: "200x200", class: "user-img" %></p>
+<% else %>
+  <p><%= attachment_image_tag user, :profile_image, format: "jpeg", fallback: "no_image.jpg", size: "200x200", class: "user-img" %></p>
+<% end %>

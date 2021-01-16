@@ -291,7 +291,7 @@ describe "日常記録関連テスト" do
 
       context '表示の確認' do
         it '自分のマイページへ遷移させられている' do
-          expect(page).to have_current_path hospital_path(hospital)
+          expect(page).to have_current_path new_user_session_path
         end
       end
     end
