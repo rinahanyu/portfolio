@@ -1,7 +1,7 @@
-<% if medical_record.errors.any? %>
+<% if model.errors.any? %>
   <div class="alert alert-danger">
     <ul>
-    <% medical_record.errors.full_messages.each do |message| %>
+    <% model.errors.full_messages.each do |message| %>
     <li><%= message %></li>
     <% end %>
     </ul>

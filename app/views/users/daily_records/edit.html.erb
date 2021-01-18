@@ -2,7 +2,6 @@
   <div class="row">
     <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
       <h2 class="col text-center">わたしの投稿　編集</h2>
-      <%= render "error", daily_record: @daily_record %>
 
         <div class="row">
           <%= form_with model: @daily_record, url: daily_record_path(@daily_record), local: true do |f| %>
