@@ -2,7 +2,6 @@
   <div class="row">
     <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
       <h2 class="col text-center">病歴の編集</h2>
-      <%= render "error", medical_history: @medical_history %>
 
         <div class="row">
           <%= form_with model: @medical_history, url: user_medical_history_path(@medical_history), local: true do |f| %>

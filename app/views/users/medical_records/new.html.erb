@@ -3,10 +3,10 @@
     <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
       <h2 class="col text-center">診療記録の新規登録</h2>
       <h3>＜患者名＞<%= @user.last_name %><%= @user.first_name %>さん</h3>
-      <%= render "error", medical_record: @medical_record %>
 
         <div class="row">
           <%= form_with model: @medical_record , url: user_medical_records_path(@user), local: true do |f| %>
+            <%= render "layouts/error", model: f.object %>
             <!--新規登録の場合み、今日の日付をデフォルト入力するため、日付カラムはrenderの外とする-->
             <div class="form-group">
               <%= f.label :start_time, "診察日" %><br>

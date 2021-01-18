@@ -2,10 +2,10 @@
   <div class="row">
     <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
       <h2 class="health-header">健康管理の編集</h2>
-      <%= render "error", health_care: @health_care %>
 
         <div class="row">
           <%= form_with model: @health_care, url: user_health_care_path(@health_care), local: true do |f| %>
+            <%= render "layouts/error", model: f.object %>
             <!--編集では、今日の日付をデフォルト入力しないため、日付カラムはrenderの外とする-->
             <div class="form-group">
               <%= f.label :date, "日付" %><br>
